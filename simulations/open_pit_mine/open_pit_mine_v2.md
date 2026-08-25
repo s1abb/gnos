@@ -41,6 +41,55 @@ Dump Locations [Location Manager]:
 Dump A
 Dump B
 
+Pit A Demand [Container]
+Unit: Tonne
+Capacity: 10000 Tonne
+Material Properties:
+Starting Amount: 10000 Tonne
+
+Pit B Demand [Container]
+Unit: Tonne
+Capacity: 10000 Tonne
+Material Properties:
+Starting Amount: 10000 Tonne
+
+Pit C Demand [Container]
+Unit: Tonne
+Capacity: 10000 Tonne
+Material Properties:
+Starting Amount: 10000 Tonne
+
+Pit D Demand [Container]
+Unit: Tonne
+Capacity: 10000 Tonne
+Material Properties:
+Starting Amount: 10000 Tonne
+
+Dispatcher [Input]
+Inputs:
+    Main:
+        pits = [
+        {"feature": Pit_A, "Container": Pit_A_Demand},
+        {"feature": Pit_B, "Container": Pit_B_Demand},
+        {"feature": Pit_C, "Container": Pit_C_Demand},
+        {"feature": Pit_D, "Container": Pit_D_Demand},
+        ];
+
+        required = 100;
+        return func (agent) {
+
+        for pit in pits {
+            if pit.Container.amount >= required {
+            pit.Container.get_junction("Main").amount -= required;
+            agent.destination = pit.feature;
+            return;
+            }
+        }
+        agent.destination = null;
+        return;
+        };
+Metric:
+
 Nodes:
 
 _1 Spawn Agents [Spawn Agents]
@@ -87,17 +136,27 @@ Events:
     On Exit:
 Metrics:
 
-Connection: _3 to _4
+Connection: _3 to _13
 
-_4 Get Location Location Manager [Get Location Location Manager]
+13_ Dispatch
 Parameters:
-    Location Manager: Pit Locations
+    Delay Method: Duration
+    Delay Duration: 0 Seconds
 Events:
-    On Enter:
+    On Enter: Dispatcher(agent);
     On Exit:
 Metrics:
 
-Connection: _4 to _5
+Connection: _13 to _14
+
+_14 Conditional [Conditional]
+Parameters:
+    Use Probability: False
+    Number Of Exits: 2
+    Use Conditions: True
+    Exit 1 Condition: return agent.destination != null;
+
+Connection: _14 to _5
 
 _5 Release Location Location Manager [Release Location (Location Manager)]
 Parameters:
@@ -107,20 +166,25 @@ Events:
     On Exit:
 Metrics:
 
-Connection: _5 to _6
+Connection: _5 to _15
 
-_6 Go to Location Location Manager [Go to Location (Location Manager)]
+_15 Move to Location
 Parameters:
-    Future Locations:
+    Movement Mode: Single Location
+    Use Fuel Threshold: False
+    Target Location: return agent.destination;
     Passing Locations:
-    Location Manager: Pit Locations
+    Future Locations:
+    Do Not Slow Down: False
+    Enable Logs: False
+    Baked Physics: None
 Events:
     On Enter:
     On Exit:
-    On Failed Exit:
+    On Failed:
 Metrics:
 
-Connection: _6 to _7
+Connection: _15 to _7
 
 _7 Load Vehicle [Load Vehicle]
 Parameters:
@@ -144,17 +208,7 @@ Metrics:
     Record On Change: False
     Save Interval: 1 Minutes
 
-Connection: _7 to _8
-
-_8 Release Location Location Manager [Release Location (Location Manager)]
-Parameters:
-    Location Manager: Pit Locations
-Events:
-    On Enter:
-    On Exit:
-Metrics:
-
-Connection: _8 to _9
+Connection: _7 to _9
 
 _9 Get Location Location Manager [Get Location Location Manager]
 Parameters:
@@ -183,7 +237,7 @@ _11 Unload Vehicle [Unload Vehicle]
 Parameters:
     Selection Method: Type
     Component Type: Haul Truck
-    Source Container
+    Destination Container
         Equipment:
         Junction:
     Material:
