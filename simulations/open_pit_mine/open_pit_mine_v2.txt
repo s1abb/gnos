@@ -68,7 +68,7 @@ Starting Amount: 10000 Tonne
 Dispatcher [Input]
 Inputs:
     Main:
-        pits = [
+pits = [
         {"feature": Pit_A, "Container": Pit_A_Demand},
         {"feature": Pit_B, "Container": Pit_B_Demand},
         {"feature": Pit_C, "Container": Pit_C_Demand},
@@ -77,14 +77,23 @@ Inputs:
 
         required = 100;
         return func (agent) {
+        max_amount = required;
+        max_pit = null;
 
         for pit in pits {
-            if pit.Container.amount >= required {
-            pit.Container.get_junction("Main").amount -= required;
-            agent.destination = pit.feature;
-            return;
+            if pit.Container.amount >= max_amount {
+                max_pit = pit;
+                max_amount = pit.Container.amount;
             }
         }
+        
+        if max_pit {
+            max_pit.Container.get_junction("Main").amount -= required;
+            agent.destination = max_pit.feature;
+            agent.container = max_pit.Container;
+            return;
+        }
+        
         agent.destination = null;
         return;
         };

@@ -1,0 +1,417 @@
+Vehicle Type [Parameter]
+Data Type: Any
+Main: Baseline
+
+Num Carriages [Parameter]
+Data Type: Any
+Main: 100
+
+Static Charging Enabled [Parameter]
+Data Type: Any
+Main: false
+
+Max Static Charge Rate [Parameter]
+Data Type: Any
+Suffix: kW
+Main: 1000
+
+Full Track Electrification Enabled [Parameter]
+Data Type: Any
+Main: false
+
+Mainline Moving Charge Enabled [Parameter]
+Data Type: Any
+Main: false
+
+Max Moving Charge Per Loco [Parameter]
+Data Type: Any
+Suffix: kW
+Main: 1000
+
+Battery Capacity Override [Parameter]
+Data Type: Any
+Suffix: kWh
+Main: null
+
+Average Cycle Time [Input]
+Main: 0
+Metric:
+  Track Metric: true
+  Chart Suffix: minutes
+  Record on Change: true
+
+Average Diesel Use [Input]
+Main: 0
+Metric:
+  Track Metric: true
+  Chart Suffix: L
+  Record on Change: true
+
+Average Captured Regen [Input]
+Main: 0
+Metric:
+  Track Metric: true
+  Chart Suffix: kWh
+  Record on Change: true
+
+Average Min State Of Charge [Input]
+Main: 0
+Metric:
+  Track Metric: true
+  Chart Suffix: %
+  Record on Change: true
+
+Configure Full Track Electrification [Configure Power Supply Group]
+Parameters:
+  Power Supply Group: Full Track Electrification
+  Max Power: return Max_Moving_Charge_Per_Loco * 2;
+  Active: Full Track Electrification Enabled
+  Max Power per Unit: Max Moving Charge Per Loco
+  Battery Capacity:
+
+Configure Mainline Charging [Configure Power Supply Group]
+Parameters:
+  Power Supply Group: Moving Charge Mainline
+  Max Power: return Max_Moving_Charge_Per_Loco * 2;
+  Active: Mainline Moving Charge Enabled
+  Max Power per Unit: Max Moving Charge Per Loco
+  Battery Capacity:
+
+train [Agent Type]
+Agent Type Parameters:
+    min_state_of_charge: 100
+
+Rail Carriage [Rail Carriage]
+Carriage Type: Decarb Demo - Carriage
+
+Baseline [Rail Vehicle]
+Vehicle Type: Decarb Demo - Diesel
+
+Hybrid [Rail Vehicle]
+Vehicle Type: Decarb Demo - Hybrid
+
+Battery [Rail Vehicle]
+Vehicle Type: Decarb Demo - Battery
+
+Hybrid Fuel Consumer [Code Block]
+speed; // m/s
+notch; // -1, 0, 1-8
+effort; // kN, +ve => traction, -ve => braking
+temperature; // C
+auxiliary_power; // kW, includes thermal
+general_auxiliary_power = fuel_system.general_aux_load; // kW, ignore
+thermal_auxiliary_power = 7; // kW
+charge_rate; // kW
+delta_time; // s
+
+power = speed * effort; // kW
+
+if power > 0 {
+    power = power / fuel_system.battery_to_track_efficiency; // kW
+} else {
+    if fuel_system.enable_regen {
+      power = power * fuel_system.regen_braking_efficiency; // kW
+    } else {
+      power = 0;
+    }
+}
+
+consumed = power * delta_time / 3600; // kWhr
+thermal_auxiliary_load = thermal_auxiliary_power * delta_time / 3600; // kWhr
+charged = charge_rate * delta_time / 3600; // kWhr
+local_charged = fuel_system.get_charge_rate() * delta_time / 3600; // kWhr
+
+net = charged + local_charged - consumed - thermal_auxiliary_load;
+
+regen = max([0, -consumed]);
+if net > 0 {
+  unused = fuel_system.charge_battery(net / delta_time * 3600, delta_time);
+
+  if charged > unused {
+    charged -= unused;
+    unused = 0;
+  } else {
+    unused -= charged;
+    charged = 0;
+  }
+
+  if local_charged > unused {
+    local_charged -= unused;
+    unused = 0;
+  } else {
+    unused -= local_charged;
+    local_charged = 0;
+  }
+
+  if regen > unused {
+    regen -= unused;
+    unused = 0;
+  } else {
+    unused -= regen;
+    regen = 0;
+  }
+}
+else if net < 0 {
+  unused = fuel_system.charge_battery(net / delta_time * 3600, delta_time);
+  remaining_energy_required = 0; // kWh
+  if unused < 0 {
+    remaining_energy_required = -unused;
+    unused = 0;
+  }
+  if remaining_energy_required > 0 {
+    diesel = 0.2603351582 * remaining_energy_required; // L
+    fuel_system.add_diesel(-diesel);
+
+    if consumed > remaining_energy_required {
+      consumed -= remaining_energy_required;
+      unused = 0;
+    } else {
+      remaining_energy_required -= consumed;
+      consumed = 0;
+    }
+    if thermal_auxiliary_load > remaining_energy_required {
+      thermal_auxiliary_load -= remaining_energy_required;
+      unused = 0;
+    } else {
+      remaining_energy_required -= thermal_auxiliary_load;
+      thermal_auxiliary_load = 0;
+    }
+  }
+}
+
+fuel_system.add_regen_energy(regen);
+if consumed < 0 {
+  consumed = 0;
+}
+fuel_system.add_energy_consumed(consumed + thermal_auxiliary_load);
+fuel_system.add_recharged_energy(local_charged + charged);
+fuel_system.set_charge_power((local_charged + charged) / delta_time * 3600);
+
+return charged;
+
+Record Min State Of Charge [Trigger Code]
+Parameters:
+    Code:
+        return func() {
+        agent = simulation.get_agents()[0];
+        state_of_charge = agent.vehicle.state_of_charge;
+        if state_of_charge < agent.min_state_of_charge {
+            agent.min_state_of_charge = state_of_charge;
+        }
+        };
+    Function Parameter:
+    Trigger Method: Interval
+    Offset: 1 Seconds
+    Interval: 1 Seconds
+
+_1 Spawn Train [Spawn Agents]
+Parameters:
+  Spawn Mode: Once
+  Agent Type: train
+  Number: 1
+  Allow Spawn: true
+  Enable Logs: false
+  Spawn Vehicle: false
+Events:
+  On Exit:
+Metrics:
+
+Connection: _1 to _2
+
+_2 Add Vehicle
+Parameters:
+  Vehicle Type: Rail
+  Name:
+  Network Model: Rail Network Test
+  Track Feature: Network Entrance
+  Use Train: false
+  Rail Components:
+    Quantity: 1 Component: Vehicle Type Load KG:
+    Quantity: Num Carriages Component: Rail Carriage Load KG:
+    Quantity: 1 Component: Vehicle Type Load KG:
+  Log Components: false
+  Bidirectional: false
+  Tags:
+  Setup Control: false
+  Set Controller: false
+Events:
+  On Enter:
+    agent.min_state_of_charge = 100;
+  On Exit:
+    agent.vehicle.log_idle = true;
+
+    if Vehicle_Type == Hybrid {
+      agent.vehicle.set_fuel_consumer(Hybrid_Fuel_Consumer);
+    }
+
+    if Battery_Capacity_Override != null {
+      for c in agent.vehicle.get_vehicle_components() {
+        c.set_battery_capacity(Battery_Capacity_Override);
+        c.set_battery(Battery_Capacity_Override);
+      }
+    }
+Metrics:
+
+Connection: _2 to _3
+
+_3 Is Static Charge Enabled [Conditional]
+Parameters:
+  Use Probability: false
+  Number Of Exits: 2
+  Use Conditions: true
+  Exit 1 Condition: Static Charging Enabled
+Events:
+  On Enter:
+  On Exit:
+  On Final Exit:
+Metrics:
+
+Connection: _3 to _4
+Connection: _3 to _6
+
+_4 Move to Yard 1 [Move to Location]
+Parameters:
+  Movement Mode: Single Location
+  Use Fuel Threshold: false
+  Target Location: Yard 1
+  Passing Locations:
+  Future Locations:
+  Do Not Slow Down: true
+  Enable Logs: false
+  Baked Physics: None
+Events:
+  On Enter:
+  On Exit:
+  On Final Exit:
+Metrics:
+
+Connection: _4 to _5
+
+_5 Charge Vehicle [Charge Vehicle]
+Parameters:
+  Level: 0
+  Rate: Max Static Charge Rate
+Events:
+  On Enter:
+  On Exit:
+Metrics:
+
+Connection: _5 to _6
+
+_6 Move to Loader 1 [Move to Location]
+Parameters:
+  Movement Mode: Single Location
+  Use Fuel Threshold: false
+  Target Location: Loader 1
+  Passing Locations:
+  Future Locations:
+  Do Not Slow Down: false
+  Enable Logs: false
+  Baked Physics: None
+Events:
+  On Enter:
+  On Exit:
+  On Final Exit:
+Metrics:
+
+Connection: _6 to _7
+
+_7 Load Vehicle [Load Vehicle]
+Parameters:
+  Selection Method: All
+  Source Container:
+    Equipment:
+    Junction:
+  Load Method: Fully Load
+  Use Load Duration: true
+  Load Component Duration: 0.25 Minutes
+
+Connection: _7 to _8
+
+_8 Is Static Charge Enabled [Conditional]
+Parameters:
+  Use Probability: false
+  Number Of Exits: 2
+  Use Conditions: true
+  Exit 1 Condition: Static Charging Enabled
+Events:
+  On Enter:
+  On Exit:
+  On Final Exit:
+Metrics:
+
+Connection: _8 to _9
+Connection: _8 to _11
+
+_9 Move to Yard 1 [Move to Location]
+Parameters:
+  Movement Mode: Single Location
+  Use Fuel Threshold: false
+  Target Location: Yard 1
+  Passing Locations:
+  Future Locations:
+  Do Not Slow Down: true
+  Enable Logs: false
+  Baked Physics: None
+Events:
+  On Enter:
+  On Exit:
+  On Final Exit:
+Metrics:
+
+Connection: _9 to _10
+
+_10 Charge Vehicle [Charge Vehicle]
+Parameters:
+  Level: 0
+  Rate: Max Static Charge Rate
+Events:
+  On Enter:
+  On Exit:
+Metrics:
+
+Connection: _10 to _11
+
+_11 Move to Exit [Move to Location]
+Parameters:
+  Movement Mode: Single Location
+  Use Fuel Threshold: false
+  Target Location: Network Entrance
+  Passing Locations:
+  Future Locations:
+  Do Not Slow Down: true
+  Enable Logs: false
+  Baked Physics: None
+Events:
+  On Enter:
+  On Exit:
+  On Final Exit:
+Metrics:
+
+Connection: _11 to _12
+
+_12 Remove Vehicle [Remove Vehicle]
+Parameters:
+  Keep Agent Alive: true
+  Delete Components: false
+Events:
+  On Enter:
+    // Update Cycle Time
+    cycle_time = agent.time_since_node(_2_Add_Vehicle).minutes();
+    Average_Cycle_Time = (Average_Cycle_Time * _12_Remove_Vehicle.exited + cycle_time) / _2_Add_Vehicle.entered;
+
+    // Update Diesel Use
+    diesel_use = agent.vehicle.diesel_capacity - agent.vehicle.diesel_level;
+    Average_Diesel_Use = (Average_Diesel_Use * _12_Remove_Vehicle.exited + diesel_use) / _2_Add_Vehicle.entered;
+
+    // Update Captured Regen
+    captured_regen = agent.vehicle.captured_regen_energy;
+    Average_Captured_Regen = (Average_Captured_Regen * _12_Remove_Vehicle.exited + captured_regen) / _2_Add_Vehicle.entered;
+
+    // Update Min State of Charge
+    min_charge = agent.min_state_of_charge;
+    Average_Min_State_Of_Charge = (Average_Min_State_Of_Charge * _12_Remove_Vehicle.exited + min_charge) / _2_Add_Vehicle.entered;
+  On Exit:
+Metrics:
+
+Connection: _12 to _2
