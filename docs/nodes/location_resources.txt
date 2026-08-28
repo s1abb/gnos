@@ -1,0 +1,41 @@
+Location Resources
+(Event Node)
+
+Manages the requests and queuing for location resources.
+
+Details
+Running node
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Locations
+List of location resources.
+
+Bound name: Locations
+Input type: List
+Required: True
+Rows
+Location, (Required)
+
+Track feature to use as the location.
+
+Queue Size, (Required)
+
+How many agents can queue for this location.
+
+Statics
+wait queue
+Bound name: wait_queue
+// Default value
+return simulation.create_queue_event();
+id
+Bound name: id
+// Default value
+return generate_uuid();
+resource list
+Bound name: resource_list
+// Default value
+return [];

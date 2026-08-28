@@ -1,0 +1,43 @@
+Agent Resource Queue
+(Event Node)
+
+A block for resource agents to wait before being called up to perform an action
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Waiting Locations
+List of locations agents will wait at until requested.
+
+Bound name: Waiting_Locations
+Input type: List
+Required: True
+Rows
+Location, (Required)
+
+Track feature to use as a waiting location.
+
+Statics
+id
+Bound name: id
+// Default value
+return generate_uuid();
+requests
+Bound name: requests
+// Default value
+return [];
+agent queue
+Bound name: agent_queue
+// Default value
+return [];
+location list
+Bound name: location_list
+// Default value
+return [];
+location queue
+Bound name: location_queue
+// Default value
+return simulation.create_queue_event();

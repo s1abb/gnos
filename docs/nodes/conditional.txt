@@ -1,0 +1,179 @@
+Conditional
+(Event Node)
+
+Send agents to different exits based on various conditions
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Use Probability
+Use probability to determine agent's exit.
+
+Bound name: Use_Probability
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Exit 1 Probability
+The probability (0-100%) that the agent will leave through Exit 1. Otherwise, it will leave through the Final Exit.
+
+Bound name: Exit_1_Probability
+Input type: Number
+Required: True
+Boolean dependencies:
+Use_Probability == true
+Number Of Exits
+Number of potential exits agent can be sent to.
+
+Bound name: Number_Of_Exits
+Input type: Enum
+Required: True
+Enum Values:
+"2"
+"3"
+"4"
+"5"
+"6"
+Boolean dependencies:
+Use_Probability == false
+// Default value
+return "2";
+Use Conditions
+Use conditions to determine agent's exit.
+
+Bound name: Use_Conditions
+Input type: Boolean
+Required: True
+Boolean dependencies:
+Use_Probability == false
+// Default value
+return true;
+Exit 1 Condition
+If evaluates to true, send agent to Exit 1. Otherwise check next condition or send agent to Final Exit if no more conditions.
+
+Bound name: Exit_1_Condition
+Input type: Any
+Required: True
+Boolean dependencies:
+Use_Conditions == true
+Use_Probability == false
+Enum dependencies:
+Number_Of_Exits == "2"
+Number_Of_Exits == "3"
+Number_Of_Exits == "4"
+Number_Of_Exits == "5"
+Number_Of_Exits == "6"
+Exit 2 Condition
+If all previous conditions are false and this evaluates to true, send agent to Exit 2. Otherwise check next condition or send agent to Final Exit if no more conditions.
+
+Bound name: Exit_2_Condition
+Input type: Any
+Required: True
+Boolean dependencies:
+Use_Conditions == true
+Use_Probability == false
+Enum dependencies:
+Number_Of_Exits == "3"
+Number_Of_Exits == "4"
+Number_Of_Exits == "5"
+Number_Of_Exits == "6"
+Exit 3 Condition
+If all previous conditions are false and this evaluates to true, send agent to Exit 3. Otherwise check next condition or send agent to Final Exit if no more conditions.
+
+Bound name: Exit_3_Condition
+Input type: Any
+Required: True
+Boolean dependencies:
+Use_Conditions == true
+Use_Probability == false
+Enum dependencies:
+Number_Of_Exits == "4"
+Number_Of_Exits == "5"
+Number_Of_Exits == "6"
+Exit 4 Condition
+If all previous conditions are false and this evaluates to true, send agent to Exit 4. Otherwise check next condition or send agent to Final Exit if no more conditions.
+
+Bound name: Exit_4_Condition
+Input type: Any
+Required: True
+Boolean dependencies:
+Use_Conditions == true
+Use_Probability == false
+Enum dependencies:
+Number_Of_Exits == "5"
+Number_Of_Exits == "6"
+Exit 5 Condition
+If all previous conditions are false and this evaluates to true, send agent to Exit 5. Otherwise send agent to Final Exit.
+
+Bound name: Exit_5_Condition
+Input type: Any
+Required: True
+Boolean dependencies:
+Use_Conditions == true
+Use_Probability == false
+Enum dependencies:
+Number_Of_Exits == "6"
+Exit Number
+The number of the exit to send the agent to. (Exit number 1 is the first exit)
+
+Bound name: Exit_Number
+Input type: Any
+Required: True
+Boolean dependencies:
+Use_Conditions == false
+Use_Probability == false
+Exits
+Exit 4
+Code executed when the agent leaves through Exit 4.
+
+Bound name: Exit_4
+Boolean dependencies:
+Use_Probability == false
+Enum dependencies:
+Number_Of_Exits == "5"
+Number_Of_Exits == "6"
+Exit 2
+Code executed when the agent leaves through Exit 2.
+
+Bound name: Exit_2
+Boolean dependencies:
+Use_Probability == false
+Enum dependencies:
+Number_Of_Exits == "3"
+Number_Of_Exits == "4"
+Number_Of_Exits == "5"
+Number_Of_Exits == "6"
+Exit 5
+Code executed when the agent leaves through Exit 5.
+
+Bound name: Exit_5
+Boolean dependencies:
+Use_Probability == false
+Enum dependencies:
+Number_Of_Exits == "6"
+Exit 3
+Code executed when the agent leaves through Exit 3.
+
+Bound name: Exit_3
+Boolean dependencies:
+Use_Probability == false
+Enum dependencies:
+Number_Of_Exits == "4"
+Number_Of_Exits == "5"
+Number_Of_Exits == "6"
+Exit 1
+Code executed when the agent leaves through Exit 1.
+
+Bound name: Exit_1
+Final Exit
+Code executed when the agent leaves through the Final Exit.
+
+Bound name: Final_Exit
+Statics
+Exits
+Bound name: Exits
+// Default value
+return [];

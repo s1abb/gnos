@@ -1,0 +1,67 @@
+Load Container
+(Event Node)
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Load Type
+Bound name: Load_Type
+Input type: Enum
+Required: True
+Enum Values:
+"Default"
+"Flowsim"
+// Default value
+return "Default";
+Delay Type
+Bound name: Delay_Type
+Input type: Enum
+Required: True
+Enum Values:
+"Rate"
+"Duration"
+Enum dependencies:
+Load_Type == "Default"
+// Default value
+return "Duration";
+Tag
+Bound name: Tag
+Input type: Text
+Required: True
+Quantity
+Bound name: Quantity
+Input type: Number
+Required: True
+Material Properties
+Bound name: Material_Properties
+Input type: Material Property Groups
+Required: False
+Enum dependencies:
+Load_Type == "Default"
+Delay
+Bound name: Delay
+Input type: Duration
+Required: True
+Enum dependencies:
+Delay_Type == "Duration"
+// Default value
+return 0;
+Rate
+Bound name: Rate
+Input type: Unit Rate
+Required: True
+Enum dependencies:
+Load_Type == "Flowsim"
+Delay_Type == "Rate"
+Source
+Bound name: Source
+Input type: Equipment
+Required: True
+Enum dependencies:
+Load_Type == "Flowsim"
+Exits
+Exit
+Bound name: Exit

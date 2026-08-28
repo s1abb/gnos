@@ -1,0 +1,34 @@
+Charge Vehicle
+(Event Node)
+
+Default charge vehicle block. Charges all battery systems in the vehicle independently of each-other, applying the rate of charge to each.
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Level
+% of nameplate battery capacity to charge to.
+
+Bound name: Level
+Input type: Number
+Required: True
+Autocomplete set: Parameters, Variables, Calculation Nodes
+// Default value
+return 100;
+Rate
+Rate to charge all batteries in kW. Will still be limited by battery systems charge curve. Is applied independently to each battery system.
+
+Bound name: Rate
+Input type: Number
+Required: True
+Autocomplete set: Parameters, Variables, Calculation Nodes
+// Default value
+return 0;
+Exits
+Exit
+Default Exit
+
+Bound name: Exit

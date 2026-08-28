@@ -1,0 +1,86 @@
+Load from Storage
+(Event Node)
+
+Submit load requests to Storage Location node. Optionally load arriving agent onto the loading agent if it was requested.
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Item Storage
+List of Storage Location nodes to request agents from.
+
+Bound name: Item_Storage
+Input type: List
+Required: True
+Rows
+Storage, (Required)
+
+Target Storage Location node.
+
+Loading Agent Type
+The agent type to be loaded with other agents.
+
+Bound name: Loading_Agent_Type
+Input type: Any
+Required: True
+Autocomplete set: Agent Types
+Boolean dependencies:
+Request_Only == false
+Loaded Agent Type
+The agent type to load onto the Loading agent.
+
+Bound name: Loaded_Agent_Type
+Input type: Any
+Required: True
+Autocomplete set: Agent Types
+Boolean dependencies:
+Request_Only == false
+Load Quantity
+The total number of agents to load.
+
+Bound name: Load_Quantity
+Input type: Number
+Required: True
+// Default value
+return 0;
+Loading Tag
+The tag that an agent should match to be loaded to this block, if blank any agent in the storage will be eligible.
+
+Bound name: Loading_Tag
+Input type: Text
+Required: False
+Request Only
+Trigger the request only, don't wait to load.
+
+Bound name: Request_Only
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Load Request Size
+The number of items that will be requested to be loaded at a time.
+
+Bound name: Load_Request_Size
+Input type: Number
+Required: True
+Boolean dependencies:
+Request_Only == false
+// Default value
+return 1;
+Exits
+exit
+Continue to next node
+
+Bound name: exit
+Statics
+loading agents
+Bound name: loading_agents
+// Default value
+return {};
+node id
+Bound name: node_id
+// Default value
+return generate_uuid();

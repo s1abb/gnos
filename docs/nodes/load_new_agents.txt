@@ -1,0 +1,39 @@
+Load New Agents
+(Event Node)
+
+Spawn new agents and load them into the current agent.
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+New Agent Type
+Agent type to use when spawning new agents.
+
+Bound name: New_Agent_Type
+Input type: Any
+Required: True
+Autocomplete set: Agent Types
+Count
+Number of agents to spawn and load into the current agent.
+
+Bound name: Count
+Input type: Number
+Required: True
+On Spawned
+Optional hook to initialise spawned agent.
+
+Bound name: On_Spawned
+Input type: Any
+Required: False
+// Default value
+return func(new_agent, index) {
+  
+};
+Exits
+Exit
+Exit for agent containing newly spawned agents.
+
+Bound name: Exit

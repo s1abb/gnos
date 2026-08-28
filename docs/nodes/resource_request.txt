@@ -1,0 +1,47 @@
+Resource Request
+(Event Node)
+
+Used to request a resource - does not release.
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Resource
+Resource required by Agent.
+
+Bound name: Resource
+Input type: Any
+Required: True
+Autocomplete set: Resources
+Enable Timeout
+Allow the request to timeout.
+
+Bound name: Enable_Timeout
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Timeout
+Max delay time to request resource, will cancel request and exit in failed path if not granted in time. If 0 or less will require instant granting.
+
+Bound name: Timeout
+Input type: Duration
+Required: True
+Boolean dependencies:
+Enable_Timeout == true
+// Default value
+return 1;
+Exits
+timed_out
+Request timed out.
+
+Bound name: timed_out
+Boolean dependencies:
+Enable_Timeout == true
+exit
+Proceed to the next node.
+
+Bound name: exit

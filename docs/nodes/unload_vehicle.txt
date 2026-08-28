@@ -1,0 +1,136 @@
+Unload Vehicle
+(Event Node)
+
+Unload vehicle components. Can optionally use a FlowSim container as a destination.
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Selection Method
+Unload components by type or index.
+
+Bound name: Selection_Method
+Input type: Enum
+Required: True
+Enum Values:
+"Type"
+"Index"
+"All"
+// Default value
+return "Type";
+Component Type
+Unload components which match this type
+
+Bound name: Component_Type
+Input type: Any
+Required: True
+Autocomplete set: Rail Carriages, Rail Vehicles, Motor Vehicles
+Enum dependencies:
+Selection_Method == "Type"
+Start Index
+The index of the first component (index 1 is the head of the vehicle)
+
+Bound name: Start_Index
+Input type: Number
+Required: True
+Enum dependencies:
+Selection_Method == "Index"
+// Default value
+return ;
+End Index
+The index of the last component (the index of the tail is equal to the number of components plus 1)
+
+Bound name: End_Index
+Input type: Number
+Required: True
+Enum dependencies:
+Selection_Method == "Index"
+Destination Container
+Optional FlowSim container to load material to
+
+Bound name: Destination_Container
+Input type: Equipment
+Required: False
+Autocomplete set: Equipment
+Material
+Material properties of the material in the container.
+
+Bound name: Material
+Input type: Material Property Groups
+Required: True
+// Default value
+return [];
+Unload Method
+Specify which method should be used to determine quantity unloaded from each component
+
+Bound name: Unload_Method
+Input type: Enum
+Required: True
+Enum Values:
+"Unload Per Component"
+"Shared Amount"
+"Target Amount"
+"Fully Unload"
+// Default value
+return "Unload Per Component";
+Unload Per Component
+Attempt to take this amount from each component
+
+Bound name: Unload_Per_Component
+Input type: Unit
+Required: True
+Enum dependencies:
+Unload_Method == "Unload Per Component"
+Max Shared Amount
+Maximum unload amount shared across all selected components
+
+Bound name: Max_Shared_Amount
+Input type: Unit
+Required: True
+Enum dependencies:
+Unload_Method == "Shared Amount"
+Target Amount
+Unload until this quantity has been unloaded or until there are no more components to unload
+
+Bound name: Target_Amount
+Input type: Unit
+Required: True
+Enum dependencies:
+Unload_Method == "Target Amount"
+Use Unload Duration
+Specifiy time taken to unload component instead of using unload rate. (Note: actual duration may be longer when interfacing with FlowSim due to lower input rate on the junction)
+
+Bound name: Use_Unload_Duration
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Unload Rate
+Material transfer rate
+
+Bound name: Unload_Rate
+Input type: Unit Rate
+Required: True
+Boolean dependencies:
+Use_Unload_Duration == false
+Unload Component Duration
+How long it takes to unload each component. (Note: actual duration may be longer when interfacing with FlowSim due to lower input rate on the junction)
+
+Bound name: Unload_Component_Duration
+Input type: Duration
+Required: True
+Boolean dependencies:
+Use_Unload_Duration == true
+Exits
+Exit
+Exit after finished unloading vehicle
+
+Bound name: Exit
+Statics
+Total Unloaded
+Bound name: Total_Unloaded
+// Default value
+return 0;

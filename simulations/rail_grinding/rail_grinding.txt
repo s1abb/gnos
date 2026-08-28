@@ -513,7 +513,7 @@ Parameters:
         Equipment:
         Junction:
     Material:
-        Select Material Propoerty Group:
+        Select Material Property Group:
     Unload Method: Unload Per Component
     Unload Per Component: 130 Tonne
     Use Unload Duration: false
@@ -540,6 +540,8 @@ Events:
     On Enter:
     On Exit:
 Metrics:
+
+Connection: _9 to _2
 
 _10 Spawn Grinding Train [Spawn Agents]
 Node Group:

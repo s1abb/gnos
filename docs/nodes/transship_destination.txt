@@ -1,0 +1,39 @@
+Transship Destination
+(Event Node)
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Quantity
+Bound name: Quantity
+Input type: Number
+Required: True
+// Default value
+return 1;
+Wait
+Bound name: Wait
+Input type: Boolean
+Required: True
+// Default value
+return true;
+Source
+Bound name: Source
+Input type: Any
+Required: True
+Autocomplete set: Event Nodes
+Delay Per Container
+Bound name: Delay_Per_Container
+Input type: Duration
+Required: True
+// Default value
+return 0;
+Exits
+Exit
+Bound name: Exit
+Incomplete
+Bound name: Incomplete
+Boolean dependencies:
+Wait == false

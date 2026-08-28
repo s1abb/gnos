@@ -1,0 +1,444 @@
+Spawn Agents
+(Event Node)
+
+Spawn agents within the simulation
+
+Details
+Running node
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Spawn Mode
+Determines when spawn events are triggered
+
+Bound name: Spawn_Mode
+Input type: Enum
+Required: True
+Enum Values:
+"Once"
+"Interval"
+"Rate"
+"Schedule"
+// Default value
+return "Once";
+Agent Type
+The agent type to spawn
+
+Bound name: Agent_Type
+Input type: Any
+Required: True
+Autocomplete set: Agent Types
+Number
+The number of agents to create at each spawn event
+
+Bound name: Number
+Input type: Number
+Required: True
+// Default value
+return 1;
+Maximum Count
+Maximum number of agents to spawn in total
+
+Bound name: Maximum_Count
+Input type: Number
+Required: False
+Enum dependencies:
+Spawn_Mode == "Interval"
+Spawn_Mode == "Rate"
+Allow Spawn
+Condition that is checked before spawning each agent
+
+Bound name: Allow_Spawn
+Input type: Boolean
+Required: True
+// Default value
+return true;
+Spawn At Start
+Trigger spawn event at the start of the simulation
+
+Bound name: Spawn_At_Start
+Input type: Boolean
+Required: True
+Enum dependencies:
+Spawn_Mode == "Interval"
+Spawn_Mode == "Rate"
+// Default value
+return true;
+Interval
+The delay between each spawn event (must be greater than 0)
+
+Bound name: Interval
+Input type: Duration
+Required: True
+Enum dependencies:
+Spawn_Mode == "Interval"
+// Default value
+return 1;
+Rate
+The frequency of spawn events (must be greater than 0)
+
+Bound name: Rate
+Input type: Rate
+Required: True
+Enum dependencies:
+Spawn_Mode == "Rate"
+// Default value
+return 1;
+Spawn Schedule
+Upload set containing spawn schedule. (Any extra columns will be merged with the agent's properties)
+
+Bound name: Spawn_Schedule
+Input type: Upload Set
+Required: True
+Autocomplete set: Upload Sets
+Enum dependencies:
+Spawn_Mode == "Schedule"
+Upload Set Template Columns
+Spawn_Datetime DateTime
+
+The date and time that a spawn event will occur.
+
+Spawn_Number Number
+
+The number of agents to spawn during the spawn event (overrides 'Number' parameter, negative values will spawn no agents)
+
+Enable Logs
+Add spawn events to simulation INFO logs
+
+Bound name: Enable_Logs
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Spawn Vehicle
+Bound name: Spawn_Vehicle
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Vehicle Type
+Determines the physics model used by the vehicle added to the agent:
+
+Rail: Full rail physics with mass, multiple locomotives, and carriages.
+Road: Full road physics considering vehicle weight.
+No Physics (Full Interaction): Simplified acceleration, no physics, but full interaction with other vehicles.
+No Physics (Limited Interaction): Most performant, simplified acceleration, no physics, limited vehicle interaction.
+Bound name: Vehicle_Type
+Input type: Enum
+Required: True
+Enum Values:
+"Rail"
+"Road"
+"No Physics (Full Interaction)"
+"No Physics (Limited Interaction)"
+Boolean dependencies:
+Spawn_Vehicle == true
+// Default value
+return "Rail";
+Vehicle Name
+Optional name for new vehicles
+
+Bound name: Vehicle_Name
+Input type: Text
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Network Model
+Network model to create vehicle on
+
+Bound name: Network_Model
+Input type: Any
+Required: True
+Autocomplete set: Network Models
+Boolean dependencies:
+Spawn_Vehicle == true
+Track Feature
+Optional track feature to place vehicle at
+
+Bound name: Track_Feature
+Input type: Any
+Required: False
+Autocomplete set: Track Features
+Boolean dependencies:
+Spawn_Vehicle == true
+Use Train
+Use a train component to configure vehicle
+
+Bound name: Use_Train
+Input type: Boolean
+Required: True
+Boolean dependencies:
+Spawn_Vehicle == true
+Enum dependencies:
+Vehicle_Type == "Rail"
+Vehicle_Type == "No Physics (Full Interaction)"
+Vehicle_Type == "No Physics (Limited Interaction)"
+// Default value
+return false;
+Rail Components
+Describe the types and order of components to add to the rail vehicle
+
+Bound name: Rail_Components
+Input type: List
+Required: False
+Boolean dependencies:
+Use_Train == false
+Spawn_Vehicle == true
+Enum dependencies:
+Vehicle_Type == "Rail"
+// Default value
+return [{"Quantity":,"Component":}];
+Rows
+Component, (Required)
+
+The rail component type to add
+
+Quantity, (Required)
+
+The number of the specified component types to add to the rail vehicle
+
+Load KG, (Optional)
+
+(Optional) The initial load of the component in kg. Defaults to 0.
+
+Motor Vehicle
+The motor vehicle component type to add to the start of the road vehicle
+
+Bound name: Motor_Vehicle
+Input type: Any
+Required: True
+Autocomplete set: Motor Vehicles
+Boolean dependencies:
+Use_Train == false
+Spawn_Vehicle == true
+Enum dependencies:
+Vehicle_Type == "Road"
+Vehicle Components
+(Optional) Describe the types and order of components to add to the vehicle
+
+Bound name: Vehicle_Components
+Input type: List
+Required: False
+Boolean dependencies:
+Use_Train == false
+Spawn_Vehicle == true
+Enum dependencies:
+Vehicle_Type == "Road"
+Vehicle_Type == "No Physics (Full Interaction)"
+Vehicle_Type == "No Physics (Limited Interaction)"
+Rows
+Component, (Required)
+
+The vehicle component type to add
+
+Quantity, (Required)
+
+The number of the specified component types to add to the vehicle
+
+Load KG, (Optional)
+
+(Optional) The initial load of the component in kg. Defaults to 0.
+
+Train Component
+Train component to use when configuring vehicle
+
+Bound name: Train_Component
+Input type: Any
+Required: True
+Autocomplete set: Rail Train
+Boolean dependencies:
+Use_Train == true
+Spawn_Vehicle == true
+Log Components
+Add individual component data to the vehicle logs
+
+Bound name: Log_Components
+Input type: Boolean
+Required: True
+Boolean dependencies:
+Spawn_Vehicle == true
+Enum dependencies:
+Vehicle_Type == "Rail"
+// Default value
+return false;
+Bidirectional
+Allow the train to move bidirectionally
+
+Bound name: Bidirectional
+Input type: Boolean
+Required: True
+Boolean dependencies:
+Spawn_Vehicle == true
+Enum dependencies:
+Vehicle_Type == "Rail"
+// Default value
+return false;
+Can Turn On Spot
+Bound name: Can_Turn_On_Spot
+Input type: Boolean
+Required: True
+Boolean dependencies:
+Spawn_Vehicle == true
+Enum dependencies:
+Vehicle_Type == "Road"
+Vehicle_Type == "No Physics (Full Interaction)"
+Vehicle_Type == "No Physics (Limited Interaction)"
+// Default value
+return false;
+Tags
+Optional list of tags to add to the vehicle
+
+Bound name: Tags
+Input type: List
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Rows
+Tag Name, (Required)
+
+Name of the tag to add to the vehicle
+
+Setup Control
+Configure Control Parameters
+
+Bound name: Setup_Control
+Input type: Boolean
+Required: True
+Boolean dependencies:
+Spawn_Vehicle == true
+// Default value
+return false;
+Max Speed
+Max speed of vehicle
+
+Bound name: Max_Speed
+Input type: Number
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Setup_Control == true
+Max Force
+Max force applied to vehicle
+
+Bound name: Max_Force
+Input type: Number
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Setup_Control == true
+Max Acceleration
+Max acceleration of the vehicle
+
+Bound name: Max_Acceleration
+Input type: Number
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Setup_Control == true
+Max Braking
+Max braking deceleration of the vehicle
+
+Bound name: Max_Braking
+Input type: Number
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Setup_Control == true
+Safe Boundary
+Enforces a minimum distance other vehicles must be away from this vehicle. Requires network model stopping distance signalling to be enabled.
+
+Bound name: Safe_Boundary
+Input type: Number
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Setup_Control == true
+Controller Type
+Vehicle controller type.
+
+Bound name: Controller_Type
+Input type: Enum
+Required: True
+Enum Values:
+"PID"
+"MRAC"
+Boolean dependencies:
+Set_Controller == true
+Spawn_Vehicle == true
+Enum dependencies:
+Vehicle_Type == "Road"
+Vehicle_Type == "Rail"
+// Default value
+return "PID";
+Set Controller
+Configure Engine Controller
+
+Bound name: Set_Controller
+Input type: Boolean
+Required: True
+Boolean dependencies:
+Spawn_Vehicle == true
+Enum dependencies:
+Vehicle_Type == "Rail"
+Vehicle_Type == "Road"
+// Default value
+return false;
+KP
+PID Proportional Parameter, increasing causes faster response, can cause overshoot and oscillation.
+
+Bound name: KP
+Input type: Number
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Enum dependencies:
+Controller_Type == "PID"
+KI
+PID Integral Parameter, increasing reduces steady state error and faster response, can cause instability, overshoot and oscillation.
+
+Bound name: KI
+Input type: Number
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Enum dependencies:
+Controller_Type == "PID"
+KD
+PID Derivative Parameter, improves the stability of the system (decreasing overshoot and oscillation) and reduces the response time. High values can cause instability.
+
+Bound name: KD
+Input type: Number
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Enum dependencies:
+Controller_Type == "PID"
+Rising Time
+Bound name: Rising_Time
+Input type: Any
+Required: False
+Boolean dependencies:
+Spawn_Vehicle == true
+Enum dependencies:
+Controller_Type == "MRAC"
+Exits
+Exit
+Exit for spawned agents
+
+Bound name: Exit
+Statics
+Sorted Schedule
+Bound name: Sorted_Schedule
+// Default value
+return null;
+Schedule Index
+Bound name: Schedule_Index
+// Default value
+return 0;
+Total Spawned
+Bound name: Total_Spawned
+// Default value
+return 0;

@@ -1,0 +1,38 @@
+Logic Canvas
+GNOS simulations are built using a Logic Canvas. There are 3 different types of nodes; simulation setup nodes, calculation nodes and event nodes. Connections are made between nodes to create the logic of the simulation.
+
+Simulation Setup Nodes
+Simulation setup nodes define various properties and objects which are used within a simulation. They do not directly form connections to other nodes but can be referenced by other nodes.
+
+They consist of the following nodes:
+
+Agent Types: Defines an agent.
+Canvases: Canvases are visual only elements used to help organise a simulation.
+Code Block: Defines a block of code.
+Containers: Defines a container used for storage tasks.
+Metrics: Responsible for recording values to render a timeseries graph.
+Motor Vehicle: Defines a specific type of motor vehicle.
+Rail Carriages: Defines a specific component type for a train carriage.
+Rail Vehicles: Defines a specific component type of a train vehicle.
+Resources: Defines a resource.
+Train Types: Defines a train.
+Upload Sets: Defines a collection of table columns.
+Calculation Nodes
+Calculation nodes store and transform data within the simulation. Calculation nodes can have any number of inputs but only one output. Calculation node outputs can be connected to calculation node inputs. A calculation node's output can be bound to the simulation scope. Custom calculation nodes can be created to fit your unique use cases.
+
+Calculation nodes have the following optional settings:
+
+Running Node: Calculations are updated in a loop until node.terminate() is called. (See running nodes section bellow for more information)
+Force Recalculation: Force the calculation of subsequent nodes whenever the current calculation node runs.
+Input: Calculation node only returns a single value and can be updated by other parts of the simulation.
+Parameter: A special kind of "input" node whose initial value can be set at the start of the simulation from sim run parameters.
+Output: Output nodes are bound to the simulation scope whose output value can be directly read from.
+Event Nodes
+Event nodes describe the flow of agents through the simulation. Event node exits connect to event node inputs. An agent will enter via the event node input and exit via one of the event node exits. Event nodes also have parameters which can be used by the node's internal code. Event nodes can be bound to the simulation scope. Custom event nodes can be created to fit your unique use cases.
+
+Event nodes have the following optional settings:
+
+Running Node: The node is executed in a loop until node.terminate() is called. (See running nodes section bellow for more information)
+Loop On No Exit: If execution of this node returns no exit, simply rerun the node instead of stopping the agent.
+Running Nodes
+A running node is a special kind of node that is executed in a loop until node.terminate() is called. They must contain code to execute. Calculation nodes and event nodes can both be "running nodes". Use running nodes for time driven processes such as a continuous flow of material or spawning agents.

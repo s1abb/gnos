@@ -1,0 +1,62 @@
+GNOS
+GNOS (GreenNet OptiSim) is the only platform that contains Rail and Road physics engines integrated with a fully fledged agent-based modelling simulator in one tool.
+
+This enables a full system digital twin to be developed for any operation with the ability to drill down to any level of detail to answer a host of industry problems.
+
+Learn more at the GNOS homepage
+
+Key Features & Capabilities
+Discrete Event Simulation (DES)
+A fully integrated DES allows for simulation of complex process interactions with all other GNOS systems.
+
+Key features include:
+
+Overall system capacity modelling and reporting
+Capacity to define and track key inputs and outputs
+Utilisation rates, capacity metrics and bottleneck analysis for distinct assets and at system level
+Integration with Rail movements & Mobile Assets
+Customisable Reporting and asset tracking
+Agent / Discrete Simulation methodology
+Flowchart modelling methodology with pre-defined blocks and parameters
+Programmable Logic Blocks
+Rail Simulation
+GNOS offers a comprehensive rail fleeting and capacity modelling package.
+
+Key features include:
+
+GIS Maps Integration
+Easy-to-use Rail Network Mapping Tool
+Support for Rail Reference Data Imports
+Network Traffic Simulations
+Rail Capacity Modelling
+Scheduling and optimisation tools
+Rail headway calculations
+Customisable driving strategy engine
+Simulated Rail Breaks / Rail Maintenance and Outages
+In addition to rail capacity and fleeting, GNOS utilises a physics-based rail simulation engine to provide insight into in-train forces and other significant physical constraints.
+
+Key features include:
+
+Standard and customisable Locomotive types, Wagons, and other pulled fleet options
+Customisable simulation parameters
+Longitudinal train dynamics
+Applied tractive effort and braking curves
+Multi-body dynamics simulation
+Stopping distance calculations
+Integration with track geometry, including superelevation
+Energy and Fuel Modelling
+Energy and Fuel Modelling are built into the physics and discrete event simulation, allowing for green-energy modelling and development of:
+
+Fleet fuel and carbon emission analysis
+Simulation of planned charging/Refueling Infrastructure, including location analysis
+Overhead catenary and static charging options
+Energy capture and regenerative braking
+Capacity impact of required infrastructure
+Viability analysis for potential net-zero technology options
+Battery cycle and lifetime analysis
+Industries & Applications
+GNOS is tailored for industry professionals across sectors such as logistics, mining, and rail. Businesses use it to:
+
+Simulate workflows and test different configurations.
+Optimize operational efficiency while reducing costs.
+Improve decision-making with reliable predictive modeling.

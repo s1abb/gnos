@@ -1,0 +1,45 @@
+Storage Location
+(Event Node)
+
+Store agents until they are requested from a corresponding Load from Storage node.
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Capacity
+Maximum number of agents that can be stored.
+
+Bound name: Capacity
+Input type: Any
+Required: False
+Tag
+Optional tag to apply to the agent being stored. Allows other agents to request stored agents matching a specific tag.
+
+Bound name: Tag
+Input type: Text
+Required: False
+Exits
+exit
+Exit for stored agent once it has been requested.
+
+Bound name: exit
+Statics
+id
+Bound name: id
+// Default value
+return generate_uuid();
+contents
+Bound name: contents
+// Default value
+return [];
+requests
+Bound name: requests
+// Default value
+return [];
+tag_contents
+Bound name: tag_contents
+// Default value
+return {};

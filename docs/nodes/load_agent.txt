@@ -1,0 +1,68 @@
+Load Agent
+(Event Node)
+
+Loads agents into a collector agent until a specified quantity.
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Collector Type
+The agent type that acts as the collector. (Agent must have a 'quantity' parameter to work as a collector)
+
+Bound name: Collector_Type
+Input type: Text
+Required: True
+Autocomplete set: Agent Types
+Collected Agents Type
+The agent type that gets collected.
+
+Bound name: Collected_Agents_Type
+Input type: Text
+Required: True
+Autocomplete set: Agent Types
+Depart Immediately
+Whether collector agents will leave the node before being filled up to their max quantity.
+
+Bound name: Depart_Immediately
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Call Collector
+Whether to get collectors from target 'Collector Storage Node'.
+
+Bound name: Call_Collector
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Collector Storage Node
+Optional node of type 'Collector Storage' containing collector agents.
+
+Bound name: Collector_Storage_Node
+Input type: Single
+Required: True
+Autocomplete set: Event Nodes
+Boolean dependencies:
+Call_Collector == true
+Exits
+exit
+Exit for collector agent once it has been loaded with collected agent types.
+
+Bound name: exit
+Statics
+Claimed
+Bound name: Claimed
+// Default value
+return 0;
+Collector Queue
+Bound name: Collector_Queue
+// Default value
+return [];
+Collected Queue
+Bound name: Collected_Queue
+// Default value
+return [];

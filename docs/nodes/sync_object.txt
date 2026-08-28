@@ -1,0 +1,59 @@
+Sync Object
+(Event Node)
+
+Sync an object's transform property to a bound object value.
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Sync Property
+Bound name: Sync_Property
+Input type: Enum
+Required: True
+Enum Values:
+"position.x"
+"position.y"
+"position.z"
+"rotation.x"
+"rotation.y"
+"rotation.z"
+"scale.x"
+"scale.y"
+"scale.z"
+// Default value
+return "position.x";
+Bound Object Type
+Bound name: Bound_Object_Type
+Input type: Enum
+Required: True
+Enum Values:
+"Calculation Node"
+"Equipment"
+// Default value
+return "Calculation Node";
+Calculation Node Name
+Bound name: Calculation_Node_Name
+Input type: Text
+Required: True
+Autocomplete set: Calculation Nodes, Variables, Parameters
+Enum dependencies:
+Bound_Object_Type == "Calculation Node"
+Equipment Name
+Bound name: Equipment_Name
+Input type: Text
+Required: True
+Autocomplete set: Equipment
+Enum dependencies:
+Bound_Object_Type == "Equipment"
+Weight
+Bound name: Weight
+Input type: Number
+Required: True
+// Default value
+return 1;
+Exits
+Exit
+Bound name: Exit

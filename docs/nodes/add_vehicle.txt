@@ -1,0 +1,289 @@
+Add Vehicle
+(Event Node)
+
+Add a vehicle to an agent
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Vehicle Type
+Determines the physics model used by the vehicle added to the agent:
+
+Rail: Full rail physics with mass, multiple locomotives, and carriages.
+Road: Full road physics considering vehicle weight.
+No Physics (Full Interaction): Simplified acceleration, no physics, but full interaction with other vehicles.
+No Physics (Limited Interaction): Most performant, simplified acceleration, no physics, limited vehicle interaction.
+Bound name: Vehicle_Type
+Input type: Enum
+Required: True
+Enum Values:
+"Rail"
+"Road"
+"No Physics (Full Interaction)"
+"No Physics (Limited Interaction)"
+// Default value
+return "Rail";
+Name
+Optional name for new vehicles
+
+Bound name: Name
+Input type: Text
+Required: False
+Network Model
+Network model to create vehicle on
+
+Bound name: Network_Model
+Input type: Any
+Required: True
+Autocomplete set: Network Models
+Track Feature
+Optional track feature to place vehicle at
+
+Bound name: Track_Feature
+Input type: Any
+Required: False
+Autocomplete set: Track Features
+Use Train
+Use a train component to configure vehicle
+
+Bound name: Use_Train
+Input type: Boolean
+Required: True
+Enum dependencies:
+Vehicle_Type == "Rail"
+Vehicle_Type == "No Physics (Full Interaction)"
+Vehicle_Type == "No Physics (Limited Interaction)"
+// Default value
+return false;
+Rail Components
+Describe the types and order of components to add to the rail vehicle
+
+Bound name: Rail_Components
+Input type: List
+Required: True
+Boolean dependencies:
+Use_Train == false
+Enum dependencies:
+Vehicle_Type == "Rail"
+// Default value
+return [{"Quantity":,"Component":}];
+Rows
+Component, (Required)
+
+The rail component type to add
+
+Quantity, (Required)
+
+The number of the specified component types to add to the rail vehicle
+
+Load KG, (Optional)
+
+(Optional) The initial load of the component in kg. Defaults to 0.
+
+Motor Vehicle
+The motor vehicle component type to add to the start of the road vehicle
+
+Bound name: Motor_Vehicle
+Input type: Any
+Required: True
+Autocomplete set: Motor Vehicles
+Boolean dependencies:
+Use_Train == false
+Enum dependencies:
+Vehicle_Type == "Road"
+Vehicle Components
+(Optional) Describe the types and order of components to add to the vehicle
+
+Bound name: Vehicle_Components
+Input type: List
+Required: False
+Boolean dependencies:
+Use_Train == false
+Enum dependencies:
+Vehicle_Type == "No Physics (Full Interaction)"
+Vehicle_Type == "No Physics (Limited Interaction)"
+Vehicle_Type == "Road"
+Rows
+Quantity, (Required)
+
+The number of the specified component types to add to the vehicle
+
+Component, (Required)
+
+The vehicle component type to add
+
+Load KG, (Optional)
+
+(Optional) The initial load of the component in kg. Defaults to 0.
+
+Train Component
+Train component to use when configuring vehicle
+
+Bound name: Train_Component
+Input type: Any
+Required: True
+Autocomplete set: Rail Train
+Boolean dependencies:
+Use_Train == true
+Log Components
+Add individual component data to the vehicle logs
+
+Bound name: Log_Components
+Input type: Boolean
+Required: True
+Enum dependencies:
+Vehicle_Type == "Rail"
+// Default value
+return false;
+Bidirectional
+Allow the train to move bidirectionally
+
+Bound name: Bidirectional
+Input type: Boolean
+Required: True
+Enum dependencies:
+Vehicle_Type == "Rail"
+// Default value
+return false;
+Can Turn On Spot
+Bound name: Can_Turn_On_Spot
+Input type: Boolean
+Required: True
+Enum dependencies:
+Vehicle_Type == "Road"
+Vehicle_Type == "No Physics (Full Interaction)"
+Vehicle_Type == "No Physics (Limited Interaction)"
+// Default value
+return false;
+Tags
+Optional list of tags to add to the vehicle
+
+Bound name: Tags
+Input type: List
+Required: False
+Rows
+Tag Name, (Required)
+
+Name of the tag to add to the vehicle
+
+Setup Control
+Configure Control Parameters
+
+Bound name: Setup_Control
+Input type: Boolean
+Required: True
+Enum dependencies:
+Vehicle_Type == "Rail"
+Vehicle_Type == "Road"
+Vehicle_Type == "No Physics (Full Interaction)"
+Vehicle_Type == "No Physics (Limited Interaction)"
+// Default value
+return false;
+Max Speed
+Max speed of vehicle
+
+Bound name: Max_Speed
+Input type: Number
+Required: False
+Boolean dependencies:
+Setup_Control == true
+Max Force
+Max force applied to vehicle
+
+Bound name: Max_Force
+Input type: Number
+Required: False
+Boolean dependencies:
+Setup_Control == true
+Enum dependencies:
+Vehicle_Type == "Rail"
+Vehicle_Type == "Road"
+Max Acceleration
+Max acceleration of the vehicle
+
+Bound name: Max_Acceleration
+Input type: Number
+Required: False
+Boolean dependencies:
+Setup_Control == true
+Max Braking
+Max braking deceleration of the vehicle
+
+Bound name: Max_Braking
+Input type: Number
+Required: False
+Boolean dependencies:
+Setup_Control == true
+Safe Boundary
+Enforces a minimum distance other vehicles must be away from this vehicle. Requires network model stopping distance signalling to be enabled.
+
+Bound name: Safe_Boundary
+Input type: Number
+Required: False
+Boolean dependencies:
+Setup_Control == true
+Set Controller
+Configure Engine Controller
+
+Bound name: Set_Controller
+Input type: Boolean
+Required: True
+Enum dependencies:
+Vehicle_Type == "Rail"
+Vehicle_Type == "Road"
+// Default value
+return false;
+Controller Type
+Vehicle controller type.
+
+Bound name: Controller_Type
+Input type: Enum
+Required: True
+Enum Values:
+"PID"
+"MRAC"
+Boolean dependencies:
+Set_Controller == true
+Enum dependencies:
+Vehicle_Type == "Road"
+Vehicle_Type == "Rail"
+// Default value
+return "PID";
+KP
+PID Proportional Parameter, increasing causes faster response, can cause overshoot and oscillation.
+
+Bound name: KP
+Input type: Number
+Required: False
+Enum dependencies:
+Controller_Type == "PID"
+KI
+PID Integral Parameter, increasing reduces steady state error and faster response, can cause instability, overshoot and oscillation.
+
+Bound name: KI
+Input type: Number
+Required: False
+Enum dependencies:
+Controller_Type == "PID"
+KD
+PID Derivative Parameter, improves the stability of the system (decreasing overshoot and oscillation) and reduces the response time. High values can cause instability.
+
+Bound name: KD
+Input type: Number
+Required: False
+Enum dependencies:
+Controller_Type == "PID"
+Rising Time
+Bound name: Rising_Time
+Input type: Any
+Required: False
+Enum dependencies:
+Controller_Type == "MRAC"
+Exits
+Exit
+Exit once vehicle has been added and optionally placed at a track feature
+
+Bound name: Exit

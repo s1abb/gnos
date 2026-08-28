@@ -1,0 +1,234 @@
+Move to Location
+(Event Node)
+
+Move vehicle to track location
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Movement Mode
+Defines how the vehicle moves to locations
+
+Bound name: Movement_Mode
+Input type: Enum
+Required: True
+Enum Values:
+"Single Location"
+"List of Locations"
+"Departure Schedule"
+"Stockpile Manager"
+// Default value
+return "Single Location";
+Use Fuel Threshold
+Specify a minimum fuel threshold
+
+Bound name: Use_Fuel_Threshold
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Fuel Threshold
+Minimum fuel threshold required (0-100%)
+
+Bound name: Fuel_Threshold
+Input type: Number
+Required: True
+Boolean dependencies:
+Use_Fuel_Threshold == true
+// Default value
+return ;
+Target Location
+Track feature to move vehicle to
+
+Bound name: Target_Location
+Input type: Any
+Required: True
+Autocomplete set: Track Features
+Enum dependencies:
+Movement_Mode == "Single Location"
+Target Locations
+List of track features to move vehicle to
+
+Bound name: Target_Locations
+Input type: List
+Required: True
+Enum dependencies:
+Movement_Mode == "List of Locations"
+// Default value
+return ;
+Rows
+Location, (Required)
+
+Track feature to move vehicle to
+
+Delay At Stop Seconds, (Optional)
+
+(Optional) Time to delay at feature in seconds. Defaults to the default delay at stop parameter if not provided.
+
+Default Delay At Stop
+Duration vehicle will stop at each location
+
+Bound name: Default_Delay_At_Stop
+Input type: Duration
+Required: True
+Enum dependencies:
+Movement_Mode == "List of Locations"
+// Default value
+return 0;
+Departure Schedule
+Upload set containing departure schedule (NOTE: 'Vehicle Id' must be added to agent's parameters)
+
+Bound name: Departure_Schedule
+Input type: Upload Set
+Required: True
+Autocomplete set: Upload Sets
+Enum dependencies:
+Movement_Mode == "Departure Schedule"
+Upload Set Template Columns
+Vehicle_Id Number
+
+Apply schedule to agents with matching Vehicle Id (NOTE: 'Vehicle Id' must be added to agent's parameters)
+
+Departure_Time DateTime
+
+Departure time when heading to destination
+
+Destination Text
+
+Target destination
+
+Passing Locations
+Passing locations for route planning
+
+Bound name: Passing_Locations
+Input type: List
+Required: False
+Enum dependencies:
+Movement_Mode == "Single Location"
+Movement_Mode == "Stockpile Manager"
+// Default value
+return ;
+Rows
+Location, (Required)
+
+Track location vehicle will pass
+
+Future Locations
+Future locations for deadlock avoidance planning
+
+Bound name: Future_Locations
+Input type: List
+Required: False
+// Default value
+return ;
+Rows
+Turnaround, (Required)
+
+Will the vehicle be forced to turnaround before moving to the future location.
+
+Location, (Required)
+
+Track feature vehicle may travel to in the future
+
+Stockpile Manager Node
+The Stockpile Manager node to use for calculating target locations
+
+Bound name: Stockpile_Manager_Node
+Input type: Any
+Required: True
+Autocomplete set: Event Nodes
+Enum dependencies:
+Movement_Mode == "Stockpile Manager"
+Maximum Take
+Maximum amount the current vehicle can take from a source stockpile in tonnes. e.g. the vehicle's carry capacity.
+
+Bound name: Maximum_Take
+Input type: Number
+Required: True
+Autocomplete set: Parameters
+Enum dependencies:
+Movement_Mode == "Stockpile Manager"
+Do Not Slow Down
+When true vehicles will not slow down and stop at target destinations, instead passing through at speed.
+
+Bound name: Do_Not_Slow_Down
+Input type: Boolean
+Required: False
+Autocomplete set: Parameters
+// Default value
+return false;
+Enable Logs
+Add departure events to simulation INFO logs
+
+Bound name: Enable_Logs
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Baked Physics
+Selection of baked physics options.
+
+Bound name: Baked_Physics
+Input type: Enum
+Required: True
+Enum Values:
+"None"
+"Use"
+"Record"
+"Use & Record"
+// Default value
+return "None";
+Baked Physics Manager
+Reference to Baked Physics Manager node. If not provided, baked physics is recorded internally on this node and cannot be exported.
+
+Bound name: Baked_Physics_Manager
+Input type: Any
+Required: False
+Autocomplete set: Event Nodes
+Enum dependencies:
+Baked_Physics == "Use"
+Baked_Physics == "Record"
+Baked_Physics == "Use & Record"
+Baked Physics Group
+Group to use the same baked physics between on this eventnode.
+
+Bound name: Baked_Physics_Group
+Input type: Text
+Required: True
+Enum dependencies:
+Baked_Physics == "Use"
+Baked_Physics == "Record"
+Baked_Physics == "Use & Record"
+// Default value
+return "Default";
+Exits
+Failed
+Exit if vehicle failed to find a valid path to target location
+
+Bound name: Failed
+Low Fuel
+Exit if vehicle goes below fuel threshold before completing navigation
+
+Bound name: Low_Fuel
+Boolean dependencies:
+Use_Fuel_Threshold == true
+Exit
+Exit once all navigation has completed successfully
+
+Bound name: Exit
+Statics
+Total Departures
+Bound name: Total_Departures
+// Default value
+return 1;
+Late Departures
+Bound name: Late_Departures
+// Default value
+return 0;
+Baked Physics Map
+Bound name: Baked_Physics_Map
+// Default value
+return {};

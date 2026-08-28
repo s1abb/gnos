@@ -1,0 +1,28 @@
+Carry Container Resource
+(Event Node)
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Container Yard
+Bound name: Container_Yard
+Input type: Any
+Required: True
+Autocomplete set: Event Nodes
+Delay
+Bound name: Delay
+Input type: Duration
+Required: True
+// Default value
+return 0;
+Resource
+Bound name: Resource
+Input type: Any
+Required: True
+Autocomplete set: Resources
+Exits
+Exit
+Bound name: Exit

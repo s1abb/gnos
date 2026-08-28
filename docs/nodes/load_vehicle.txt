@@ -1,0 +1,138 @@
+Load Vehicle
+(Event Node)
+
+Load vehicle components. Can optionally use a FlowSim container as a source.
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Selection Method
+Load components by type or index.
+
+Bound name: Selection_Method
+Input type: Enum
+Required: True
+Enum Values:
+"Type"
+"Index"
+"All"
+// Default value
+return "Type";
+Component Type
+Load components which match this type
+
+Bound name: Component_Type
+Input type: Any
+Required: True
+Autocomplete set: Rail Carriages, Rail Vehicles, Motor Vehicles
+Enum dependencies:
+Selection_Method == "Type"
+Start Index
+The index of the first component (index 1 is the head of the vehicle)
+
+Bound name: Start_Index
+Input type: Number
+Required: True
+Enum dependencies:
+Selection_Method == "Index"
+// Default value
+return ;
+End Index
+The index of the last component (the index of the tail is equal to the number of components plus 1)
+
+Bound name: End_Index
+Input type: Number
+Required: True
+Enum dependencies:
+Selection_Method == "Index"
+Source Container
+Optional FlowSim container to load material from
+
+Bound name: Source_Container
+Input type: Equipment
+Required: False
+Autocomplete set: Equipment
+Load Method
+Specify which method should be used to determine quantity loaded into each component
+
+Bound name: Load_Method
+Input type: Enum
+Required: True
+Enum Values:
+"Load Per Component"
+"Shared Amount"
+"Target Amount"
+"Fully Load"
+"Stockpile Manager"
+// Default value
+return "Load Per Component";
+Load Per Component
+Load added to each component
+
+Bound name: Load_Per_Component
+Input type: Unit
+Required: True
+Enum dependencies:
+Load_Method == "Load Per Component"
+Max Shared Amount
+Maximum load amount shared across all selected components
+
+Bound name: Max_Shared_Amount
+Input type: Unit
+Required: True
+Enum dependencies:
+Load_Method == "Shared Amount"
+Target Amount
+Fully load every component until this quantity has been loaded or until there are no more components to load.
+
+Bound name: Target_Amount
+Input type: Unit
+Required: True
+Enum dependencies:
+Load_Method == "Target Amount"
+Stockpile Manager Node
+The source stockpile manager node.
+
+Bound name: Stockpile_Manager_Node
+Input type: Any
+Required: True
+Autocomplete set: Event Nodes
+Enum dependencies:
+Load_Method == "Stockpile Manager"
+Use Load Duration
+Specifiy time taken to load component instead of using load rate. (Note: actual duration may be longer when interfacing with FlowSim due to lower output rate on the junction)
+
+Bound name: Use_Load_Duration
+Input type: Boolean
+Required: True
+// Default value
+return false;
+Load Rate
+Material transfer rate
+
+Bound name: Load_Rate
+Input type: Unit Rate
+Required: True
+Boolean dependencies:
+Use_Load_Duration == false
+Load Component Duration
+How long it takes to load each component. (Note: actual duration may be longer when interfacing with FlowSim due to lower output rate on the junction)
+
+Bound name: Load_Component_Duration
+Input type: Duration
+Required: True
+Boolean dependencies:
+Use_Load_Duration == true
+Exits
+Exit
+Exit after finished loading vehicle
+
+Bound name: Exit
+Statics
+Total Loaded
+Bound name: Total_Loaded
+// Default value
+return 0;

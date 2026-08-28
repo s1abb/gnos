@@ -1,0 +1,48 @@
+Reserve Yard Space
+(Event Node)
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Blocking
+Bound name: Blocking
+Input type: Boolean
+Required: True
+// Default value
+return true;
+Reserve Type
+Bound name: Reserve_Type
+Input type: Enum
+Required: True
+Enum Values:
+"Carrier"
+"Container"
+// Default value
+return "Carrier";
+Quantity
+Defaults to reserving space for all carries containers.
+
+Bound name: Quantity
+Input type: Number
+Required: False
+Enum dependencies:
+Reserve_Type == "Carrier"
+// Default value
+return ;
+Container Yard
+Bound name: Container_Yard
+Input type: Any
+Required: True
+Autocomplete set: Event Nodes
+// Default value
+return ;
+Exits
+Failed
+Bound name: Failed
+Boolean dependencies:
+Blocking == false
+Exit
+Bound name: Exit

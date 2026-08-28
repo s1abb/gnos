@@ -1,0 +1,59 @@
+Unload Container
+(Event Node)
+
+Name
+The name field defines the identifier for the event node. The compliant form of this name is used to bind the event node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionally if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Parameters
+Unload Type
+Bound name: Unload_Type
+Input type: Enum
+Required: False
+Enum Values:
+"Default"
+"Flowsim"
+// Default value
+return "Default";
+Delay Type
+Bound name: Delay_Type
+Input type: Enum
+Required: True
+Enum Values:
+"Rate"
+"Duration"
+Enum dependencies:
+Unload_Type == "Default"
+// Default value
+return "Duration";
+Quantity
+Default to fully unload.
+
+Bound name: Quantity
+Input type: Number
+Required: False
+Destination
+Bound name: Destination
+Input type: Equipment
+Required: True
+Enum dependencies:
+Unload_Type == "Flowsim"
+Rate
+Bound name: Rate
+Input type: Unit Rate
+Required: True
+Enum dependencies:
+Unload_Type == "Flowsim"
+Delay_Type == "Rate"
+Delay
+Bound name: Delay
+Input type: Duration
+Required: True
+Enum dependencies:
+Delay_Type == "Duration"
+// Default value
+return 0;
+Exits
+Exit
+Bound name: Exit
