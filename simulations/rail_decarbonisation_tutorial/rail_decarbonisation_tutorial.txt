@@ -289,7 +289,7 @@ Connection: _4 to _5
 
 _5 Charge Vehicle [Charge Vehicle]
 Parameters:
-  Level: 0
+  Level: 90
   Rate: Max Static Charge Rate
 Events:
   On Enter:
@@ -363,7 +363,7 @@ Connection: _9 to _10
 
 _10 Charge Vehicle [Charge Vehicle]
 Parameters:
-  Level: 0
+  Level: 90
   Rate: Max Static Charge Rate
 Events:
   On Enter:

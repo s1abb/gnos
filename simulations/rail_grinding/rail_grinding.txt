@@ -1,0 +1,834 @@
+Grinding Finish Time [Parameter]
+Data Type: Duration
+Suffix:
+Inputs:
+    Main: 0.5
+Metric:
+    Track Metric: false
+
+Window Length [Parameter]
+Data Type: Any
+Suffix:
+Inputs:
+    Main: 1.5
+Metric:
+    Track Metric: false
+
+Grinding Setup Time [Parameter]
+Data Type: Duration
+Suffix:
+Inputs:
+    Main: 0.5
+Metric:
+    Track Metric: false
+
+Grinding Speed [Parameter]
+Data Type: Any
+Suffix: km/h
+Inputs:
+    Main: 3
+Metric:
+    Track Metric: false
+
+Enable Grinding Train [Parameter]
+Data Type: Boolean
+Suffix:
+Inputs:
+    Main: true
+Metric:
+    Track Metric: false
+
+On Site Delay [Parameter]
+Data Type: Duration
+Suffix:
+Inputs:
+    Main: 43200
+Metric:
+    Track Metric: false
+
+Minimum Track Possession Time [Parameter]
+Data Type: Any
+Suffix:
+Inputs:
+    Main: 1.5
+Metric:
+    Track Metric: false
+
+Grinding Run [Parameter]
+Data Type: Any
+Suffix:
+Inputs:
+    Main: 7000
+Metric:
+    Track Metric: false
+
+Use Physics [Parameter]
+Data Type: Any
+Suffix:
+Inputs:
+    Main: false
+Metric:
+    Track Metric: false
+
+Bad Track Wear Rate [Parameter]
+Data Type: Number
+Suffix: mm/MGT
+Inputs:
+    Main: 0.02
+Metric:
+    Track Metric: false
+
+Ok Track Wear Rate [Parameter]
+Data Type: Number
+Suffix: mm/MGT
+Inputs:
+    Main: 0.008
+Metric:
+    Track Metric: false
+
+Grinding Train [Input]
+Inputs:
+    Main:
+Metric:
+    Track Metric: false
+
+Grind Order [Input]
+Inputs:
+    Main:
+        return [
+        8,
+        2,
+        13,
+        5,
+        1,
+        11,
+        4,
+        14,
+        7,
+        10,
+        3,
+        9,
+        6,
+        12,
+        3,
+        12,
+        6,
+        1,
+        14,
+        9,
+        5,
+        11,
+        2,
+        8,
+        13,
+        4,
+        10,
+        7,
+        10,
+        4,
+        7,
+        13,
+        2,
+        6,
+        12,
+        1,
+        9,
+        14,
+        5,
+        3,
+        11,
+        8
+        ];
+Metric:
+    Track Metric: false
+
+Order Count [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: false
+
+Current Order [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: false
+
+Index [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: false
+
+Loaded Trains [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: false
+
+Empty Trains [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: false
+
+KMs Ground [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: true
+    Chart Label: KMs Ground
+    Chart Suffix: km
+    Record On Change: false
+    Save Interval: 1 Day
+
+Loaded Time [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: false
+
+Empty Time [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: false
+
+Avg Loaded Cycle Time [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: true
+    Chart Label:
+    Chart Suffix: hrs
+    Record On Change: false
+    Save Interval: 1 Day
+
+Avg Empty Cycle Time [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: true
+    Chart Label:
+    Chart Suffix: hrs
+    Record On Change: false
+    Save Interval: 1 Day
+
+SectionList [Input]
+Inputs:
+    Main:
+        return [
+        {"Section":Model.get_section_by_name("TS3"), "Name": "TS3", "Wear_Since": 0, "Start": START3, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": GRIND_TRAIN_PARK },
+        {"Section":Model.get_section_by_name("TS4"), "Name": "TS4", "Wear_Since": 0, "Start": START4, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B1},
+        {"Section":Model.get_section_by_name("TS6"), "Name": "TS6", "Wear_Since": 0, "Start": START6, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B1},
+        {"Section":Model.get_section_by_name("TS7"), "Name": "TS7", "Wear_Since": 0, "Start": START7, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B2},
+        {"Section":Model.get_section_by_name("TS9"), "Name": "TS9", "Wear_Since": 0, "Start": START9, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B2},
+        {"Section":Model.get_section_by_name("TS10"), "Name": "TS10", "Wear_Since": 0, "Start": START10, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B3},
+        {"Section":Model.get_section_by_name("TS11"), "Name": "TS11", "Wear_Since": 0, "Start": START11, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B3},
+        {"Section":Model.get_section_by_name("TS13"), "Name": "TS13", "Wear_Since": 0, "Start": START13, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B3},
+        {"Section":Model.get_section_by_name("TS14"), "Name": "TS14", "Wear_Since": 0, "Start": START14, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B3},
+        {"Section":Model.get_section_by_name("TS15"), "Name": "TS15", "Wear_Since": 0, "Start": START15, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B4},
+        {"Section":Model.get_section_by_name("TS17"), "Name": "TS17", "Wear_Since": 0, "Start": START17, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B4},
+        {"Section":Model.get_section_by_name("TS18"), "Name": "TS18", "Wear_Since": 0, "Start": START18, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B5},
+        {"Section":Model.get_section_by_name("TS20"), "Name": "TS20", "Wear_Since": 0, "Start": START20, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B5},
+        {"Section":Model.get_section_by_name("TS21"), "Name": "TS21", "Wear_Since": 0, "Start": START21, "Wear": 0, "Trains": [], "last_exited": null, "Backtrack": B6},
+        ];
+Metric:
+    Track Metric: false
+
+Unloaded Tonnes Bulk Run [Input]
+Inputs:
+    Main: 0
+Metric:
+    Track Metric: false
+
+EMD SD70ACS [Rail Vehicle]
+Vehicle Type: EMD - SD70ACS
+
+Wagon 120T [Rail Carriage]
+Vehicle Type: Series S 120 Tonne
+
+Train [Agent Type]
+Agent Type Parameters:
+    Name: start
+    Description:
+    Default Value: 0
+
+Grinder [Agent Type]
+Agent Type Parameters:
+    Name: current_section
+    Description:
+    Default Value: 0
+
+    Name: current_target
+    Description:
+    Default Value: 0
+
+    Name: distance
+    Description:
+    Default Value: 0
+
+    Name: next_start
+    Description:
+    Default Value: 0
+
+    Name: grind_start
+    Description:
+    Default Value: 0
+
+Fuel Train [Agent Type]
+Agent Type Parameters:
+
+Grinding Machine [Agent Type]
+Agent Type Parameters:
+
+Set Deadlock Avoidance [Set Deadlock Avoidance]
+Parameters:
+    Network Model: Model
+    Deadlock Avoidance Method: MCA
+Events:
+Metrics:
+
+Track Outage Schedule [Track Outage (Schedule)]
+Node Group:
+Parameters:
+    Log: false
+    Outage Schedule: Unloader and Loader Outages
+Events:
+Metrics:
+
+Loader [Resource]
+    Quantity: 1
+
+Train Initial Positions [Upload Set]
+Upload Set Columns:
+    Train ID
+    Train Position
+    Destination
+
+Required Maintenance [Upload Set]
+Upload Set Columns:
+    Date
+    Section
+
+Grinding Train Maintenance [Upload Set]
+Upload Set Columns:
+    Start
+    End
+
+Roster [Upload Set]
+Upload Set Columns:
+    Roster Start
+    Roster End
+
+Unloaded Tonnes [Metric]
+    Name: Unloaded Tonnes
+    Metric Type: Timeseries
+    Chart Label:
+    Chart Suffix: T
+    Value:
+        Unloaded_Tonnes_Bulk_Run = TUL.Total_Unloaded / 1000;
+        return TUL.Total_Unloaded / 1000;
+    Save Interval: 30 Minutes
+
+Grinding by Section [Metric]
+    Name: Grinding by Section
+    Metric Type: Discrete
+    Chart Label: Grinding by Section
+    Chart Suffix: km
+
+TS14 Wear [Metric]
+    Name: TS14 Wear
+    Metric Type: Timeseries
+    Chart Label:
+    Chart Suffix: mm
+    Value:
+        return SectionList[8].Wear;
+    Save Interval: 1 Hours
+
+Grinding Log [Output Table]
+Name: Grinding Log
+Columns Config:
+    Name: Section
+    Name: Start Time
+    Name: End Time
+    Name: Possession Time
+    Name: Grinding Time
+    Name: KMs Ground
+
+_1 Spawn Agents [Spawn Agents]
+Parameters:
+    Spawn Mode: Interval
+    Agent Type: Train
+    Number: 1
+    Maximum Count: 6
+    Allow Spawn: True
+    Spawn At Start: True
+    Interval: 3 Hours
+    Enable Logs: False
+    Spawn Vehicle: True
+    Vehicle Type:
+        if Use_Physics {
+        return "Rail";
+        }
+
+        return "No Physics (Limited Interaction)";
+    Vehcile Name:
+    Network Model: Model
+    Track Feature: Entry Spur
+    Use Train: False
+    Rail Components:
+        Quantity: 3 Component: EMD SD70ACS  LoadKG:
+        Quantity: 240 Component: Wagon 120T  LoadKG:
+    Motor Vehicle: EMD SD70ACS
+    Vehicle Components:
+        Quantity: 3 Component: EMD SD70ACS  LoadKG:
+        Quantity: 240 Component: Wagon 120T  LoadKG:
+    Log Components: False
+    Bidirectional False
+    Can Turn On Spot: False
+    Tags:
+    Setup Control: False
+    Set Controller: False
+Events:
+    On Exit:
+        agent.vehicle.cab_signal = true;
+        agent.vehicle.priority = 1;
+Metrics:
+
+Connection: _1 to _2
+
+_2 Move to Mine [Move to Location]
+Parameters:
+    Movement Mode: Single Location
+    Use Fuel Threshold: false
+    Target Location: Wait Loader
+    Passing Locations:
+    Future Locations:
+        Mine TLO
+        TUL1
+    Do Not Slow Down: false
+    Enable Logs: false
+    Baked Physics: None
+Events:
+    On Enter:
+        agent.vehicle.set_max_speed(70);
+        agent.start = simulation.now;
+    On Exit:
+        time = simulation.now - agent.start;
+        Empty_Time += time;
+        Empty_Trains++;
+        Avg_Empty_Cycle_Time = (Empty_Time / Empty_Trains) / 3600;
+    On Final Exit:
+Metrics:
+
+Connection: _2 to _3
+
+_3 Resource Request [Resource Request]
+Parameters:
+    Resource: Loader
+    Enable Timeout: false
+Events:
+    On Enter:
+    On Exit:
+Metrics:
+
+Connection: _3 to _4
+
+_4 Move to Location [Move to Location]
+Parameters:
+    Movement Mode: Single Location
+    Use Fuel Threshold: false
+    Target Location: Mine TLO
+    Passing Locations:
+    Future Locations: TUL1
+    Do Not Slow Down: false
+    Enable Logs: false
+    Baked Physics: None
+Events:
+    On Enter:
+    On Exit:
+    On Failed:
+
+Connection: _4 to _5
+
+_5 Load Vehicle [Load Vehicle]
+Parameters:
+    Selection Method: Type
+    Component Type: Wagon 120T
+    Source Container:
+        Equipment:
+        Junction:
+    Load Method: Fully Load
+    Use Load Duration: false
+    Load Rate: 9000 Tonne / Hour
+Events:
+    On Enter:
+    On Exit:
+Metrics:
+
+Connection: _5 to _6
+
+_6 Resource Release [Resource Release]
+Parameters:
+    Resource: Loader
+Events:
+    On Enter:
+    On Exit:
+Metrics:
+
+Connection: _6 to _7
+
+_7 Move to Port [Move to Location]
+Node Group: Travel
+Parameters:
+    Movement Mode: Single Location
+    Use Fuel Threshold: false
+    Target Location: TUL1
+    Passing Locations:
+    Future Locations: Mine TLO
+    Do Not Slow Down: false
+    Enable Logs: false
+    Baked Physics: None
+Events:
+    On Enter:
+        agent.vehicle.set_max_speed(50);
+        agent.start = simulation.now;
+    On Exit:
+        time = simulation.now - agent.start;
+        Loaded_Time += time;
+        Loaded_Trains++;
+        Avg_Loaded_Cycle_Time = (Loaded_Time / Loaded_Trains) / 3600;
+    On Failed:
+Metrics:
+
+Connection: _7 to _8
+
+_8 TUL [Unload Vehicle]
+Node Group:
+Parameters:
+    Selection Method: Type
+    Component Type: Wagon 120T
+    Destination Container:
+        Equipment:
+        Junction:
+    Material:
+        Select Material Propoerty Group:
+    Unload Method: Unload Per Component
+    Unload Per Component: 130 Tonne
+    Use Unload Duration: false
+    Unload Rate: 9000 Tonne / Hour
+Events:
+    On Enter:
+    On Exit:
+Metrics:
+    Chart Label: Tonnes
+    Chart Suffix:
+    Metric Source: Static Variable
+    Variable: Total Unloaded
+    Record On Change: false
+    Save Interval: 30 Minutes
+
+Connection: _8 to _9
+
+_9 Provision Delay [Delay]
+Node Group:
+Parameters:
+    Delay Method: Duration
+    Delay Duration: 0.2 Hours
+Events:
+    On Enter:
+    On Exit:
+Metrics:
+
+_10 Spawn Grinding Train [Spawn Agents]
+Node Group:
+Parameters:
+    Spawn Mode: Once
+    Agent Type: Grinder
+    Number: 1
+    Allow Spawn: Enable Grinding Train
+    Enable Logs: False
+    Spawn Vehicle: True
+    Vehicle Type:
+        if Use_Physics {
+        return "No Physics (Full Interaction)";
+        }
+
+        return "No Physics (Limited Interaction)";
+    Vehcile Name: Grinding Train
+    Network Model: Model
+    Track Feature: GRIND TRAIN PARK
+    Use Train: False
+    Rail Components:
+        Quantity: 3 Component: EMD SD70ACS  LoadKG:
+        Quantity: 240 Component: Wagon 120T  LoadKG:
+    Motor Vehicle: EMD SD70ACS
+    Vehicle Components:
+        Quantity: 2 Component: EMD SD70ACS  LoadKG:
+    Log Components: False
+    Bidirectional False
+    Can Turn On Spot: False
+    Tags:
+    Setup Control: False
+    Set Controller: False
+Events:
+    On Exit:
+        agent.vehicle.bidirectional = true;
+        agent.vehicle.set_max_speed(80);
+        Grinding_Train = agent;
+        Current_Order = Grind_Order[Index] - 1;
+        agent.vehicle.priority = 0;
+        agent.set_track_agent(true);
+Metrics:
+
+Connection: _10 to _11
+
+_11 Delay [Delay]
+Node Group: Off Shift
+Parameters:
+    Delay Method: Duration
+    Delay Duration: 1 Days
+Events:
+    On Enter:
+    On Exit:
+Metrics:
+
+Connection: _11 to _12
+
+_12 Wait till Shift Start [Delay]
+Node Group: Off Shift
+Parameters:
+    Delay Method: Time
+    Delay Until Time: 06:00:00 PM
+Events:
+    On Enter:
+    On Exit:
+Metrics:
+
+Connection: _12 to _13
+
+_13 Move to Grind Backtrack [Move to Location]
+Node Group: Travel
+Parameters:
+    Movement Mode: Single Location
+    Use Fuel Threshold: false
+    Target Location: return SectionList[Current_Order].Backtrack;
+    Passing Locations:
+    Future Locations:
+    Do Not Slow Down: false
+    Enable Logs: false
+    Baked Physics: None
+Events:
+    On Enter:
+    On Exit:
+    On Failed:
+Metrics:
+
+Connection: _13 to _14
+
+_14 Start Delay [Delay]
+Node Group: Wait
+Parameters:
+    Delay Method: Duration
+    Delay Duration: 20 Minutes
+Events:
+    On Enter:
+    On Exit:
+Metrics:
+
+Connection: _14 to _15
+
+_15 Move to Grind Start [Move to Location]
+Node Group: Travel
+Parameters:
+    Movement Mode: Single Location
+    Use Fuel Threshold: false
+    Target Location: return SectionList[Current_Order].Start;
+    Passing Locations:
+    Future Locations:
+    Do Not Slow Down: false
+    Enable Logs: false
+    Baked Physics: None
+Events:
+    On Enter:
+    On Exit:
+    On Failed:
+Metrics:
+
+Connection: _15 to _16
+
+_16 Grinding Start Delay [Delay]
+Node Group: Wait
+Parameters:
+    Delay Method: Duration
+    Delay Duration: return Grinding_Setup_Time; Minutes
+Events:
+    On Enter:
+        agent.grind_start = simulation.current_time;
+        agent.properties.pos_time = simulation.now;
+    On Exit:
+Metrics:
+
+Connection: _16 to _17
+
+_17 Grind [Move to Location]
+Node Group: Grind
+Parameters:
+    Movement Mode: Single Location
+    Use Fuel Threshold: false
+    Target Location: return agent.vehicle.create_feature(Grinding_Run);
+    Passing Locations:
+    Future Locations:
+    Do Not Slow Down: false
+    Enable Logs: false
+    Baked Physics: None
+Events:
+    On Enter:
+        agent.vehicle.set_max_speed(Grinding_Speed);
+        agent.distance = agent.vehicle.distance;
+        agent.properties.grind_start = simulation.now;
+    On Exit:
+        agent.vehicle.set_max_speed(80);
+        KMs_Ground += agent.vehicle.distance - agent.distance;
+        SectionList[Current_Order].Wear_Since = 0;
+        Grinding_by_Section.change_entry(SectionList[Current_Order].Name, agent.vehicle.distance - agent.distance);
+        agent.properties.grind_time = (simulation.now - agent.properties.grind_start) / 3600;
+    On Failed:
+Metrics:
+
+Connection: _17 to _18
+
+_18 Finish Delay [Delay]
+Node Group: Wait
+Parameters:
+    Delay Method: Duration
+    Delay Duration: Grinding Finish Time Minutes
+Events:
+    On Enter:
+    On Exit:
+        end_time = simulation.current_time;
+        start_time = agent.grind_start;
+        section = SectionList[Current_Order].Name;
+        kms = agent.vehicle.distance - agent.distance;
+
+        Grinding_Log.add_row({
+        "Section": section,
+        "Start Time": start_time,
+        "End Time": end_time,
+        "KMs Ground": kms,
+        "Grinding Time": agent.properties.grind_time,
+        "Possession Time": (simulation.now - agent.properties.pos_time)/ 3600
+        });
+Metrics:
+
+Connection: _18 to _19
+
+_19 Return to Backtrack [Move to Location]
+Node Group: Travel
+Parameters:
+    Movement Mode: Single Location
+    Use Fuel Threshold: false
+    Target Location: return SectionList[Current_Order].Backtrack;
+    Passing Locations:
+    Future Locations:
+    Do Not Slow Down: false
+    Enable Logs: false
+    Baked Physics: None
+Events:
+    On Enter:
+    On Exit:
+    On Failed:
+Metrics:
+
+Connection: _19 to _20
+
+_20 Check End of Shift [Conditional]
+Node Group:
+Parameters:
+    Use Probability: false
+    Number Of Exits: 2
+    Use Conditions: true
+    Exit 1 Condition:
+        is_day = simulation.current_time_only.hour() < 18 and simulation.current_time_only.hour() >= 4;
+        return is_day;
+Events:
+    On Enter:
+        Order_Count++;
+
+        if Order_Count > 3 {
+        Order_Count = 0;
+        Index++;
+        }
+
+        if Index >= Grind_Order.len() {
+        Index = 0;
+        
+        }
+        Current_Order = Grind_Order[Index] - 1;
+    On Exit:
+    On Final Exit:
+Metrics:
+
+Connection: _20.Exit 1 to _21
+Connection: _20.Final Exit to _14
+
+_21 Check End of Swing [Conditional]
+Node Group:
+Parameters:
+    Use Probability: false
+    Number Of Exits: 2
+    Use Conditions: true
+    Exit 1 Condition:
+        sim_start = simulation.start_time;
+
+        days_since_start = (simulation.current_time - simulation.start_time).hours() / 24;
+
+        days_since_start = round(days_since_start);
+
+        fortnight_index = floor(days_since_start / 14);
+
+        if fortnight_index % 2 {
+        // On week
+        next_start = (fortnight_index + 1) * 14 * 24 * 60 * 60;
+        agent.next_start = next_start;
+        return true;
+
+        
+        } else {
+        // Off week
+        return false;
+        
+        }
+Events:
+    On Enter:
+    On Exit:
+    On Final Exit:
+Metrics:
+
+Connection: _21.Exit 1 to _22
+Connection: _21.Final Exit to _12
+
+_22 Delay Off Swing [Delay]
+Node Group: Off Swing
+Parameters:
+    Delay Method: Duration
+    Delay Duration: return agent.next_start - simulation.now;
+Events:
+    On Enter:
+    On Exit:
+Metrics:
+
+Connection: _22 to _23
+
+_23 Delay Get On Site [Delay]
+Node Group: Wait
+Parameters:
+    Delay Method: Duration
+    Delay Duration: On Site Delay
+Events:
+    On Enter:
+    On Exit:
+Metrics:
+
+Connection: _23 to _12
