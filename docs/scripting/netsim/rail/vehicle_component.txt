@@ -1,0 +1,71 @@
+Vehicle Component
+The Vehicle Component bound object represents a train locomotive. Vehicle Components are created when using a Vehicle Type bound object to add a locomotive to an agent's vehicle.
+
+Vehicle Components are an implementation of Vehicle Component (Base) and Component (Base), they inherit all of the bound values from both.
+
+The Add Vehicle event node using the "Rail" vehicle type setting can add Vehicle Component bound objects to an agent's vehicle.
+
+See the Rail Vehicle simulation setup node documentation for more information.
+
+Custom Logic
+Fuel Consumption
+You can override the default fuel consumption logic for rail vehicle components using the set_fuel_consumer(CodeBlock) bound method.
+
+When setting custom fuel consumption, code blocks have access to the following scope values:
+
+vehicle The vehicle this component is attached to
+component The current Vehicle Component bound object
+fuel_system The component's fuel system/storage
+delta_time Simulation step in seconds
+charge_rate Charge rate in kW
+effort Current effort in kN
+notch Current vehicle component notch
+speed Current vehicle speed in m/s
+temperature Current vehicle temperature in degrees celsius
+auxiliary_power Auxiliary power in kW
+Your custom fuel consumption logic must return a NumberType representing amount of charge added to the applicable fuel storage in kWh.
+
+When using a Battery Storage or Hybrid Storage fuel systems you may also want to consider using the set_charge_power(NumberType) bound method of those fuel systems to record relevant charge power for use in graphs.
+
+Bound Values
+The Vehicle Component bound object includes all properties and methods from the Component (base) and Vehicle Component (Base) interfaces. It also includes the following bound properties and methods.
+
+Properties
+proportion NumberType - [get]
+
+The proportion of total tractive effort of the consist for this vehicle component.
+
+locomotive_type String - [get]
+
+The locomotive type ["Diesel-Electric", "Battery-Electric", "Hybrid-Electric"].
+
+notch NumberType - [get]
+
+The current notch.
+
+notch_up_delay NumberType - [get, set]
+
+The notch up delay in seconds.
+
+notch_down_delay NumberType - [get, set]
+
+The notch down delay in seconds.
+
+adhesion_coefficient NumberType - [get, set]
+
+Get or set the vehicle component's adhesion coefficient.
+
+Methods
+get_effort(speed, effort, deltaTime, limit?) { force, notch }
+
+Argument 1: Speed of the vehicle component in m/s.
+
+Argument 2: Target Effort of the vehicle component in newtons.
+
+Argument 3: DeltaTime for the simulation step is seconds.
+
+Argument 3: (Optional) Maximum effort of the vehicle component in newtons, provided value must be positive and will be used as a +/- limit.
+
+Returns:
+
+Get the force and notch of the vehicle component at a given speed and target effort.

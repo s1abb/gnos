@@ -1,0 +1,10 @@
+MRAC Controller
+The MRAC Controller bound object represents a model reference adaptive controller. MRAC Controllers can be added to rail and road engines. The engine's MRAC Controller is responsible for adjusting engine output to maintain a desired vehicle speed.
+
+Bound Values
+The MRAC Controller bound object exposes the following bound properties.
+
+Properties
+rising_time NumberType - [get, set]
+
+Get or set the rising time constant of the MRAC controller reference model. This is the desired time to respond to a change in set speed. Defaults to 60 seconds for rail and 5 seconds for road. If the vehicle is overshooting its desired speed or the speed profile is unstable, increasing the rising time may improve performance and if the vehicle is taking too long to get to speed or responsd to changes, decreasing will increase acceleration and decceleration.

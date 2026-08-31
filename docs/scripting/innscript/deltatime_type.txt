@@ -1,0 +1,70 @@
+DeltaTime
+The DeltaTime type represents a signed duration.
+
+Syntax
+The standard library contains a function DeltaTime() which can be used to create a new DeltaTime type using a string representation of a duration. A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h", "d".
+
+// Create a DeltaTime type for that represents a duration of 2 hours and 30 minutes
+DeltaTime("2h30m"); // 2h30m0s
+
+// Negative durations are also supported
+DeltaTime("-2h30m"); // -2h30m0s
+Add/Subtract Time
+You can increase and decrease the duration of a DeltaTime type by adding or subtracting with another DeltaTime type.
+
+t1 = DeltaTime("2h");
+t2 = DeltaTime("3h");
+
+simulation.log(t1 + t2); // 5h
+simulation.log(t1 - t2); // -1h
+You can scale a deltatime by multiplying or dividing by a number.
+
+dt = DeltaTime("1d");
+
+simulation.log(dt); // 1d
+simulation.log(dt * 2); // 2d
+simulation.log(dt / 2); // 12h
+The DeltaTime type can also be used to add or subtract time from Date, Time and DateTime types.
+
+time = Time("10:30:00");
+datetime = DateTime("2025-02-02 21:25:15");
+date = Date("2025-02-02");
+
+simulation.log(time + DeltaTime("4h")); // Time - 14:30:00
+simulation.log(time - DeltaTime("4h")); // Time - 06:30:00
+
+simulation.log(datetime + DeltaTime("4h")); // DateTime - 2025-02-03 01:25:15
+simulation.log(datetime - DeltaTime("4h")); // DateTime - 2025-02-02 17:25:15
+
+simulation.log(date + DeltaTime("24h")); // Date - 2025-02-03
+simulation.log(date + DeltaTime("1s")); // Date - 2025-02-02
+simulation.log(date - DeltaTime("24h")); // Date - 2025-02-01
+simulation.log(date - DeltaTime("1s")); // Date - 2025-02-01
+Truthiness
+All DeltaTime types are truthy.
+
+Comparison
+DeltaTime types can be compared to other DeltaTime types.
+
+t1 = DeltaTime("12h");
+t2 = DeltaTime("6h");
+t3 = DeltaTime("11h60m");
+
+simulation.log(t1 > t2); // true
+simulation.log(t1 < t2); // false
+simulation.log(t1 == t3); // true
+Stringify
+The string representation of the DeltaTime type is in the form "72h3m0.5s". Leading zero units are omitted. As a special case, durations less than one second format use a smaller unit (milli-, micro-, or nanoseconds) to ensure that the leading digit is non-zero. The zero duration formats as 0s.
+
+Methods
+hours() NumberType
+
+Returns: The duration as a floating point number of hours.
+
+minutes() NumberType
+
+Returns: The duration as a floating point number of minutes.
+
+seconds() NumberType
+
+Returns: The duration as a floating point number of seconds.

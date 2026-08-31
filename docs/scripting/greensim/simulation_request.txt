@@ -1,0 +1,15 @@
+Simulation Request
+The Simulation Request bound object represents the request for a resource. Simulation Requests are created when a request for a Simulation Resource is made, e.g. resource.request(), agent.seize_resource().
+
+A resource is considered "in-use" as long as the Simulation Request still exists. To release or destroy a resource request call request.release(); or pass the Simulation Request bound object as an argument into the corresponding Simulation Resource's resource.release(SimulationRequest) bound method. This can also be done using the agent agent.release_resource(SimulationResource) method if the agent has previously requested the same resource.
+
+Delayable
+Simulation Request is a Delayable object which can be used to delay execution until the request has been granted (when the resource becomes available).
+
+Bound Values
+The Simulation Request bound object has the following bound values.
+
+Methods
+release()
+
+Release control over a simulation resource and free it up for use by other agents.

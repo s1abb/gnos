@@ -1,0 +1,15 @@
+Return
+Return Statement
+The return statement ends function execution and specifies a value to be returned to the function caller.
+
+Syntax
+return;
+
+return expression;
+Parameters
+expression (optional)
+
+The expression whose value is to be returned. If omitted, null is returned.
+
+Description
+The return statement can only be used within function bodies. When a return statement is used in a function body, the execution of the function is stopped and the call to that function evaluates to the return value.

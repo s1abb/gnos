@@ -1,0 +1,41 @@
+Component Type (Base)
+Component Type (Base) is an interface that describes the common features required for all vehicle component types. Component types are used to instantiate the actual components which are added to vehicles. Examples of Component types are:
+
+Generic Component Type
+Carriage Type
+Vehicle Type
+Motor Vehicle Type
+Bound Values
+The following properties are bound to the Carriage Type bound object.
+
+Properties
+name String - [get]
+
+The name of the component type.
+
+length String - [get]
+
+The length of the component type in m.
+
+mass NumberType - [get]
+
+The base mass of the component type in kg.
+
+capacity NumberType - [get]
+
+The base carrying capacity of the component type in kg.
+
+model_id StringType | NullType - [get, set]
+
+Get or set the id of the 3D model that will be used to render components that are created using this component type during simulation playback. A null value means there is no 3D model.
+
+Methods
+create_component() Component
+
+Returns: A new component which can then be added to vehicles.
+
+set_model(StringType | SimulationAsset | NullType)
+
+Argument 1: Either a 3D model id, a 3D Model SimulationAsset or null.
+
+Sets the 3D model that will be used to render components that are created using this component type.

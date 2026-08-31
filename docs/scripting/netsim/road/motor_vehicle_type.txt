@@ -1,0 +1,18 @@
+Motor Vehicle Type
+The Motor Vehicle Type bound object represents the configuration used to create motor vehicle components. Motor Vehicle Type bound objects are created when using the Motor Vehicle simulation setup node.
+
+The Add Vehicle event node using the "Road" vehicle type setting uses a Motor Vehicle Type bound object to create and add a new Motor Vehicle Component to an agent's vehicle.
+
+See the Motor Vehicle simulation setup node documentation for configuration information.
+
+Bound Values
+The motor vehicle type bound object implements all bound values from component type (base).
+
+It also has the following bound values.
+
+Methods
+get_default_pid() MapType
+
+Returns: A map with keys p, i, d which will hold a number for the default value or null if not set.
+
+Default motor vehicle pid values are only used when a road vehicle is created with a motor vehicle type passed as one of the initial component types.

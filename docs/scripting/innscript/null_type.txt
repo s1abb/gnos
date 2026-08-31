@@ -1,0 +1,17 @@
+Null
+Null is a literal type, null is used to represent the absence of any value.
+
+It is the value returned by functions that either have no return statement or return nothing.
+
+Syntax
+null
+Comparison
+Null types can only be compared to other types using the equality operator ==. They are only considered equal to other Null types.
+
+has_value = "some value";
+null_value = null;
+
+simulation.log(has_value == null); // false
+simulation.log(null_value == null); // true
+Truthiness
+Null types are falsy.

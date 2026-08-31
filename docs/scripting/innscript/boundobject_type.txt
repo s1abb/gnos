@@ -1,0 +1,82 @@
+BoundObject
+The BoundObject type represents a bound object and it's bound values. This type is used when binding simulation objects for use within InnScript, e.g. nodes, track features, agents, vehicles, etc.
+
+Often it is not possible to create your own bound object unless there is a dedicated function for doing so, e.g. simulation.spawn(), simulation.create_resource(), etc.
+
+Bound Values
+A bound object can have a combination of bound properties and methods. The bound values is similar to a Map type but the key must be a string. These bound values will vary depending on the type of bound object (See relevant type's documentation for more information about it's bound values).
+
+Bound values can be accessed using a string to index the object.
+
+// Set the agent name using the set_name() method
+agent.set_name("Agent");
+
+// You can also access bound values using a string
+agent["set_name"]("Agent");
+Bound values can be a property or a method. Properties can be readonly, write-only or read/write depending on whether they implement a getter and/or a setter.
+
+Iteration
+Iterating on a bound object will step through the names of it's bound values.
+
+for key in agent {
+    if key == "set_name" {
+        agent[key]("Agent");
+    }
+}
+Contains
+You can check for the existence of a bound value's key by using the in keyword.
+
+simulation.log("set_name" in agent); // true
+simulation.log("bob" in agent); // false
+Truthiness
+All bound objects are truthy.
+
+Stringify
+The string representation of a bound object includes the type and the bound values.
+
+An example of an AgentType bound object in string form would be:
+
+<bound-object
+  type: *greensim.AgentType
+  bound-values: {
+    name: "agent type",
+  }
+>
+Bound Object Types
+The following list contains the different types of bound objects. Refer to the documentation of the object type for more information.
+
+Agent
+CalculationNode
+CalculationRunningNode
+SimulationContainer
+Metrics (Dataset)
+EventNode
+EventNodeExit
+FlowSystemEquipment
+FlowSystemJunction
+FlowSystemEvent
+FlowSystemConnection
+SimulationRequest
+SimulationResource
+RunningNode
+Simulation
+NetworkModel
+TrackFeature
+PowerSupplyGroup
+AgentType
+Vehicle
+TrainComponent
+BaseCodeBlock
+EmptyStorage
+DieselStorage
+BatteryStorage
+HybridStorage
+PID
+BaseEngine
+SectionBase
+Engine
+VehicleType
+CarriageType
+CarriageComponent
+VehicleComponent
+MotorVehicle

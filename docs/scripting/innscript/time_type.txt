@@ -1,0 +1,64 @@
+Time
+The Time type stores a time of day.
+
+Syntax
+The standard library contains a function Time() which can be used to create a new Time type using a string in the format HH:mm:ss or HH:mm.
+
+// Create a Time type for that represents 1:10:30 PM
+DateTime("13:10:30");
+Add/Remove Delta Time
+You can add or subtract a DeltaTime type with a Time type to increase or decrease the value of the Time. The resulting value is a Time type.
+
+time = Time("5:10:30");
+delta = DeltaTime("6h");
+
+simulation.log(time + delta); // 11:10:30
+simulation.log(time - delta); // 23:10:30
+Add Date
+A date value can be added to a time to get a datetime value.
+
+time = Time("12:30:00");
+date = Date("2025-01-16");
+
+datetime = time + date; // 2025-01-16 12:30:00
+If the DeltaTime is divisible by 24h there will be no change to the resulting time.
+
+Delta Time
+You can get the duration between two Time types by subtracting the one from the other. The result returned is a DeltaTime type.
+
+time = Time("13:10:30");
+other = Time("00:00:00");
+
+simulation.log(time - other); // 13h10m30s
+Truthiness
+All Time types are truthy.
+
+Comparison
+Time types can be compared to other DateTime types.
+
+time = Time("13:10:30");
+other = Time("00:00:00");
+
+// Does time equal other
+time == other; // false
+
+// Does time occur before other
+time < other; // true
+
+// Does time occur after other
+time > other; // false
+Stringify
+The string representation of a Time type is in the format HH:mm:ss.
+
+Methods
+hour() NumberType
+
+Returns: The hour of the day in which the time occurs [0-23]
+
+minute() NumberType
+
+Returns: The minute offset within the hour that the time occurs [0-59]
+
+second() NumberType
+
+Returns: The second offset within the minute that the time occurs [0-59]

@@ -1,0 +1,90 @@
+Assignment
+Assign Statement (=)
+Assigns a value to a variable.
+
+Syntax
+x = y;
+Parameters
+x
+
+A valid assignment target, can be:
+
+an identifier
+destructuring statement
+an expression index
+y
+
+An expression that's evaluated value will be assigned to x. This includes:
+
+Literal values (string, number, boolean, null)
+Function definition
+Function call
+Identifier
+Index
+List value
+Map value
+Expression group (tuples)
+Unary/binary operation expressions
+Addition Assign Statement (+=)
+Performs addition on the left and right operand, then assigns the result to the left operand.
+
+Syntax
+x += y;
+Description
+x += y; is equivalent to x = x + y;.
+
+Subtraction Assign Statement (-=)
+Performs subtraction on the left and right operand, then assigns the result to the left operand.
+
+Syntax
+x -= y;
+Description
+x -= y; is equivalent to x = x - y;.
+
+Multiplication Assign Statement (*=)
+Performs multiplication on the left and right operand, then assigns the result to the left operand.
+
+Syntax
+x *= y;
+Description
+x *= y; is equivalent to x = x * y;.
+
+Division Assign Statement (/=)
+Performs division on the left and right operand, then assigns the result to the left operand.
+
+Syntax
+x /= y;
+Description
+x /= y; is equivalent to x = x / y;.
+
+Power Assign Statement (^=)
+Raises the left operand to the power of the right operand, then assigns the value to the left operand.
+
+Syntax
+x ^= y;
+Description
+x ^= y; is equivalent to x = x ^ y;.
+
+Modulo Assign Statement (%=)
+The remainder of dividing the left operand by the right operand is assigned to the left operand.
+
+Syntax
+x %= y;
+Description
+x %= y; is equivalent to x = x % y;.
+
+Increment Statement (++)
+Increments the operand by 1.
+
+Syntax
+x++;
+Description
+x++; is equivalent to x = x + 1;.
+
+Decrement Statement (--)
+Decrements the operand by 1.
+
+Syntax
+x--;
+Description
+x--; is equivalent to x = x - 1;.

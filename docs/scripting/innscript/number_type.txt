@@ -1,0 +1,20 @@
+Numbers
+Number types use go's float64 type under the hood.
+
+Numbers can contain:
+
+any number of digits
+any number of underscores
+a maximum of one decimal place
+Numbers must start with a digit.
+
+// Compliant
+1000
+1_000
+1_000_000.00
+1__000
+
+// Non-compliant
+1000.0.0
+10h00
+_1000

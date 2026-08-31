@@ -1,0 +1,92 @@
+Calculation Running Node
+A Calculation Running Node is a special kind of calculation node that will execute it's code block in a loop. It is useful for tasks which involve continuous updating of an output value (e.g. the Sim Time default calculation node is a running node). The execution loop of the node can be stopped by calling the node.terminate() method inside it's code block.
+
+Calculation running nodes require a default value to be set.
+
+Bound Values
+The Calculation Running Node bound object is bound to the node identifier inside the Calculation Running Node's code block.
+
+The following methods are available on the Calculation Running Node bound object.
+
+Methods
+delay(NumberType)
+
+Argument 1: Time in seconds to delay execution.
+
+delay(Delayable)
+
+Argument 1: A delayable object.
+
+Delay execution until delayable has finished waiting.
+
+delay(Delayable, NumberType | DeltaTimeType) BoolType
+
+Argument 1: A delayable object.
+
+Argument 1: Delay timeout time.
+
+Returns: True if the delay did not timeout, otherwise false.
+
+Delay execution until delayable has finished waiting and return true. If the timeout time elapses, it will end the delay and return false.
+
+delay(DeltaTimeType)
+
+Argument 1: A delta time duration to delay execution by.
+
+A negative delta time value will result in no delay.
+
+delay_until_time(StringType)
+
+Argument 1: time as a string (HH:MM:SS or HH:MM) or as datetime string with only the time parsed (YYYY-MM-DD HH:mm:ss)
+
+Delay execution until specific time of day.
+
+delay_until_time(TimeType)
+
+Argument 1: a time object.
+
+Delay execution until specific time of day.
+
+delay_until_time(DateTimeType)
+
+Argument 1: a datetime object.
+
+Delay execution until specific time of day. (NOTE: the date value of DateTime is ignored)
+
+delay_until_date(StringType)
+
+Argument 1: date as a string (YYYY-MM-DD) or as datetime string with only the date parsed (YYYY-MM-DD HH:mm:ss)
+
+Delay agent until specific date.
+
+delay_until_date(DateType)
+
+Argument 1: a date object.
+
+Delay agent until specific date.
+
+delay_until_date(DateTimeType)
+
+Argument 1: a datetime object.
+
+Delay agent until specific date. (NOTE: the time value of DateTime is ignored)
+
+delay_until_date_time(StringType)
+
+Argument 1: datetime as a string (e.g. 2006-01-02 15:04:05)
+
+Delay execution until specific date and time.
+
+delay_until_date_time(DateTimeType)
+
+Argument 1: datetime object
+
+Delay execution until specific date and time.
+
+terminate()
+
+Stops the execution loop of the calculation running node.
+
+allow_loop_no_delay()
+
+Allows the execution of the next loop without delaying in the current loop.

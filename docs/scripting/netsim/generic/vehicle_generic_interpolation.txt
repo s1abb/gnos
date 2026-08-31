@@ -1,0 +1,19 @@
+Vehicle (Generic Interpolation)
+The generic-interpolation variant of the Vehicle bound object uses interpolation within the simulation to reduce the number of log entries. Generic interpolation vehicles are created when adding a generic-interpolation vehicle to an agent using the Add Vehicle event node or the using the Agent add_vehicle() bound method specifying a generic-interpolation type (see the Agent bound object documentation for more information).
+
+It is generally recommended to use generic interpolation over generic vehicles for the gains in performance. However there are a few caveats to consider when using generic interpolation vehicles:
+
+There will be visual only difference. During simulation playback, vehicle location is linearly interpolated between log entries which deviates from the actual behaviour within the simulation which uses accelerations to calculate vehicle position. This can result in a difference between observed position/velocity during playback and actual position/velocity within the simulation. This can also result in sudden changes in vehicle velocity during playback which doesn't occur during the actual simulation and output metrics.
+Generic interpolation uses varying time step durations. Vehicles normally operate on a fixed interval time step (default 1 second). This may result in strange behaviour when querying vehicle state between interpolated time steps.
+Stopping distance signalling does not work with generic interpolation.
+Bound Values
+Generic interpolation vehicles inherit all the bound values of the Vehicle (Base) bound object. See the Vehicle (Base) bound object documentation for more information.
+
+Generic interpolation vehicles also expose the following extra methods.
+
+Methods
+(Deprecated) set_length(NumberType) NumberType
+
+Argument 1: Length of vehicle in m.
+
+Sets the length of the first component on the vehicle in m. This method is deprecated and it is recommended to specifically setup the vehicle with the desired length using component types that match your use case.

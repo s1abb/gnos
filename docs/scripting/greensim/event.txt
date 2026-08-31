@@ -1,0 +1,27 @@
+Event
+Event is a Delayable object which can be used to delay execution of an executor until the event is triggered.
+
+Events are created using the simulation create_event method: event = simulation.create_event();.
+
+To delay on an event call agent.delay(event) or node.delay(event). To trigger an event call event.trigger().
+
+Bound Values
+The Event bound object has the following bound properties and methods.
+
+Properties
+is_open BoolType - (get)
+
+Readonly field defaulting to false. When true, normal function of the event is disabled and all executors delaying on the event will immediately resume execution. When false the event node will delay executors until triggered like normal.
+
+Methods
+trigger()
+
+Resume execution of all executors delaying on the event.
+
+open()
+
+Sets is_open to true. Resume execution of all executors delaying on the event and in the future do not pause executors.
+
+close()
+
+Sets is_open to false. In the future pause executors.

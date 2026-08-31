@@ -1,0 +1,44 @@
+Network Model
+The Network Model bound object represents a network model which has been added to a simulation via the simulation menu NODES tab.
+
+Bound Values
+The Network Model bound object exposes the following methods.
+
+Methods
+get_section(StringType) Section | NullType
+
+Argument 1: Name of the section to get.
+
+Returns: The first found section or null.
+
+get_sections(StringType?) ListType[Section]
+
+Argument 1: (Optional) Name of the sections to get.
+
+Returns: A list of found sections.
+
+set_section_outages(MapType)
+
+Argument 1: A map of section names and boolean values for whether or not they should be active.
+
+Sets the active state of all provided section names to the relevant value, using get_sections(StringType) to get sections with the same name.
+
+set_deadlock_avoidance(StringType)
+
+Argument 1: Set the deadlock avoidance system, ('', 'mca', 'reservation').
+
+get_tags() MapType
+
+Returns: A map of tag names mapped to their bound object. E.g. a network model with one tag with the name "My Tag" will result in the following map { "My Tag": MyTagBoundObject }.
+
+get_tag(StringType) ModelTag | null
+
+Argument 1: The name of the tag to get.
+
+Returns: The network model tag with the matching name or null if no tag is found.
+
+set_color(StringType)
+
+Argument 1: A color (e.g. "red" or "#FF0000") or an empty string to remove color.
+
+Sets the color of every track section in the network model.

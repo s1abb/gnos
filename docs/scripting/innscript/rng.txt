@@ -1,0 +1,60 @@
+RNG
+The RNG bound object is used to generate pseudo-random numbers. You can create RNG bound objects by using the stdlib constructor RNG().
+
+There exists a global RNG object which is used by stdlib random functions and the ListType methods shuffle and get_random.
+
+The RNG object can be seeded with a known value for deterministic outputs.
+
+Bound Values
+The RNG bound object has the following bound methods
+
+Methods
+set_seed(NumberType?, NumberType?)
+
+Argument 1: (Optional) Seed1, the value will be rounded and abs to a positive integer. Sets the seed for random functions. (Default=Random Seed)
+
+Argument 2: (Optional) Seed2, the value will be rounded and abs to a positive integer. Sets the seed for random functions. (Default=1)
+
+Re-seeds the random number generator.
+
+random() NumberType
+
+Returns: A random number between 0.0 (inclusive) and 1.0 (exclusive).
+
+random_uniform(NumberType, NumberType) NumberType
+
+Argument 1: Lower limit
+
+Argument 2: Upper limit
+
+Returns: A random number drawn from the uniform distribution
+
+random_triangular(NumberType, NumberType, NumberType) NumberType
+
+Argument 1: Lower limit
+
+Argument 2: Peak of the distribution
+
+Argument 3: Upper limit
+
+Returns: A random number drawn from the triangular distribution
+
+random_poisson(NumberType) NumberType
+
+Argument 1: Average number of events in a fixed time interval
+
+Returns: A random number drawn from the Poisson distribution
+
+random_normal(NumberType, NumberType) NumberType
+
+Argument 1: Mean of the distribution
+
+Argument 2: Standard deviation of the distribution
+
+Returns: A random number drawn from the normal distribution
+
+random_exponential(NumberType) NumberType
+
+Argument 1: Rate of the distribution
+
+Returns: A random number drawn from the exponential distribution

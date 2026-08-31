@@ -1,0 +1,75 @@
+DateTime
+The DateTime type stores a UTC date and time value.
+
+Syntax
+The standard library contains a function DateTime() which can be used to create a new DateTime using a string in the format YYYY-MM-DD HH:mm:ss.
+
+// Create a DateTime type that represents Wed Jan 15 2025 1:10:30 PM UTC
+DateTime("2025-01-15 13:10:30");
+Add/Remove Time
+You can add or subtract a DeltaTime type with a DateTime type to increase or decrease the value of the DateTime. The resulting value is a DateTime type.
+
+datetime = DateTime("2025-01-16 00:10:30");
+delta = DeltaTime("2h");
+
+simulation.log(datetime + delta); // 2025-01-16 02:10:30
+simulation.log(datetime - delta); // 2025-01-15 22:10:30
+Delta Time
+You can get the duration between two DateTime types by subtracting the one from the other. The result returned is a DeltaTime type.
+
+datetime = DateTime("2025-01-16 00:10:30");
+other = DateTime("2025-01-15 00:00:00");
+
+simulation.log(datetime - other); // 24h10m30s
+Truthiness
+All DateTime types are truthy.
+
+Comparison
+DateTime types can be compared to other DateTime types.
+
+datetime = DateTime("2025-01-15 13:10:30");
+other = DateTime("2025-01-20 00:00:00");
+
+// Does datetime equal other
+datetime == other; // false
+
+// Does datetime occur before other
+datetime < other; // true
+
+// Does datetime occur after other
+datetime > other; // false
+Stringify
+The string representation of a DateTime type is in the format YYYY-MM-DD HH:mm:ss.
+
+Methods
+date() DateType
+
+Returns: The date component of the datetime
+
+time() TimeType
+
+Returns: The time component of the datetime
+
+year() NumberType
+
+Returns: The 4-digit year in which the datetime occurs
+
+month() NumberType
+
+Returns: The month in which datetime occurs [1-12]
+
+day() NumberType
+
+Returns: The day of the month in which datetime occurs [1-31]
+
+hour() NumberType
+
+Returns: The hour of the day in which the datetime occurs [0-23]
+
+minute() NumberType
+
+Returns: The minute offset within the hour that the datetime occurs [0-59]
+
+second() NumberType
+
+Returns: The second offset within the minute that the datetime occurs [0-59]

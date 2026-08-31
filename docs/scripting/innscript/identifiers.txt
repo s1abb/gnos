@@ -1,0 +1,95 @@
+Identifiers
+In InnScript, an identifier is the name used to refer to variables, parameters, functions, or other named elements within the code. It acts as a symbolic name that binds to a value or function, allowing you to access or manipulate that value or function in your script.
+
+When creating a variable, you will assign a value to a unique identifier.
+
+In the code below a string value of "some string value" is assigned to the identifier my_variable. Then that value is accessed to print to the simulation logs.
+
+my_variable = "some string value";
+
+simulation.log(my_variable); // Prints "some string value"
+Syntax
+Identifiers can contain:
+
+any number of letters
+any number of digits
+any number of underscores
+Identifiers must start with a letter or an underscore.
+
+// Compliant
+HelloWorld1
+Hello_World1
+_1HelloWorld
+
+// Non-compliant
+Hello World1
+HelloWorld1@
+1HelloWorld
+Sanitised Names
+A sanitised name is where a string value or name is converted into a valid identifier.
+
+This occurs automatically in some places, such as converting node names into identifiers where they can be accessed within InnScript.
+
+This process involves the following:
+
+letters are kept
+numbers are kept
+underscores are kept
+any other character is converted into an underscore
+an underscore is added to the beginning of a name if it starts with a number
+e.g.
+
+Some Node name1 will be converted to Some_Node_name1
+
+123@ My Name will be converted to _123__My_Name
+
+The standard library includes a sanitise_name() function for converting a string into it's sanitised form. This is often used in conjunction with getvar() and setvar() to retrieve and set the value of an identifier in the global scope when you only have access to the unsanitised name.
+
+// Get the sanitised name of a string
+sanitised = sanitise_name("my variable name");
+
+// Get a value using the sanitised name
+my_variable = getvar(sanitised);
+
+// Set a value using the sanitised name
+setvar(sanitised, "some string value");
+Keywords
+Keywords are reserved words used for current or future InnScript syntax and cannot be used as an identifier.
+
+List of all keywords:
+
+and
+as
+break
+continue
+class
+case
+catch
+do
+else
+enum
+for
+false
+func
+from
+finally
+getvar
+in
+interface
+if
+is
+true
+throw
+typeof
+this
+null
+new
+mutate
+or
+return
+switch
+static
+struct
+setvar
+using
+while

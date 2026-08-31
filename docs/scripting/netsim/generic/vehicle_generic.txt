@@ -1,0 +1,16 @@
+Vehicle (Generic)
+The generic variant of the Vehicle bound object is the simplest vehicle implementation. Generic vehicles are created when adding a generic vehicle to an agent using the Add Vehicle event node or the using the Agent add_vehicle() bound method specifying a generic type (see the Agent bound object documentation for more information). Generic vehicles can have any kind of vehicle component added which will inherit their base properties (name, length, mass) from the component type. When creating a generic vehicle without specifying any vehicle components to add, a generic component will be added which inherits the default values from Generic Component Type.
+
+It is generally recommended to use generic interpolation vehicles instead of generic vehicles for the performance gains. However there are a few caveats when using generic interpolation which should be considered when making a final decision on which vehicle type to use. See the generic interpolation vehicle documentation for more information.
+
+Bound Values
+Generic vehicles inherit all the bound values of the Vehicle (Base) bound object. See the Vehicle (Base) bound object documentation for more information.
+
+Generic vehicles also expose the following extra methods.
+
+Methods
+(Deprecated) set_length(NumberType) NumberType
+
+Argument 1: Length of vehicle in m.
+
+Sets the length of the first component on the vehicle in m. This method is deprecated and it is recommended to specifically setup the vehicle with the desired length using component types that match your use case.

@@ -1,0 +1,18 @@
+Engine (Base)
+The base Engine bound object represents the common engine properties and methods and functionality that all other engine types inherit.
+
+An agent vehicle's engine always implements one of the derived engine types (Rail, Road, Generic, Generic Interpolation). See the documentation for derived vehicle variants for more information.
+
+Engines are created when vehicles and rail locomotives are added to an agent using the Add Vehicle event node.
+
+Bound Values
+All engine variants that derive from the base engine type expose the following properties and methods.
+
+Properties
+max_acceleration NumberType - [get, set]
+
+Get or set the maximum vehicle acceleration in m/s^2 (Must be greater than 0)
+
+max_braking NumberType - [get, set]
+
+Get or set the max braking acceleration in m/s^2 (Must be less than 0)

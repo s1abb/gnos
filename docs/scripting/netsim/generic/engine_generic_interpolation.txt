@@ -1,0 +1,5 @@
+Engine (Generic Interpolation)
+The generic-interpolation variant of the Engine bound object is a basic engine implementation that does not add any extra functionality over the base Engine type. It is created when adding a generic-interpolation vehicle type to an agent. Generic interpolation vehicles can have any kind of vehicle component added which will inherit their base properties (name, length, mass) from the component type. When creating a generic vehicle without specifying any vehicle components to add, a generic component will be added which inherits the default values from Generic Component Type.
+
+Bound Values
+The generic-interpolation Engine variant implements the same bound properties and methods as the base Engine type.

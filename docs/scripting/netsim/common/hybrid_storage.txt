@@ -1,0 +1,14 @@
+Hybrid Storage
+The Hybrid Storage bound object represents a hybrid (diesel / battery) fuel storage system. Hybrid Storages are created when Motor Vehicles have a "Hybrid" Drive Type and when rail Vehicle Types have a "Hybrid-Electric" Locomotive Type.
+
+Hybrid Storage inherits from both Diesel Storage and Battery Storage.
+
+Bound Values
+The Hybrid Storage bound object exposes the same bound values as both the Diesel Storage and Battery Storage fuel systems.
+
+Hybrid Storages also expose the extra bound properties.
+
+Properties
+empty BoolType - [get]
+
+Returns false when either the diesel level is greater than 0 liters or when the battery level is greater than maximum battery capacity multiplied by minimum state of charge.

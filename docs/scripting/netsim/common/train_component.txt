@@ -1,0 +1,37 @@
+Train Component
+The Train Component bound object represents a pre configured reusable set of Vehicle Components and some other vehicle configurations. The Train Component bound object is created when using the Train Type simulation setup node.
+
+The Train Component bound object can be used to set the components on a vehicle using the vehicle's set_train() method.
+
+See the Train Type simulation setup node documentation for more information.
+
+Bound Values
+The Train Component bound object has the following properties and methods.
+
+Properties
+max_acceleration NumberType - [get, set]
+
+Get or set the max acceleration in m/s^2.
+
+ecp BoolType - [get, set]
+
+Enable or disable electronically controlled pneumatic braking. (Only used in rail vehicles)
+
+min_pneumatic_percentage NumberType | NullType - [get, set]
+
+Minimum pneumatic braking percentage, when using pneumatic brakes this is the minimum usable, when null will have no minimum. Is constrained to null or 0-100. (Only used in rail vehicles)
+
+Methods
+get_component_types() ListType
+
+Returns: The list of component types.
+
+set_component_types(ListType)
+
+Argument 1: The list of component types to set.
+
+add_component_type_quantity(ComponentType, NumberType)
+
+Argument 1: The component type to add to the end of the component types list.
+
+Argument 2: The number of component types to add to the end of the component types list.

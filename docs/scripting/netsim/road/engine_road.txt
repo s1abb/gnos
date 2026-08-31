@@ -1,0 +1,19 @@
+Engine (Road)
+The road variant of the Engine bound object is the engine type responsible for the movement of road vehicles. It is created when adding a road vehicle type to an agent.
+
+Bound Values
+The road Engine variant implements the all the bound properties and methods that the base Engine type does.
+
+Road Engines also expose the following bound properties
+
+Methods
+set_controller(StringType)
+
+Sets the engine controller to a certain type, setting to default values if changing type and retaining configuration if not (See PID or MRAC Controller documentation for more information).
+
+Argument 1: String of either "PID" or "MRAC"
+
+Properties
+pid PID | MRAC - [get]
+
+Gets the engine's Controller bound object responsible for maintaining a desired speed (See PID or MRAC Controller documentation for more information).

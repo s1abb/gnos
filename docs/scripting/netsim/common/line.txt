@@ -1,0 +1,30 @@
+Line
+The Line bound object represents a line within a track section of a network model. Lines are made up of a start and end point which define their length and curvature. They can be retrieved using the Section Base's get_line(StringType?) or get_lines(StringType) bound methods.
+
+Bound Values
+The Line bound object exposes the following bound properties.
+
+Properties
+name StringType - [get]
+
+The name of the line.
+
+sanitized_name StringType - [get]
+
+The sanitised/compliant name of the line.
+
+length NumberType - [get]
+
+The length of the line in kilometers.
+
+curve_radius NumberType - [get]
+
+The curve radius of the line in kilometers.
+
+curvature NumberType - [get]
+
+The curvature of the line.
+
+color StringType - [get, set]
+
+Get or set the color of the line. A color is a string (e.g. "red" or "#FF0000"). Setting an empty string will remove the line color.

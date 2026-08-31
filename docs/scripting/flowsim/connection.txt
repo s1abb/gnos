@@ -1,0 +1,40 @@
+Connections
+Junctions can be connected to each other to create a network of material flows. Each junction can have multiple input and output connections. The connections can be configured to have specific properties, such as max flow rate, priority, and proportion. These values can be changed during the simulation to create dynamic behavior.
+
+Connection Properties
+Max Flow Rate: The maximum flow rate that can be sent through the connection. This value can be configured to limit the amount of material that can be sent through the connection.
+
+Priority: The priority of the connection. This value is used by the solver to determine what the goal of the network is. The solver will try to maximize the flow through the connection with the highest priority. The priority can be configured to create different behaviors in the network.
+
+Proportion (Input & Output): The proportion of the flow that should be sent through the connection. This value can be configured to create different behaviors in the network. On a junction with multiple outputs, proportion can be set to be fixed or free. If it is fixed, the proportion through multiple outputs will be fixed regardless of the maximum flow rates. This means that in a 50/50 split, if one output has a maximum flow rate of 10 and the other has a maximum flow rate of 5, the flow will be 5 through both outputs. If the proportion is free, the flow will be split according to the proportion until one of the outputs reaches its maximum flow rate. In the previous example, if the proportion is 50/50, the flow will be 10 through the first output and 5 through the second output assuming the junction is capable of sending 15. If the junction is only capable of sending 10, the flow will be 5 through the first output and 5 through the second output.
+
+Filtered Material Property Groups: A list of material property groups by which to filter the flow of material into this connection. When using this property the connection must come from a "Time Lagged" junction such as a conveyor. There will be no flow of material into this connection if the output junction cannot split the material across it's connections which satisfy the material property filters on those connections.
+
+Scripting Properties
+name
+
+The name of the connection. This is used to identify the connection in the network both visually and in the code.
+
+max_rate
+
+A read and write property that returns the maximum flow rate that can be sent through the connection. This value can be configured to limit the amount of material that can be sent through the connection. Changing this value will cause the system to recalculate the flow rates
+
+rate
+
+A readonly property that returns the flow rate that is being sent through the connection.
+
+rate_objective_weighting
+
+A read and write property that returns the weight that should be used to determine the goal of the network. This value is used by the solver to determine what the goal of the network is. The solver will try to maximize the flow through the connection with the highest priority. The priority can be configured to create different behaviors in the network. Changing this value will cause the system to recalculate the flow rates
+
+input_proportion
+
+A read and write property that returns the proportion of the flow that should be sent through the connection. This value can be configured to create different behaviors in the network. Changing this value will cause the system to recalculate the flow rates
+
+output_proportion
+
+A read and write property that returns the proportion of the flow that should be sent through the connection. This value can be configured to create different behaviors in the network. Changing this value will cause the system to recalculate the flow rates
+
+total_transferred
+
+A readonly property that returns the total amount of material transferred through the connection.

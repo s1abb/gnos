@@ -1,0 +1,28 @@
+Power Supply Group
+The Power Supply Group bound object represents a power supply group present on a Network Model. A Power Supply Group bound object is created for every power supply group defined on an associated network model.
+
+Bound Values
+Power Supply groups are bound to the global simulation scope using the compliant form of their name.
+
+The Power Supply Group bound object exposes the following properties.
+
+Properties
+max_power NumberType - [get, set]
+
+Maximum power.
+
+max_power_per_unit NumberType - [get, set]
+
+Maximum power per unit.
+
+active BoolType - [get, set]
+
+Power supply group active state.
+
+current_power NumberType - [get]
+
+Current power.
+
+total_energy NumberType - [get]
+
+Total energy used (kWh).

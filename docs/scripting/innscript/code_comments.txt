@@ -1,0 +1,14 @@
+Comments
+Code comments are useful for adding extra context to code or to temporarily disable code without removing it completely.
+
+Comments must either:
+
+start with a double forward slash for single line comments
+start with /* and close with */ for multi line comments
+// This is a compliant single line comment
+
+/*
+    This is a compliant
+    multi-line
+    comment
+*/

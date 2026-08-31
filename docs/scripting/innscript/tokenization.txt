@@ -1,0 +1,46 @@
+Tokenization
+Tokens are the smallest units of code that have meaning to the InnScript interpreter. They are the building blocks the interpreter uses to understand and execute code.
+
+Categories
+Tokens can be categorised into several types.
+
+Keywords
+Reserved words with special meanings in InnScript. e.g. if, else, for, while, func, etc. (see the 'Identifiers' documentation for a full list of keywords)
+
+Identifiers
+Names given to variables, functions, properties, etc. They must start with a letter or an underscore, and can contain letters, numbers and underscores.
+
+Operators
+Symbols that perform operations on values, such as +, -, *, /, =, ==, !=, >, <, >=, <=, !, etc.
+
+Literals
+Values directly represented in the code, such as numbers (e.g., 10, 3.14), strings (e.g., "hello", 'world'), booleans (e.g., true, false), null.
+
+Punctuators
+Symbols that have syntactic meaning, such as (, ), {, }, [ ], ;, ,, ., etc.
+
+Comments
+Text ignored by the interpreter, used for documentation and explanation. Single-line comments start with //, and multi-line comments are enclosed in /* */.
+
+Example
+Lets consider the following InnScript code.
+
+if my_value == true or other_value == false
+{
+    return "success";
+}
+It can be broken down into the following tokens:
+
+if (keyword)
+my_value (identifier)
+== (operator)
+true (boolean literal)
+or (keyword)
+other_value (identifier)
+== (operator)
+false (boolean literal)
+{ (punctuator)
+return (keyword)
+"success" (string literal)
+; (punctuator)
+} (punctuator)

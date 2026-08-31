@@ -1,0 +1,14 @@
+Model Tag
+The ModelTag bound object represents a tag from a network model. Network model tags are added and removed from withing the "Tags" modal in the network model builder.
+
+Tags can be used to specify custom speed limits on track lines when a vehicle has a matching tag.
+
+Tags can be added or removed from vehicles with the vehicle set_tags, clear_tags, add_tag and remove_tag bound methods.
+
+Bound Values
+The ModelTag bound object has the following bound properties.
+
+Properties
+name StingType - [get]
+
+The name of the tag.

@@ -1,0 +1,168 @@
+Vehicle (Road)
+The road variant of the Vehicle bound object represents a road network vehicle. Road vehicles are created when adding a road vehicle to an agent using the Add Vehicle event node or using the Agent add_vehicle() bound method specifying a road type (see the Agent bound object documentation for more information). The first Motor Vehicle Component in the vehicle's list of components is used to drive the vehicle. A road vehicle MUST have at least one Motor Vehicle Component to function properly.
+
+Bound Values
+Road vehicles inherit all the bound values of the Vehicle (Base) bound object. See the Vehicle (Base) bound object documentation for more information.
+
+Road vehicles also expose the following extra properties.
+
+Properties
+moving_charge_enabled BoolType - [get, set]
+
+Enable moving charge on the vehicle. When disabled the vehicle will not be charged by track section power supply groups. (defaults to false)
+
+battery_level NumberType - [get]
+
+The current battery level charge in kWh.
+
+battery_capacity NumberType - [get]
+
+The maximum battery capacity in kWh.
+
+diesel_level NumberType - [get]
+
+The current volume of diesel fuel in L.
+
+diesel_capacity NumberType - [get]
+
+The maximum diesel fuel capacity of the vehicle in L.
+
+gear NumberType - [get, set]
+
+The current gear of the vehicle.
+
+fuel_storage FuelStorage - [get]
+
+The current fuel storage for the vehicle (see fuel storage bound object documentation for more information).
+
+general_aux_load NumberType - [get, set]
+
+Get or set the general auxiliary load for the vehicle battery system in kW.
+
+state_of_charge NumberType - [get]
+
+The current battery charge percentage (0-100)
+
+charge_power NumberType - [get]
+
+The current charge power in kW
+
+captured_regen_energy NumberType - [get]
+
+The total captured regenerative braking energy in kWh
+
+unused_regen_energy NumberType - [get]
+
+The total unused regenerative braking energy in kWh
+
+energy_consumed NumberType - [get]
+
+The total electrical energy consumed in kWh (traction energy + auxiliary energy)
+
+traction_energy NumberType - [get]
+
+The total traction energy consumed in kWh
+
+total_aux_load NumberType - [get]
+
+The total auxiliary load energy consumed in kWh
+
+fuel_use NumberType - [get]
+
+The total amount of fuel consumed in L
+
+resistance NumberType - [get]
+
+The vehicle's resistance in kN
+
+motor_power NumberType - [get]
+
+The current motor power in kW
+
+force NumberType - [get]
+
+The current motor force in kN
+
+rpm NumberType - [get]
+
+The current motor rpm
+
+total_recharged_energy NumberType - [get]
+
+Get the vehicle's total recharged energy in kWh. (all charge energy minus captured regenerative braking energy)
+
+Methods
+(Deprecated) set_motor_vehicle(MotorVehicleType)
+
+Argument 1: A Motor Vehicle Type configuration.
+
+Adds a motor vehicle component to the start of the vehicle's components. Deprecated, instead consider using the vehicle's component methods for adding and managing the road vehicle's components.
+
+get_motor_vehicle() MotorVehicleComponent | NullType
+
+Returns: The first MotorVehicleComponent in the road vehicle's list of components or null if there are none.
+
+set_battery(NumberType)
+
+Argument 1: The desired battery charge level in kWh.
+
+Battery level is clamped to minimum and maximum charge levels given the current battery capacity and min/max state of charge.
+
+set_battery_capacity(NumberType)
+
+Argument 1: The maximum battery capacity in kWh.
+
+Actual battery capacity will be equal to maximum capacity multiplied by maximum state of charge.
+
+charge_battery(NumberType, NumberType) NumberType
+
+Argument 1: The maximum charge rate in kW (May utilize less depending on battery storage configuration)
+
+Argument 2: How long to charge the vehicle for.
+
+Returns: The unused energy in kWh.
+
+Instantaneously charges the battery, using rate and duration for battery charge calculations. Returns the unused energy in kWh. Rate is split evenly across battery systems. Does not log charge rate or limit other sources of charging and should be used sparingly. Consider using set_battery() instead if the goal is to instantaneously set the battery level or set_charge_rate() to charge a battery over time.
+
+set_charge_rate(NumberType)
+
+Argument 1: Charge rate in kW.
+
+Set a rate of charge that is applied to all battery systems in the vehicle without being split up. Set to zero to end charging. Charging is logged and limited alongside track charging and regenerative braking.
+
+add_diesel(NumberType) NumberType
+
+Argument 1: Amount of fuel to add in L.
+
+Adds the specified amount of fuel. Returns the unused volume in L.
+
+set_diesel(NumberType)
+
+Argument 1: Amount of fuel to set in L.
+
+Sets the specified amount of fuel in the vehicle.
+
+set_diesel_capacity(NumberType)
+
+Argument 1: The maximum diesel capacity in L.
+
+get_thermal_aux_load() NumberType
+
+Get the vehicle's current battery system thermal auxiliary load in kW.
+
+set_surface_properties(list[map])
+
+Sets the list of available surface types on all components in the vehicle. These will be used in the vehicle physics from then on.
+
+Argument 1: List of the surface properties to use.
+
+Example Argument:
+
+{
+    "surface_type": string,                     // "Asphalt"
+    "rolling_resistance_coefficient": number,   // 0.015
+    "friction_coefficient": number              // 0.75
+}
+set_work_mode(StringType)
+
+Argument 1: The name of the work mode to switch to.

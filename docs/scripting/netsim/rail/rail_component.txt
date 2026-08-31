@@ -1,0 +1,17 @@
+Rail Component
+Rail Component is an interface that describes the common features of rail vehicle components. It inherits from Component (Base).
+
+See Vehicle Component and Carriage Component bound object documentation for more information.
+
+Implementations
+The following bound objects implement the Rail Component interface:
+
+Vehicle Component
+Carriage Component
+Bound Values
+The following bound properties and methods are added to bound objects that implement the Rail Component interface, they also include all bound values from the Component (Base) interface.
+
+Properties
+coupler_force NumberType - [get]
+
+The component coupler force in kN. Calculation must be enabled by calling agent.vehicle.set_track_coupler_forces(true);.

@@ -1,0 +1,39 @@
+Engine (Sectional Runtime)
+The sectional runtime variant of the Engine bound object is a unique engine type that is intended use real world sectional runtime data as an input. The input data specifies the time it takes the vehicle to pass through a section. Sectional Runtime Engines are created when calling the set_sectional_runtime() method of Rail Vehicles.
+
+Sectional Runtime Engines uses the runtime data set when creating the engine to specify the duration the vehicle should take to travel through sections. If a section is not present in the input runtime data then the engine will fallback to a simple speed/velocity estimates.
+
+Bound Values
+sectional_times_data SectionalTimesData [get, set]
+
+Get and set the sectional times data of the sectional runtime engine. Can also be set with a list or maptype. same as set_sectional_runtime.
+
+SectionalTimesData
+The SectionalTimesData is the underlying storage object of the sectional runtime engine.
+
+Bound Values
+copy() SectionalTimesData
+
+Returns: Copy of the SectionalTimesData.
+
+Returns a copy of the data, changes to the new copy will not affect the old.
+
+to_map() MapType
+
+Returns: MapType of form StringType: NumberType
+
+Returns a MapType with keys of StringType section names and NumberType sectional runtimes in seconds.
+
+set_section(StringType, NumberType)
+
+Argument 1: Section Name
+
+Argument 2: Sectional Runtime in seconds
+
+Sets the sectional runtime of a section.
+
+get_section(StringType)
+
+Argument 1: Section Name
+
+Returns: The sectional runtime of the section in seconds.

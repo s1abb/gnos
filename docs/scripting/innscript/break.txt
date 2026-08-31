@@ -1,0 +1,6 @@
+Break
+Break Statement
+The break statement terminates the current loop and transfers control to the statement following the terminated statement.
+
+Syntax
+break;

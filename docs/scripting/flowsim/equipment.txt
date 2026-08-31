@@ -1,0 +1,54 @@
+Equipment
+Equipment are made up of multiple junctions and connections. They can be used to create complex material flows setups that can be reused in multiple simulations or within the same simulation. Equipment can be configured to have specific parameters that are exposed to the user. These parameters can be linked to the properties of the junctions and connections within the equipment. This allows for dynamic behavior and customization of the equipment without the user needing to modify the junctions and connections directly.
+
+Equipment can also be embedded within other equipment. This allows for complex hierarchies of equipment to be created. The embedded equipment can be configured to have its own parameters and behavior, allowing for even more customization and flexibility.
+
+Equipment are sorted in a library that can be accessed from the simulation. The library can be used to create, edit, and delete equipment. Custom equipment can also be created in the simulation directly. This allows for rapid prototyping and testing of new equipment designs.
+
+Junctions can have their inputs and outputs exposed to the equipment level by ticking the expose input or expose output box. This will show this particular input on the equipment level letting you link this junctions to other equipment and junctions
+
+Properties
+name
+
+The name of the equipment.
+
+sanitized_name
+
+The sanitised/compliant name of the equipment.
+
+input_junctions
+
+A list of the input junctions in this equipment, this is any junction with "Expose Input" set to true.
+
+output_junctions
+
+A list of the output junctions in this equipment, this is any junction with "Expose Output" set to true.
+
+capacity
+
+A readonly property that returns the total capacity of the equipment. This is the sum of the capacities of all the containers in the equipment.
+
+amount
+
+A readonly property that returns the total amount of material in the equipment. This is the sum of the amounts of all the containers in the equipment.
+
+total_input_amount
+
+A readonly property that returns the total amount of material transferred into the equipment.
+
+total_output_amount
+
+A readonly property that returns the total amount of material transferred out of the equipment.
+
+Functions
+get_junction(StringType) Junction | NullType
+
+Argument 1: The name assigned to the junction you want to retrieve.
+
+Returns: The junction with the specified name. If no junction is found then it returns null.
+
+get_child_equipment(StringType?) ListType[Equipment]
+
+Argument 1: (Optional) The name assigned to the equipment you want to retrieve.
+
+Returns: A list of all child equipment, optionally filtered by name.

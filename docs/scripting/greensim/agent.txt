@@ -1,0 +1,205 @@
+Agent
+The Agent bound object type represents an agent within a simulation.
+
+Agents are generally created using the Spawn Agents event node. They can also be manually created using the simulation.spawn() method.
+
+Agents will stop execution when they do not have a next event node. To continue execution the event node they are currently executing should return an exit or event node.
+
+Scope
+The current Agent bound object is inject into the InnScript execution scope as agent at various points within a simulation:
+
+All (non-running type) EventNode code blocks
+Event node On Enter and On Exit hooks
+The agents own Agent Type Functions
+Bound Values
+The following properties and methods are exposed on the Agent bound object.
+
+Properties
+Also includes getters and setters for all Agent Type Parameters for the AgentType the agent was created from.
+
+name StringType - [get, set]
+
+The agent's name.
+
+vehicle Vehicle - [get]
+
+The agent's current vehicle.
+
+agents ListType - [get, set]
+
+The other agents held by this agent. This is used by the Load Agent and Unload Agent event nodes.
+
+type StringType - [get]
+
+The agent's AgentType name.
+
+agent_type AgentType - [get]
+
+The agent's AgentType bound object.
+
+id StringType - [get]
+
+The agent's unique id.
+
+current_load NumberType - [get, set]
+
+The agent's current load.
+
+capacity NumberType - [get, set]
+
+The agent's maximum carrying capacity (defaults to 100).
+
+properties MapType - [get]
+
+Custom agent properties. Custom properties can be used to store any data relevant to a specific agent within a simulation (e.g. age, income, preferences, etc..).
+
+current_node AgentType - [get]
+
+Get the current event node the agent occupies. Returns null if the agent does not occupy any event node.
+
+Methods
+Also includes all Agent Type Functions defined on the Agent's AgentType.
+
+set_track_agent(BoolType)
+
+Argument 1: true to set track agent false to unset track agent.
+
+A tracked agent will record metrics about the time it spent inside event nodes and event node categories. These metrics can be used in the Agent Time metrics graph.
+
+set_name(StringType)
+
+Argument 1: The agent's new name.
+
+Setting an agent's name will make it easier to select from the Agent Time metrics graph.
+
+delay(NumberType)
+
+Argument 1: Time in seconds to delay the agent.
+
+delay(Delayable)
+
+Argument 1: A delayable object.
+
+Delay the agent until delayable has finished waiting.
+
+delay(Delayable, NumberType | DeltaTimeType) BoolType
+
+Argument 1: A delayable object.
+
+Argument 1: Delay timeout time.
+
+Returns: True if the delay did not timeout, otherwise false.
+
+Delay the agent until delayable has finished waiting and return true. If the timeout time elapses, it will end the delay and return false.
+
+delay(DeltaTimeType)
+
+Argument 1: A delta time duration to delay the agent by.
+
+A negative delta time value will result in no delay.
+
+delay_until_time(StringType)
+
+Argument 1: time as a string (HH:MM:SS or HH:MM) or as datetime string with only the time parsed (YYYY-MM-DD HH:mm:ss)
+
+Delay agent until specific time of day.
+
+delay_until_time(TimeType)
+
+Argument 1: a time object.
+
+Delay agent until specific time of day.
+
+delay_until_time(DateTimeType)
+
+Argument 1: a datetime object.
+
+Delay agent until specific time of day. (NOTE: the date value of DateTime is ignored)
+
+delay_until_date(StringType)
+
+Argument 1: date as a string (YYYY-MM-DD) or as datetime string with only the date parsed (YYYY-MM-DD HH:mm:ss)
+
+Delay agent until specific date.
+
+delay_until_date(DateType)
+
+Argument 1: a date object.
+
+Delay agent until specific date.
+
+delay_until_date(DateTimeType)
+
+Argument 1: a datetime object.
+
+Delay agent until specific date. (NOTE: the time value of DateTime is ignored)
+
+delay_until_date_time(StringType)
+
+Argument 1: datetime as a string (e.g. 2006-01-02 15:04:05)
+
+Delay agent until specific date and time.
+
+delay_until_date_time(DateTimeType)
+
+Argument 1: datetime object
+
+Delay agent until specific date and time.
+
+add_vehicle(NetworkModel)
+
+Argument 1: Network to add agent vehicle to.
+
+Adds a vehicle to the agent. The vehicle type is based on the network model type.
+
+add_vehicle(NetworkModel, StringType)
+
+Argument 1: Network to add agent vehicle to.
+
+Argument 2: Explicitly set the vehicle type "generic", "rail", "road", "generic-interpolation"
+
+Adds a vehicle to the agent, vehicle type determined by the second argument.
+
+add_vehicle(NetworkModel, StringType, []ComponentType)
+
+Argument 1: Network to add agent vehicle to.
+
+Argument 2: Explicitly set the vehicle type "generic", "rail", "road", "generic-interpolation".
+
+Argument 3: A list of components to add to the vehicle.
+
+Adds a vehicle to the agent, vehicle type determined by the second argument. When a non-empty list of Component Types is passed as the third argument they will instantiate the relevant Components and add them to the vehicle.
+
+release_resource(SimulationResource)
+
+Argument 1: Simulation resource to release.
+
+Agent requires resource to release.
+
+seize_resource(SimulationResource)
+
+Argument 1: Simulation resource to seize.
+
+set_next(EventNode | EventNodeExit) Delayable
+
+Argument 1: Event node or exit to run after current event node execution completes.
+
+Returns: A delayable object which can be used to delay current execution until the target agent has entered the next node/exit.
+
+Overrides completely the exit returned by the event node to set the next execution of the agent. Replaces agent.jump, agent.goto, agent.jumpto. Can be passed and exit or event node. Will immediatly yield to the agent, but will not delay until they complete their current event node unless you call (node or agent).delay(Delayable).
+
+To set the next target of the agent currently executing in an event node you should instead return EventNodeExit; or return EventNode; replacing EventNodeExit/EventNode with the reference to an event node or event node exit.
+
+set_next will move the agent to the desired node/exit after their current event node but before their on-exit is called.
+
+time_since_node(EventNode) DeltaTimeType | NullType
+
+Argument 1: Event node to calculate time since.
+
+Returns: A delta time since the agent has last entered the event node. Returns null if the agent hasn't entered the node.
+
+seconds_since_node(EventNode) NumberType | NullType
+
+Argument 1: Event node to calculate seconds since.
+
+Returns: Number of seconds since the agent has last entered the event node. Returns null if the agent hasn't entered the node.

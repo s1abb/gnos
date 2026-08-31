@@ -1,0 +1,494 @@
+Vehicle (Base)
+The base Vehicle bound object represents the common vehicle properties and methods that all other vehicle types inherit.
+
+An agent vehicle always implements one of the derived vehicle types (Rail, Road, Generic, Generic Interpolation). See the documentation for derived vehicle variants for more information.
+
+Vehicles are attached to agents within a simulation using the Add Vehicle event node. They can be placed onto a network model at a specific track feature using the Add Vehicle event node or the Place Vehicle event node. Vehicles can be removed from a network model using the Remove Vehicle event node. All vehicles are constructed out of vehicle components. Depending on the type of vehicle different kinds of components can be added which will change the behaviour of the vehicle.
+
+Once a vehicle has been placed on a network model the Move to Location event node can set the vehicles destination and begin it's navigation.
+
+Bound Component Values
+All vehicle variants that derive from the base vehicle type implement the following properties and methods to manage the components attached to the vehicle.
+
+Properties
+head Component - [get]
+
+The first component of the vehicle.
+
+tail Component - [get]
+
+The last component of the vehicle.
+
+Methods
+get_components() []Component
+
+Returns: a list of the vehicle's components.
+
+get_index_of_component(Component) NumberType
+
+Argument 1: The component to find the index for.
+
+Returns: The index for the specified component if it was found, otherwise -1.
+
+get_component_at_index(NumberType) Component
+
+Argument 1: The index for the component to retrieve.
+
+Returns: The component at the specified index, or null if the index is outside the range of allowed values.
+
+set_train(TrainComponent)
+
+Argument 1: The train component used to setup the vehicle.
+
+add_component_to_end(ComponentType|Component)
+
+Argument 1: Type of component to add.
+
+Adds a new component of the specified type to the end of the vehicle's list of components.
+
+add_component_to_start(ComponentType|Component)
+
+Argument 1: Type of component to add.
+
+Adds a new component of the specified type to the start of the vehicle's list of components.
+
+add_components([]ComponentType|Component)
+
+Argument 1: List of components to add to the vehicle.
+
+Adds multiple components to the end of the vehicle's list of components.
+
+add_component_at_index(ComponentType|Component, NumberType)
+
+Argument 1: The type of component to add.
+
+Argument 2: The index to add the component at.
+
+The index must be between 0 and the vehicle's current total number of components.
+
+remove_component(Component)
+
+Argument 1: The component to remove.
+
+remove_all_components()
+
+Removes all components from the vehicle.
+
+distribute_components(Vehicle, NumberType)
+
+Argument 1: Other vehicle to move components to.
+
+Argument 2: Ratio of components to move to the other vehicle. A Number between 0 and 1.
+
+Moves a percentage of components from one vehicle to another. A ratio of 0.5 will move half of the components of a certain type to the other vehicle. e.g. If a vehicle had one component of type A, 2 components of type B and 3 components of type C. Using a ratio of 0.5 will result in moving 1 component of type B and 1 component of type C to the other vehicle.
+
+get_components_filtered(ComponentType) []Component
+
+Argument 1: Type of component to filter by.
+
+Returns: A list of components attached to the vehicle of the specified type.
+
+split(NumberType) []Components
+
+Argument 1: Position to split at.
+
+Splits the train at the position, returns the tail components.
+
+(Deprecated) merge([]Components)
+
+Argument 1: Components to add to end.
+
+Adds instantiated components to tail of train. Deprecated, use add_components method instead
+
+Bound Values
+All vehicle variants that derive from the base vehicle type expose the following properties and methods.
+
+Properties
+length NumberType = [get]
+
+The length of the vehicle in meters.
+
+log_idle BoolType - [get, set]
+
+Get or set whether to log vehicle changes when idle. Useful when charging an idle vehicle and you want to display charging curves in a metrics graph.
+
+name StringType - [get, set]
+
+Get or set the vehicle name.
+
+priority NumberType - [get, set]
+
+Vehicle movement priority for block signalling rail networks.
+
+engine Engine - [get]
+
+Get the vehicle's engine (See engine documentation for more information).
+
+bidirectional BoolType - [get, set]
+
+Get or set whether the vehicle can freely travel forwards and backwards without turning around.
+
+temperature NumberType - [get, set]
+
+Get or set the current temperature in degrees celsius. Used for battery thermal management.
+
+stalled BoolType - [get]
+
+Whether the vehicle has stalled.
+
+cab_signal BoolType - [get, set]
+
+Get or set cab signalling enabled.
+
+turn_on_spot BoolType - [get, set]
+
+Whether the vehicle can turn around on the spot
+
+interpolate_logs BoolType - [get, set]
+
+Enables playback of vehicles to be interpolated from the logs
+
+speed NumberType - [get]
+
+Get the current vehicle speed in km/h
+
+distance NumberType - [get]
+
+Get the total distance the vehicle has travelled in km
+
+elevation NumberType - [get]
+
+Get the current vehicle elevation in meters
+
+acceleration NumberType - [get]
+
+Get the current vehicle acceleration in m/s^2
+
+weight NumberType - [get]
+
+The total vehicle mass in kg (the sum of the total mass for all vehicle components and any extra mass added to the vehicle).
+
+extra_mass NumberType - [get]
+
+Get the amount of extra mass added to the vehicle in kg.
+
+yield_count NumberType - [get]
+
+Get the number of times this vehicle has yielded to other vehicles.
+
+idle_time DeltaTimeType - [get]
+
+Get the duration this vehicle has been idle (Not moving and not travelling on a route).
+
+waiting_time DeltaTimeType - [get]
+
+Get the duration this vehicle has been waiting (Not moving and travelling on a route).
+
+restricted_time DeltaTimeType - [get]
+
+Get the duration this vehicle has restricted idle (Moving and but speed is limited by another vehicle).
+
+moving_time DeltaTimeType - [get]
+
+Get the duration this vehicle has been moving (Moving without any restriction).
+
+share_positions ListType[Vehicle] - [get]
+
+Readonly list of vehicle share positions.
+
+max_speed NumberType - [get, set]
+
+Override the maximum speed of the vehicle. Passing a null value will remove the max speed override.
+
+max_braking NumberType - [get, set]
+
+Override the maximum braking acceleration of the vehicle (must be a negative value).
+
+max_acceleration NumberType - [get, set]
+
+Override the maximum acceleration of the vehicle (must be a positive value).
+
+max_force NumberType - [get, set]
+
+Override the maximum force of the vehicle (must be a positive value).
+
+safe_boundary NumberType - [get, set]
+
+Boundary size in metres. Sets an additional boundary around the vehicle used when stopping distance is considered
+
+Methods
+place(TrackFeature, ?NumberType, ?BoolType) BoolType
+
+Argument 1: The Track feature to place the vehicle at.
+
+Argument 2: (Optional) The offset to from the track feature to place the vehicle at. (Default: 0)
+
+Argument 3: (Optional) Reset the engine state when placing the vehicle. (Default: true)
+
+Returns: true if the vehicle was successfully placed at the specified track feature and offset, otherwise false.
+
+Attempts to place the vehicle at the specified track feature with an optional offset.
+
+clear_destination() BoolType
+
+Returns: true if destinations successfully cleared, otherwise false.
+
+Clears the destination and reservations, setting the destination to its current position.
+
+create_feature(?NumberType, ?BoolType, ?BoolType) TrackFeature
+
+Argument 1: (Optional) Offset from the head of the vehicle to create a track feature.
+
+Argument 2: (Optional) Whether to return a feature with direction reversed, defaults to false.
+
+Argument 3: (Optional) Sets feature prevent_count, defaults to true.
+
+Returns: The newly created Track Feature.
+
+Create a new track feature with an optional offset from the vehicle's head position.
+
+setup_baked_physics_engine(?ListType|BakedPhysicsData|NullType, ?BoolType, ?BoolType) BakedPhysicsData
+
+Argument 1: If null, will instiantiate an empty BakedPhysicsData, otherwise will setup a BakedPhysicsData from the ListType or use the existing BakedPhysicsData if provided.
+
+Argument 2: Use: whether to use the baked physics data to move.
+
+Argument 2: Record: whether to record the average velocity of sections not previously recorded.
+
+Returns: The BakedPhysicsData used by the engine, providing it to another vehicle will share the current data & future recordings.
+
+Wraps the vehicles engine in a baked physics engine. The baked physics engine will use the velocity provided in the BakedPhysicsData to move if Use is true. If record is true it will record the average velocity of sections not previously recorded. The ListType should provide data the same format as BakedPhysicsData.to_list() exports. See Baked Physics. Requires SectionID, Direction and Velocity, and all others are optional, but Velocity can be calculated from Traveled and Duration if provided.
+
+clear_baked_physics_engine() BakedPhysicsData|NullType
+
+Returns: If the vehicle was using a Baked Physics engine it returns the shared baked physics data, otherwise returns null.
+
+Remove the baked physics engine and return the vehicle engine to its underlying type.
+
+flip()
+
+Flips the direction of movement for the vehicle, without changing the order of the components (Equivalent to picking up the vehicle, rotating it 180 degrees, then placing it back on the track).
+
+reverse()
+
+Flips the direction of movement for the vehicle, reversing the order of the components (Equivalent to reversing the order of vehicle components and rotating the vehicle 180 degrees at the same time).
+
+set_name(StringType)
+
+Argument 1: New vehicle name
+
+Set the vehicle's name. The vehicle's name will be visible during playback and in the vehicle performance graph.
+
+set_max_speed(NumberType)
+
+Argument 1: The maximum speed override in km/h.
+
+Override the maximum speed of the vehicle. Passing a null value will remove the max speed override.
+
+set_max_braking(NumberType)
+
+Argument 1: The maximum braking acceleration override in m/s^2 (must be a negative value).
+
+Override the maximum braking acceleration of the vehicle (must be a negative value).
+
+set_max_acceleration(NumberType)
+
+Argument 1: The maximum acceleration override in m/s^2 (must be a positive value).
+
+Override the maximum acceleration of the vehicle (must be a positive value).
+
+set_max_force(NumberType)
+
+Argument 1: Maximum force in kN (must be a positive value).
+
+Override the maximum force of the vehicle (must be a positive value).
+
+set_destination(TrackFeature, ?[]TrackFeature, ?[]TrackFeature) BoolType
+
+Argument 1: Target destination.
+
+Argument 2: (Optional) A list of track features to pass in order before reaching the target location.
+
+Argument 2: (Optional) A list of reserved locations the vehicle may visit in the future (Used to improve deadlock avoidance).
+
+Returns: true if destinations successfully set, otherwise false.
+
+set_destination(TrackFeature, ?[]TrackFeature, ?[]{"Location": TrackFeature, "Turnaround": BoolType | NoneType}) BoolType
+
+Argument 1: Target destination.
+
+Argument 2: (Optional) A list of track features to pass in order before reaching the target location.
+
+Argument 2: (Optional) A list of reserved locations the vehicle may visit in the future and whether they will have "turned around" prior to arrival (Used to improve deadlock avoidance).
+
+Returns: true if destinations successfully set, otherwise false.
+
+set_safe_boundary(NumberType)
+
+Argument 1: Boundary size in metres.
+
+Sets an additional boundary around the vehicle used when stopping distance is considered
+
+set_step_interval(NumberType)
+
+Argument 1: Interval in seconds.
+
+Sets the delay in seconds after a vehicle takes a step.
+
+stop(BoolType?)
+
+Argument 1: (Optional) Reset the engine state (ie speed & rpm becomes 0), defaults to true.
+
+Stops the current run to destination of the vehicle at the end of its next step. For generic interpolation this can be delayed from when it might be expected but will at the longest occur before moving out of a section or when fully moved into one or when it has reached the destination. Optionally pass false in to keep the vehicle speed and other engine state to allow it to continue at speed when run_to_destination is called.
+
+run_to_destination(BoolType?)
+
+Argument 1: (Optional) Come to a stop at the location, defaults to true.
+
+Delays the parent agent until it reaches the target destination. Use set_destination() method prior to calling this.
+
+run_to_destination_charge(NumberType, BoolType?) BoolType
+
+Argument 1: Minimum allowed fuel percentage.
+
+Argument 2: (Optional) Come to a stop at the location, defaults to true.
+
+Returns: true if the vehicle made it to the target destination without going below the minimum allowed fuel threshold, otherwise false.
+
+Same as the run_to_destination method but also specifies a minimum allowed fuel threshold.
+
+remove()
+
+Remove the vehicle from the network model.
+
+set_force_distributor(CodeBlock)
+
+Argument 1: A code block containing logic to override the vehicle's engine force distributor calculation.
+
+Set custom force distribution logic for rail vehicles (See rail vehicle documentation for more information).
+
+set_fuel_consumer(CodeBlock)
+
+Argument 1: A code block containing logic to override the vehicle's engine fuel consumer calculation.
+
+Set custom fuel consumption logic for Rail and Road vehicle components (See Vehicle Component and Motor Vehicle Component documentation for more information).
+
+update()
+
+Record changes made to the vehicle's name. (DEPRECATED: changes are now automatically recorded)
+
+set_logging_interval(NumberType)
+
+Set the interval for recording vehicle logs. Smaller intervals will result in more precise metrics at the cost of increased simulation execution time and log size (Defaults to 1 second).
+
+add_share_position_vehicle(VehicleType)
+
+Argument 1: Other Vehicle.
+
+Allow the two vehicles to share section positions.
+
+remove_share_position_vehicle(VehicleType)
+
+Argument 1: Other Vehicle.
+
+Disallow the two vehicles to share section positions.
+
+clear_share_position()
+
+Clear all allowed shared positions on this vehicle.
+
+set_section_speed_limits(MapType)
+
+Argument 1: A map of section names and speed limits (km/h) that the vehicle must adhere to.
+
+Sets a map of speed limits the vehicle must follow. Clears any previous speed limit map.
+
+split_vehicle(Agent, NumberType)
+
+Argument 1: Agent to hold tail vehicle.
+
+Argument 2: Position to split at.
+
+Splits vehicle at specified position, making another vehicle with the tail components in the passed agent. Tail vehicle retains majority of vehicle and engine settings settings:
+
+Share Positions
+Priority
+Max Speed, Force, Braking & Acceleration
+Bidirectional
+Tags
+Coupler & Components logging settings
+Pnuematic Brake & ECP settings
+Moving Charge Enabled
+PID Settings
+Headwind Velocity
+Baked Physics Engine Settings
+Sectional Runtime Engine Settings
+merge_vehicle(Vehicle, BoolType, BoolType?)
+
+Argument 1: Other vehicle to merge into. (The other vehicle will be removed after merging)
+
+Argument 2: Whether the other vehicle is the head of the new train.
+
+Argument 3: Optional. Whether this vehicle will use the other vehicle's facing direction. Default is true.
+
+Merges one vehicle into another, other is head flag specifies wether it is at the head or tail. The trains must be adjacent to each other in the correct positions.
+
+transfer_to_network_model(NetworkModel)
+
+Argument 1: The network model to transfer the vehicle to.
+
+Transfers the vehicle to the specified network model.
+
+add_mass(NumberType)
+
+Argument 1: Extra mass to add to the vehicle in kg.
+
+remove_mass(NumberType)
+
+Argument 1: Extra mass to remove from the vehicle in kg.
+
+reset_mass()
+
+Reset the vehicle's extra mass to 0kg.
+
+set_extra_mass(NumberType)
+
+Argument 1: Mass in kg to set the vehicle's extra mass property to.
+
+get_tags() ListType
+
+Returns: A list containing the ModelTags added to the vehicle.
+
+Adding or removing from this list will not change the tags on the vehicle, instead use the set_tags, clear_tags, add_tag and remove_tag methods.
+
+set_tags(ListType)
+
+Argument 1: A list of ModelTag bound objects to set as the tags on the vehicle.
+
+Note: any duplicate tags will only be added once to the vehicle.
+
+clear_tags()
+
+Removes all tags from a vehicle.
+
+has_tag(ModelTag) BoolType
+
+Argument 1: Network model tag to check for.
+
+Returns: true when the tag exists on the vehicle.
+
+add_tag(ModelTag)
+
+Argument 1: Network model tag to add to the vehicle.
+
+remove_tag(ModelTag)
+
+Argument 1: Network model tag to remove from the vehicle.
+
+calculate_distance(TrackFeature, []TrackFeature?) NumberType
+
+Argument 1: Destination feature to calculate distance to.
+
+Argument 2: (Optional) List of passing track features.
+
+Returns: The distance in meters from the current vehicle location to the destination feature passing through all provided passing locations. If the vehicle cannot find a route, null will be returned and a simulation error log will be added containing the reason navigation failed.

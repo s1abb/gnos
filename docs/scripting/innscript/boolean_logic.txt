@@ -1,0 +1,56 @@
+Boolean Logic
+AND Expression
+Returns true when both condition expressions evaluate to truthy values; otherwise, returns false.
+
+Syntax
+condition0 and condition1
+Parameters
+condition
+
+Expressions that evaluate to either truthy or falsy values.
+
+Description
+The AND Expression is evaluated from left to right. If the left-hand expression evaluates to a falsy value, the entire expression immediately returns false. If the left-hand expression is truthy, the right-hand expression is evaluated. If the right-hand expression is falsy, the result is false; if it is truthy, the result is true.
+
+OR Expression
+The OR Expression is evaluated from left to right. If the left-hand expression evaluates to a truthy value, the entire expression immediately returns true. If the left-hand expression is falsy, the right-hand expression is evaluated. If the right-hand expression is truthy, the result is true; if it is falsy, the result is false.
+
+Syntax
+condition0 or condition1
+Parameters
+condition
+
+Expressions that evaluate to either truthy or falsy values.
+
+Description
+The Or Expression is evaluated from left to right. If the expression on the left evaluates to a truthy value then the whole expression returns true. If it is falsy then the next expression is evaluated, if it is truthy the expression returns true if it is falsy the expression evaluates to false.
+
+NOT Expression
+Returns true when the condition expression evaluates to a falsy value; otherwise, returns false.
+
+Syntax
+!condition
+Parameters
+condition
+
+Expression which evaluates into a truthy or falsy value.
+
+Description
+The NOT Expression is evaluated from right to left. The result of evaluating the condition is inverted: a truthy result becomes false, and a falsy result becomes true.
+
+IN Expression
+Tests whether a value exists within another.
+
+Syntax
+element in other
+Parameters
+element
+
+An expression to search for within other.
+
+other
+
+An expression that may or may not contain the element
+
+Description
+The IN Expression checks for the presence of element within other. If the element is found, the expression evaluates to true; if not, it evaluates to false.

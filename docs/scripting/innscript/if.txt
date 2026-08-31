@@ -1,0 +1,64 @@
+If
+If Statement
+The if statement will execute a statement when a condition is truthy.
+
+Syntax
+if condition {
+    statements
+}
+Paramters
+condition
+
+An expression that evaluates to true or false.
+
+statements
+
+The statements which are executed when the condition evaluates to true.
+
+If Else Statement
+The if...else statement, similarly to the if statement, will execute a statement when a condition is truthy. It will also declare a separate statement to be executed when the condition is falsy.
+
+Syntax
+if condition {
+    statement1
+} else {
+    statement2
+}
+Parameters
+condition
+
+An expression that evaluates to true or false.
+
+statement1
+
+The statement which is executed when the condition is truthy.
+
+statement2
+
+The statement which is executed when the condition is falsy.
+
+Else If Statement
+The else if statement can chain together multiple if...else and/or else if statements. If the first if statement's condition evaluates to false the else if condition will be tested, and if that evaluates to false, the next else if (if any) will be tested, and so on. If no condition in the chain is truthy, the final else block (if provided) will be executed.
+
+Syntax
+if condition1 {
+    statement1
+} else if condition2 {
+    statement2
+} else if condition3 {
+    statement3
+} else {
+    statement4
+}
+Parameters
+condition
+
+An expression that evaluates to true or false. Each condition is evaluated in order.
+
+statement1, statement2, statement3
+
+The statements which are executed when their respective condition is truthy.
+
+statement4
+
+The statement which is executed when none of the conditions are truthy.

@@ -1,0 +1,11 @@
+Continue
+Continue Statement
+The continue statement terminates the current iteration of a loop and continues execution of the next loop iteration.
+
+Syntax
+continue;
+Description
+Unlike the break statement the continue statement does not terminate the execution of the loop entirely.
+
+In a while or do...while loop, it jumps back to the condition.
+In a for loop it jumps to the next iteration.

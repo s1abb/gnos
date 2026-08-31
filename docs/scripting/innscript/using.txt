@@ -1,0 +1,33 @@
+Using Statement
+Import modules into the current scope.
+
+Syntax
+using module;
+
+using module as alias;
+
+using "module" as alias;
+
+using "path" as alias;
+
+using { destructuring } from module;
+
+using { destructuring } from "module";
+
+using { destructuring } from "path";
+Parameters
+module
+
+The name of the module to import.
+
+alias
+
+The name to bind the imported module too.
+
+path
+
+Path to where the module is located.
+
+destructuring
+
+Destructuring. See destructuring documentation for more info.

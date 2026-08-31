@@ -1,0 +1,37 @@
+Calculation Node
+There are 3 different types of Calculation Node bound objects:
+
+Input
+Output
+Other
+They return different values based on their type.
+
+Any calculation node can also be tracked as a metric. When enabled, the node will automatically record its current value over time based on an interval or whenever the value changes. These values can then be displayed as a timeseries graph or a number output.
+
+Types
+Input
+Returns a getter and setter to the calculation node's output value.
+
+Setting the calculation node's output will cause subsequent calculation nodes to recalculate their output value.
+
+Output
+Returns a getter to the calculation node's output value.
+
+Other
+Returns a Calculation Node bound object with the following bound values:
+
+Properties
+value TypeValue - [get]
+
+The calculation node's current output value.
+
+Methods
+refresh()
+
+Recalculate the output value of the calculation node and subsequent calculation nodes.
+
+Scope
+The scope within the calculation node's code block includes:
+
+All input bindings.
+All static variable bindings.

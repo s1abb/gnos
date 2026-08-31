@@ -1,0 +1,104 @@
+Functions
+Functions are reusable blocks of code that perform specific tasks. They are defined with a name (optional), may take input arguments, and can return a value. Functions help organize code, making it more modular, readable, and easier to reuse. In InnScript functions define a new execution scope, meaning any identifiers created within that scope remain in that scope.
+
+Function Declaration
+The function declaration creates a binding of a new function to a given name.
+
+Syntax
+func name() {
+  statements
+}
+
+func name(arg0) {
+  statements
+}
+
+func name(arg0, arg1) {
+  statements
+}
+
+func name(arg0, arg1, /* …, */ argN) {
+  statements
+}
+Parameters
+name
+
+The function name identifier.
+
+args (optional)
+
+The names of a formal arguments for the function.
+
+statements (optional)
+
+The statements which comprise the body of the function.
+
+Definition
+Each time when a function is called, it returns the value specified by the last executed return statement, or null if the end of the function body is reached.
+
+Function Definition
+The function definition creates a new function without a name binding. Sometimes referred to as an anonymous function.
+
+Syntax
+func() {
+  statements
+}
+
+func(arg0, arg1) {
+  statements
+}
+
+func(arg0, arg1, /* …, */ argN) {
+  statements
+}
+Parameters
+args (optional)
+
+The names of a formal arguments for the function.
+
+statements (optional)
+
+The statements which comprise the body of the function.
+
+Definition
+The function definition is very similar to the function declaration. The main difference is that the function definition does not have a function name. A function definition can also be immediately invoked after it is defined.
+
+Anonymous functions are most often used as an argument when invoking another method, such as sorting or filtering values in a list.
+
+my_list.sort(func (a, b) {
+  if a > b {
+    return 1;
+  }
+  if a < b {
+    return -1;
+  }
+  return 0;
+});
+Invocation
+After defining a function, you must Invoke or Call a it in order to execute it's code.
+
+Anonymous functions can be invoked immediately after their definition.
+
+func () {
+  /* function code here */
+}()
+You can invoke a function that is bound to an identifier using parenthesis () and pass in any arguments as required.
+
+func no_args() {
+  /* function code here */
+}
+
+func with_args(arg1, arg2) {
+  /* function code here that uses arg1 and arg2 */
+}
+
+// Call a function with no arguments
+no_args();
+
+// Call a function with arguments
+with_args(val1, val2);
+Truthiness
+All functions are truthy.
+
+Stringify
+A function will be converted into a string with the format <function $name> where $name is replaced with 'anonymous' or the function declarations bound name.

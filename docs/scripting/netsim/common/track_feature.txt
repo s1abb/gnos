@@ -1,0 +1,29 @@
+Track Feature
+The Track Feature bound object represents a track feature along a network model section. Track Features are added to Track Sections at a specific distance along the Track Section. A Track Feature bound object is created for every Track Feature added in the network model builder. Track Features can also be created using the base vehicle's create_feature() bound method.
+
+The Add Vehicle and Place Vehicle event nodes use a Track Feature bound object to place vehicles at a specific location in a network model.
+
+The Move to Location event node uses Track Feature bound objects to specify the destination to send a vehicle to.
+
+The Vehicle bound object has various methods which require Track Features as arguments, e.g. place(), set_destination(). See the Vehicle bound object documentation for more information.
+
+Bound Values
+The Track Feature bound object exposes the following properties and methods.
+
+Properties
+name StringType - [get]
+
+The name of the Track Feature.
+
+passed_count BoolType - [get]
+
+The total number of vehicles that have passed through this track feature. Will throw an error if prevent_count is true.
+
+prevent_count BoolType - [get]
+
+Whether to count the passing vehicles, defaults to true for features created by create_feature and false for all others.
+
+Methods
+to_reversed() TrackFeature
+
+Returns a copy of the track feature with the direction reversed.

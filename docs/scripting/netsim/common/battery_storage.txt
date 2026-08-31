@@ -1,0 +1,111 @@
+Battery Storage
+The Battery Storage bound object represents a battery fuel storage system. Battery Storages are created when Motor Vehicles have an "Electric" Drive Type and when rail Vehicle Types have a "Battery-Electric" Locomotive Type.
+
+Bound Values
+The Battery Storage bound object exposes the following bound properties and methods.
+
+Properties
+empty BoolType - [get]
+
+Returns false when the battery level is greater than the battery capacity multiplied by the minimum state of charge.
+
+battery_to_track_efficiency NumberType - [get, set]
+
+Factor of efficiency in battery energy usage for movement (0 - 100).
+
+regen_braking_efficiency NumberType - [get, set]
+
+Factor of efficiency in regenerating power using regenerative braking (0 - 100).
+
+state_of_charge_min NumberType - [get, set]
+
+Factor determining min level that battery can be discharged to (0 - 1).
+
+state_of_charge_max NumberType - [get, set]
+
+Factor determining max level that battery can be charged to (0 - 1).
+
+battery_level NumberType - [get]
+
+Battery level in kWh.
+
+battery_capacity NumberType - [get]
+
+Battery capacity in kWh.
+
+general_aux_load NumberType - [get, set]
+
+Get or set the general auxiliary load for the battery system in kW.
+
+Methods
+charge_battery(NumberType, NumberType) NumberType
+
+Argument 1: The maximum charge rate in kW (May utilize less depending on battery storage configuration)
+
+Argument 2: How long to charge the vehicle for.
+
+Returns: The unused energy in kWh.
+
+Instantaneously charges the battery, using rate and duration for battery charge calculations. Returns the unused energy in kWh. Rate is split evenly across battery systems. Does not log charge rate or limit other sources of charging and should be used sparingly. Consider using set_battery() instead if the goal is to instantaneously set the battery level or set_charge_rate() to charge a battery over time.
+
+set_charge_rate(NumberType)
+
+Argument 1: Charge rate in kW.
+
+Set a rate of charge that is applied to the battery system. Set to zero to end charging. Charging is logged and limited alongside track charging and regenerative braking.
+
+get_charge_rate() NumberType
+
+Returns Charge rate in kW.
+
+clamp_moving_power(NumberType, NumberType) NumberType
+
+Argument 1: Moving power in kW.
+
+Argument 2: Vehicle speed in km/hr.
+
+Returns: The clamped power in kW.
+
+Returns the moving power clamped by the moving power curve.
+
+set_battery(NumberType)
+
+Argument 1: Amount of charge to set in kWh.
+
+Sets the specified amount of charge in the system.
+
+set_battery_capacity(NumberType)
+
+Argument 1: The maximum battery capacity in kWh.
+
+Actual battery capacity will be equal to maximum capacity multiplied by maximum state of charge.
+
+enable_regen(BoolType)
+
+Argument 1: Whether or not to enable regenerative braking.
+
+add_regen_energy(NumberType)
+
+Argument 1: kWh energy to add to total captured regen energy.
+
+add_unused_regen_energy(NumberType)
+
+Argument 1: kWh energy to add to total unused regen energy.
+
+add_recharged_energy(NumberType)
+
+Argument 1: kWh energy to add to total recharged energy.
+
+add_traction_energy(NumberType)
+
+Argument 1: kWh energy to add to traction energy.
+
+add_total_aux_load(NumberType)
+
+Argument 1: kWh energy to add to total aux load.
+
+set_charge_power(NumberType)
+
+Argument 1: Set the current charge power in kW.
+
+Allows tracking of charge power when using custom fuel consumption logic for Battery Storage and Hybrid Storage fuel systems (See Rail Vehicle and Vehicle Component documentation for more information).

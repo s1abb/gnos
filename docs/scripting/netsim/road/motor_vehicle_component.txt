@@ -1,0 +1,70 @@
+Motor Vehicle Component
+The Motor Vehicle Component bound object represents a motor vehicle component. Motor Vehicle Component bound objects are created when adding components to a vehicle using the Motor Vehicle Type bound object.
+
+Vehicle Components are an implementation of Vehicle Component (Base) and Component (Base), they inherit all of the bound values from both.
+
+The Add Vehicle event node using the "Road" vehicle type setting uses a Motor Vehicle Type bound object to create and add a new Motor Vehicle Component to an agent's vehicle.
+
+See the Motor Vehicle simulation setup node documentation for configuration information.
+
+Custom Logic
+Fuel Consumption
+You can override the default fuel consumption logic for road vehicle components using the set_fuel_consumer(CodeBlock) bound method on the Vehicle (Road) bound object.
+
+When setting custom fuel consumption, code blocks have access to the following scope values:
+
+vehicle The vehicle this component is attached to
+component The current Motor Vehicle Component bound object
+fuel_system The component's fuel system/storage
+delta_time Simulation step in seconds
+charge_rate Charge rate in kW
+effort Current effort in kN
+gear Current motor vehicle component gear
+speed Current motor vehicle speed in m/s
+temperature Current motor vehicle temperature in degrees celsius
+auxiliary_power Auxiliary power in kW
+Your custom fuel consumption logic must return a NumberType representing amount of charge added to the applicable fuel storage in kWh.
+
+When using a Battery Storage or Hybrid Storage fuel systems you may also want to consider using the set_charge_power(NumberType) bound method of those fuel systems to record relevant charge power for use in graphs.
+
+Bound Values
+The motor vehicle component bound object implements all bound values from Component (Base) and Vehicle Component (Base) along with the following.
+
+Methods
+set_surface_properties(ListType)
+
+Sets the list of available surface types for the component to use.
+
+Argument 1: List of the surface properties to use.
+
+Example argument:
+
+[
+    {
+        "surface_type": "Asphalt",
+        "rolling_resistance_coefficient": 0.015,
+        "friction_coefficient": 0.75
+    }
+]
+get_surface_properties() ListType
+
+Returns: a list of all the surface properties on a component.
+
+reset_load()
+
+Reset the component load to zero.
+
+set_work_mode(StringType)
+
+Argument 1: The name of the work mode to switch to.
+
+get_work_mode() MapType | NullType
+
+Returns: A MapType representing the current work mode (name and power_use in kW) or null.
+
+Example return value:
+
+{
+    "name": "Default",
+    "power_use": 100
+}

@@ -1,0 +1,35 @@
+Queue Event
+QueueEvent is a Delayable working in the same manner as Event except only allowing 1 executor to continue when triggered in a first-in last-out queue.
+
+QueueEvents are created using the simulation create_event method: event = simulation.create_queue_event();.
+
+To delay on an event call agent.delay(event) or node.delay(event). To trigger an event call event.trigger() or event.trigger_all().
+
+Bound Values
+The Queue bound object has the following bound properties and methods.
+
+Properties
+is_open BoolType - (get)
+
+Readonly field defaulting to false. When true, normal function of the event is disabled and all executors delaying on the event will immediately resume execution. When false the event node will delay executors until triggered like normal.
+
+queue_length NumberType - (get)
+
+Get the current number of executors delaying on the queue event.
+
+Methods
+trigger()
+
+Resume execution of a single executor delaying on the event, the executor delaying the longest.
+
+trigger_all()
+
+Resume execution of all executors delaying on the event.
+
+open()
+
+Sets is_open to true. Resume execution of all executors delaying on the event and in the future do not pause executors.
+
+close()
+
+Sets is_open to false. In the future pause executors.

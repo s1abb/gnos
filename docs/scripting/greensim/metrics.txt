@@ -1,0 +1,59 @@
+Metrics
+The Metrics (Dataset) bound object is responsible for recording a value which can later be used as input to a timeseries or bar graph. Metrics bound objects are created using the Metrics simulation setup node.
+
+Metrics bound objects have their own executor to calculate and save their target value.
+
+See the Metrics simulation setup node documentation for configuration information.
+
+Bound Values
+The Metrics bound object does not have any bound properties. It has bound methods for all the different metric types.
+
+Timeseries Metric Methods
+get_value_at_time(NumberType) NumberType
+
+Argument 1: A time in seconds. Must be a non-negative number less than the current simulation time.
+
+Returns: The most recent value recorded at or before the given time.
+
+Discrete Metric Methods
+get_entry(StringType) NumberType | NullType
+
+Argument 1: A label for the x-axis.
+
+Returns: A number associated with the label or null if not found.
+
+set_entry(StringType, NumberType)
+
+Argument 1: A label for the x-axis.
+
+Argument 2: A number.
+
+Sets a label with the specified value. If the label already exists, it will overwrite the previous value.
+
+change_entry(StringType, NumberType)
+
+Argument 1: A label for the x-axis.
+
+Argument 2: A number to set or change the entry value by.
+
+Sets a label with the specified value. If the label already exists, it will change the value by the specified amount.
+
+remove_entry(StringType)
+
+Argument 1: A label for the x-axis.
+
+Removes a label and its value if exist.
+
+Histogram Metric Methods
+add_entry(NumberType)
+
+Argument 1: Value to be added.
+
+Adds the specified value to the metric using the pre-configured bins.
+
+Text Metric Methods
+set_entry(StringType)
+
+Argument 1: Value to be set.
+
+Updates the metric with the string value. This will overwrite any previous value.

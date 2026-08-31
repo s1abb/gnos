@@ -1,0 +1,142 @@
+Vehicle Component (Base)
+Vehicle Component (Base) is an interface that describes the common features of powered vehicle components. e.g. rail locomotives and road motor vehicles.
+
+See Vehicle Component and Motor Vehicle Component documentation for more information.
+
+Implementations
+The following objects implement the Component (Base) interface:
+
+Vehicle Component
+Motor Vehicle Component
+Bound Values
+The following bound properties and methods are added to bound objects that implement the Vehicle Component (Base) interface.
+
+Properties
+diesel_level NumberType - [get]
+
+The current fuel of the component in L.
+
+diesel_capacity NumberType - [get]
+
+The maximum fuel of the component in L.
+
+battery_level NumberType - [get]
+
+The current battery level charge of the component in kWh.
+
+battery_capacity NumberType - [get]
+
+The maximum fuel of the component in kWh.
+
+speed NumberType - [get]
+
+The speed of the component in m/s.
+
+fuel_storage FuelStorage - [get]
+
+The current fuel storage type.
+
+general_aux_load NumberType - [get, set]
+
+Get or set the general auxiliary load for the vehicle component battery system in kW.
+
+charge_power NumberType - [get]
+
+The current charge power in kW
+
+state_of_charge NumberType - [get]
+
+The current battery charge percentage (0-100)
+
+captured_regen_energy NumberType - [get]
+
+The total captured regenerative braking energy in kWh
+
+unused_regen_energy NumberType - [get]
+
+The total unused regenerative braking energy in kWh
+
+energy_consumed NumberType - [get]
+
+The total electrical energy consumed in kWh (traction energy + auxiliary energy)
+
+traction_energy NumberType - [get]
+
+The total traction energy consumed in kWh
+
+total_aux_load NumberType - [get]
+
+The total auxiliary load energy consumed in kWh
+
+fuel_use NumberType - [get]
+
+The total amount of fuel consumed in L
+
+effort NumberType - [get]
+
+The vehicle's current effort in kN
+
+motor_power NumberType - [get]
+
+The current motor power in kW
+
+thermal_aux_load NumberType - [get]
+
+Get the current thermal auxiliary load for the battery system in kW.
+
+total_recharged_energy NumberType - [get]
+
+Get the components's total recharged energy of the battery system in kWh. (all charge energy minus captured regenerative braking energy)
+
+Methods
+set_fuel_consumer(CodeBlock, Vehicle)
+
+Argument 1: Codeblock responsible for consuming fuel.
+
+Argument 2: The vehicle the component is part of.
+
+Set a custom code block to override fuel consumption logic for the vehicle component (See Custom Logic section in Vehicle Component and Motor Vehicle Component for more information).
+
+charge_battery(NumberType, NumberType) NumberType
+
+Argument 1: The maximum charge rate in kW (May utilize less depending on battery storage configuration)
+
+Argument 2: How long to charge the vehicle for.
+
+Returns: The unused energy in kWh.
+
+Instantaneously charges the battery, using rate and duration for battery charge calculations. Returns the unused energy in kWh. Rate is split evenly across battery systems. Does not log charge rate or limit other sources of charging and should be used sparingly. Consider using set_battery() instead if the goal is to instantaneously set the battery level or set_charge_rate() to charge a battery over time.
+
+set_charge_rate(NumberType)
+
+Argument 1: Charge rate in kW.
+
+Set a rate of charge that is applied to the battery system. Set to zero to end charging. Charging is logged and limited alongside track charging and regenerative braking.
+
+add_diesel(NumberType) NumberType
+
+Argument 1: Amount of fuel to add in L.
+
+Adds the specified amount of fuel to the component. Returns the unused volume in L.
+
+set_battery(NumberType)
+
+Argument 1: Amount of charge to set in kWh.
+
+Sets the specified amount of charge in the component.
+
+set_battery_capacity(NumberType)
+
+Argument 1: The maximum battery capacity in kWh.
+
+Actual battery capacity will be equal to maximum capacity multiplied by maximum state of charge.
+
+set_diesel(NumberType)
+
+Argument 1: Amount of fuel to set in L.
+
+Sets the specified amount of fuel in the component.
+
+set_diesel_capacity(NumberType)
+
+Argument 1: The maximum diesel capacity in L.

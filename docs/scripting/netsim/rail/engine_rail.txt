@@ -1,0 +1,19 @@
+Engine (Rail)
+The rail variant of the Engine bound object is the engine type responsible for the movement of rail vehicles. It is created when adding a rail vehicle type to an agent.
+
+Bound Values
+The rail Engine variant implements the all the bound properties and methods that the base Engine type does.
+
+Rail Engines also expose the following bound properties
+
+Methods
+set_controller(StringType)
+
+Sets the engine controller to a certain type, setting to default values if changing type and retaining configuration if not (See PID or MRAC Controller documentation for more information).
+
+Argument 1: String of either "PID" or "MRAC"
+
+Properties
+controller PID | MRAC - [get]
+
+Gets the engine's Controller bound object responsible for maintaining a desired speed (See PID & MRAC Controller documentation for more information).

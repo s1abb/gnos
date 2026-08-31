@@ -1,0 +1,63 @@
+Component (Base)
+Component (Base) is an interface that describes the common features of vehicle components.
+
+See Generic Component, Rail Component, Carriage Component, Vehicle Component and Motor Vehicle Component documentation for more information.
+
+Implementations
+The following objects implement the Component (Base) interface:
+
+Generic Component
+Carriage Component
+Vehicle Component
+Motor Vehicle Component
+Bound Values
+The following bound properties and methods are added to bound objects that implement the Component interface.
+
+Properties
+component_type BoundObjectType - [get, set]
+
+Gets or sets the component type used to create the vehicle component. Setting the component type will change 3d model, name, length, mass, capacity and any other component type specific properties such as fuel systems on vehicle components.
+
+name String - [get, set]
+
+Get or set the name of the component.
+
+length String - [get, set]
+
+Get or set the length of the component in m.
+
+mass NumberType - [get, set]
+
+Get or set the base mass of the component in kg.
+
+capacity NumberType - [get, set]
+
+Get or set the carrying capacity of the component in kg.
+
+current_load NumberType - [get]
+
+Get the current load of the component in kg.
+
+weight NumberType - [get]
+
+The total component mass in kg (includes base mass and current load).
+
+model_id StringType | NullType - [get, set]
+
+Get or set the id of the 3D model that will be used to render the component during simulation playback. A null value means there is no 3D model.
+
+Methods
+Methods
+add_load(NumberType)
+
+Argument 1: Weight of load to add in kg.
+
+reset_load()
+
+Reset the component load to zero.
+
+set_model(StringType | SimulationAsset | NullType)
+
+Argument 1: Either a 3D model id, a 3D Model SimulationAsset or null.
+
+Sets the 3D model that will be used to render this component during simulation playback.

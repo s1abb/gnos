@@ -1,0 +1,7 @@
+Carriage Component
+The Carriage Component bound object represents a train carriage/wagon. Carriage Components are created when using a Carriage Type bound object to add a component to an agent's vehicle.
+
+The Add Vehicle event node using the "Rail" vehicle type setting can add Carriage Component bound objects to an agent's vehicle.
+
+Bound Values
+The Carriage Component does not have any extra bound values other than the ones inherited by the Component (base) interface.

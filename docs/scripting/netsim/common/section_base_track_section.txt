@@ -1,0 +1,87 @@
+Section Base (Track Section)
+The Section Base bound object represents a track section within a network model. Sections are created for every track section defined in a network model. They can be retrieved using the Network Model's get_section(StringType) or get_sections(StringType?) bound methods.
+
+Bound Values
+The Section Base bound object exposes the following bound properties and methods.
+
+Properties
+name StringType - [get]
+
+The name of the section.
+
+sanitized_name StringType - [get]
+
+The sanitised/compliant name of the section.
+
+length NumberType - [get]
+
+The length of the section in kilometers.
+
+occupied_time NumberType - [get]
+
+Occupied duration in seconds.
+
+temporary_speed_restriction NumberType | NullType - [get, set]
+
+Applies a temporary speed limit to the section, will not increase existing speed limits. To remove the temporary speed restriction set it to null.
+
+yield_count NumberType - [get]
+
+Get the number of times a vehicle has had to yield to other vehicles on this section.
+
+Methods
+link_section(Section)
+
+Argument 1: Other section to link to.
+
+set_surface_type(StringType | NullType)
+
+Argument 1: The name of the surface type to apply to the section. "Default" or null can be used to set the default surface type.
+
+Sets the surface type on all lines in a section. The surface type must exist in the network model's surface types list unless null or "Default" is used.
+
+get_vehicles() ListType
+
+Returns: A list of vehicles that are on this section.
+
+register_on_enter_callback(FunctionType)
+
+Argument 1: A function that takes one argument for the vehicle that entered the section.
+
+Adds a callback that will be triggered when a vehicle enters the section.
+
+register_on_exit_callback(FunctionType)
+
+Argument 1: A function that takes one argument for the vehicle that exited the section.
+
+Adds a callback that will be triggered when a vehicle exits the section.
+
+deregister_on_enter_callback(FunctionType)
+
+Argument 1: A function that was previously registered using the register_on_enter_callback() method.
+
+Removes an on enter callback, so it will no longer be triggered when a vehicle enters the section.
+
+deregister_on_exit_callback(FunctionType)
+
+Argument 1: A function that was previously registered using the register_on_exit_callback() method.
+
+Removes an on exit callback, so it will no longer be triggered when a vehicle exits the section.
+
+get_line(StringType) Line | NullType
+
+Argument 1: The name of the line.
+
+Returns: The first line with the matching name or null if not found.
+
+get_lines(StringType?) ListType[Line]
+
+Argument 1: (Optional) The name of the lines to get.
+
+Returns: A list of lines in this section in order, optionally filtered by name.
+
+set_color(StringType)
+
+Argument 1: A color (e.g. "red" or "#FF0000") or an empty string to remove color.
+
+Sets the color of every line in the track section.

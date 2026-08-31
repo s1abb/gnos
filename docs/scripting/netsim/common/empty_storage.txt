@@ -1,0 +1,10 @@
+Empty Storage
+The Empty Storage bound object represents an empty fuel storage system. Empty Storages are created when Motor Vehicles have an unspecified Drive Type and when rail Vehicle Types have an unspecified Locomotive Type.
+
+Bound Values
+The Empty Storage bound object exposes the following bound properties.
+
+Properties
+empty BoolType - [get]
+
+Whether the fuel system is empty. Always returns true for the Empty Storage fuel system.

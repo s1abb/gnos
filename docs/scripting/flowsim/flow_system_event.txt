@@ -1,0 +1,5 @@
+Flow System Event
+The Flow System Event bound object is an object used to interface between FlowSim and the discrete event simulation. Flow System Events are created by the relevant FlowSim junction bound methods (See the FlowSim junction documentation for more information).
+
+Delayable
+The Flow System Event bound object can be used by agent.delay() and event/calculation running node node.delay() bound methods. They will delay until the specific event has occurred at the junction which created the event.

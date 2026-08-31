@@ -1,0 +1,16 @@
+SimulationAsset
+The SimulationAsset bound object represents an asset within the simulation. SimulationAssets are used to assign asset references using innscript. For example the 3D model of a vehicle component or component type can be changed by passing a reference to a Simulation asset like so: component.set_model(Asset); or component_type.set_model(Asset);.
+
+SimulationAsset bound objects are created when using the Asset simulation setup node.
+
+Bound Values
+The following properties and methods are bound to the SimulationAsset bound object.
+
+Properties
+asset_type StringType - [get]
+
+The asset type this simulation asset references. options are threed_model, image.
+
+asset_id StringType - [get]
+
+The id of the asset this SimulationAsset references.

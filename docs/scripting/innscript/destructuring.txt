@@ -1,0 +1,39 @@
+Destructuring
+Destructuring Statement
+Syntax
+{ id0 } = expression;
+
+{ id0, id1, /* ..., */ idN } = expression;
+
+{ id0 as alias0 } = expression;
+
+{{ id0_id0 } from id0, id1 } = expression;
+Parameters
+id
+
+Identifiers or sub destructuring.
+
+expression
+
+An expression that evaluates to a MapType.
+
+alias
+
+Bind the identifier to a different name.
+
+Description
+To destructure a key's value from a map, the key must be in the form of a valid identifier. (See Tokenization guide for more information regarding valid identifiers)
+
+my_map = {
+    "key1": "first",
+    "key2": {
+        "sub_key1": "sub val",
+        "sub key2": "sub val2" // Key cannot be destructured due to the space in the name
+    },
+    "3Key": "third" // Key cannot be destructured due to starting with a number
+};
+
+{ key1, { sub_key1 } from key2 } = my_map;
+
+// key1 = "first"
+// sub_key1 = "sub val"

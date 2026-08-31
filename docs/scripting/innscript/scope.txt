@@ -1,0 +1,19 @@
+Scope
+Special Functions
+There are some functions for special use case to manipulate the current scope, use sparingly.
+
+getvar(StringType) AnyType
+
+Argument 1: A variable name
+
+Returns: The value of the variable with the name in the scope.
+
+setvar(StringType, AnyType) AnyType
+
+Argument 1: A variable name
+
+Argument 2: A variable value
+
+Returns: The set value of the variable.
+
+Sets the variable with the name in the scope to the value. Equivalent to assignment, but with a dynamic name.

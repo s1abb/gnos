@@ -1,0 +1,9 @@
+CarriageType
+The Carriage Type bound object represents the configuration of a rail carriage/wagon and is used for initialising new Carriage Component bound objects. It is created using the Rail Carriage simulation setup node.
+
+The Add Vehicle event node using the "Rail" vehicle type setting uses the Carriage Type bound object to add rail carriages to an agent's vehicle. Once a carriage has been added to an agent it uses the Carriage Component bound object.
+
+See the Rail Carriage simulation setup node for more information.
+
+Bound Values
+The carriage type bound object implements all the bound values from Component Type (Base) and Rail Component.

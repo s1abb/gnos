@@ -1,0 +1,52 @@
+Loops
+While Statement
+The while statement creates a loop that executes a statement while the test condition evaluates to true.
+
+Syntax
+while condition {
+    statements
+}
+Parameters
+condition
+
+An expression that evaluates to either true or false.
+
+statements
+
+The statements which comprise the body of the loop.
+
+Do While Statement
+The do...while statement creates a loop that executes a statement while the test condition evaluates to true.
+
+Syntax
+do {
+    statements
+} while condition;
+Parameters
+statements
+
+The statements which comprise the body of the loop.
+
+condition
+
+An expression that evaluates to either true or false.
+
+For Statement
+The for statement executes a loop that operates on a sequence of values sourced from an iterable object.
+
+Syntax
+for variable in itterable {
+    statements
+}
+Parameters
+variable
+
+Receives a value from the sequence on each iteration.
+
+itterable
+
+An itterable object.
+
+statements
+
+The statements which comprise the body of the loop. May reference variable.

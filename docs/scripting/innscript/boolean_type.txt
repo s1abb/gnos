@@ -1,0 +1,13 @@
+Boolean
+Booleans are a literal type in InnScript.
+
+Boolean values can also be created by relational operators (>, >=, <, <=, in), equality operators (==, !=) and logical not (!).
+
+Types have an inherent truthiness value (See the relevant type's documentation for more information).
+
+See the 'Boolean Logic' guide for more information about using the and, or and not keywords.
+
+Syntax
+true
+
+false

@@ -1,0 +1,198 @@
+Vehicle (Rail)
+The rail variant of the Vehicle bound object represents a rail network vehicle. Rail vehicles are created when adding a rail vehicle to an agent using the Add Vehicle event node or using the Agent add_vehicle() bound method specifying a rail type (see the Agent bound object documentation for more information).
+
+Custom Logic
+You can override the default fuel consumption and force distribution logic for rail vehicles using the set_fuel_consumer(CodeBlock) and set_force_distributor(CodeBlock) bound methods.
+
+The code block's bound scope differs depending on which method is used.
+
+Fuel Consumption
+The set_fuel_consumer(CodeBlock) method of rail vehicles is the equivalent of calling set_fuel_consumer(CodeBlock) on every Vehicle Component of the Rail Vehicle. See the Vehicle component documentation for more information.
+
+Force Distribution
+When setting custom force distribution, code blocks have access to the following scope values:
+
+vehicle A reference to the current rail vehicle
+delta_time Simulation step in seconds
+desired_force Desired force in N
+resistance Resistance in N
+current_pneumatic_braking Current pneumatic braking in N
+ecp Whether electronically controlled pneumatic braking is enabled or not
+min_pneumatic_percentage Percentage or null, minimum pneumatic brakes when enabled
+Minimum pneumatic braking percentage, when using pneumatic brakes this is the minimum usable, when null will have no minimum. (Only used in rail vehicles)
+
+Your custom force distribution logic must return a MapType containing the following keys => values:
+
+"pneumatics" => MapType{"force": NumberType} pneumatic braking force in Newtons
+VehicleComponent => MapType{"force": NumberType, "notch": NumberType} the Vehicle Component's contributing force and it's current notch
+Bound Values
+Rail vehicles inherit all the bound values of the Vehicle (Base) bound object. See the Vehicle (Base) bound object documentation for more information.
+
+Rail vehicles also expose the following extra methods.
+
+Properties
+ecp BoolType - [get, set]
+
+Enable or disable electronically controlled pneumatic braking.
+
+min_pneumatic_percentage NumberType | NullType - [get, set]
+
+Minimum pneumatic braking percentage, when using pneumatic brakes this is the minimum usable, when null will have no minimum. Is constrained to null or 0-100.
+
+moving_charge_enabled BoolType - [get, set]
+
+Enable moving charge on the vehicle. When disabled the vehicle will not be charged by track section power supply groups. (defaults to true)
+
+diesel_level NumberType - [get]
+
+The current fuel of the vehicle in L.
+
+diesel_capacity NumberType - [get]
+
+The maximum fuel of the vehicle in L.
+
+battery_level NumberType - [get]
+
+The current battery charge of the vehicle in kWh.
+
+battery_capacity NumberType - [get]
+
+The maximum battery charge of the vehicle in kWh.
+
+notch NumberType - [get, set]
+
+The current notch of the vehicle.
+
+state_of_charge NumberType - [get]
+
+The current battery charge percentage (0-100)
+
+charge_power NumberType - [get]
+
+The current charge power in kW
+
+captured_regen_energy NumberType - [get]
+
+The total captured regenerative braking energy in kWh
+
+unused_regen_energy NumberType - [get]
+
+The total unused regenerative braking energy in kWh
+
+energy_consumed NumberType - [get]
+
+The total electrical energy consumed in kWh (traction energy + auxiliary energy)
+
+traction_energy NumberType - [get]
+
+The total traction energy consumed in kWh
+
+total_aux_load NumberType - [get]
+
+The total auxiliary load energy consumed in kWh
+
+fuel_use NumberType - [get]
+
+The total amount of fuel consumed in L
+
+resistance NumberType - [get]
+
+The vehicle's resistance in kN
+
+motor_power NumberType - [get]
+
+The current motor power in kW
+
+max_coupler_force NumberType - [get]
+
+The maximum coupler force in kN. Calculation must be enabled by calling agent.vehicle.set_track_coupler_forces(true);.
+
+total_pneumatic_effort NumberType - [get]
+
+Total vehicle pneumatic effort in kN
+
+effort NumberType - [get]
+
+The vehicle's current effort in kN
+
+total_recharged_energy NumberType - [get]
+
+Get the sum of all vehicle component valid battery storage system total recharge value in kWh. (all charge energy minus captured regenerative braking energy)
+
+Methods
+get_carriage_components() []CarriageComponent
+
+Returns: a list of the vehicle's carriage components.
+
+get_vehicle_components() []VehicleComponent
+
+Returns: a list of the vehicle's vehicle components.
+
+set_track_coupler_forces(BoolType)
+
+Argument 1: Whether or not component coupler forces should be captured.
+
+When set to true coupler forces can be obtained by:
+
+Rail vehicle bound value max_coupler_forces
+Rail vehicle component max_coupler_forces
+Max coupler forces option in the vehicle performance metrics graph
+charge_battery(NumberType, NumberType) NumberType
+
+Argument 1: The maximum charge rate in kW (May utilize less depending on battery storage configuration)
+
+Argument 2: How long to charge the vehicle for.
+
+Returns: The unused energy in kWh.
+
+Instantaneously charges the battery, using rate and duration for battery charge calculations. Returns the unused energy in kWh. Rate is split evenly across battery systems. Does not log charge rate or limit other sources of charging and should be used sparingly. Consider using set_battery() instead if the goal is to instantaneously set the battery level or set_charge_rate() to charge a battery over time.
+
+set_charge_rate(NumberType)
+
+Argument 1: Charge rate in kW.
+
+Set a rate of charge that is applied to all battery systems in the vehicle without being split up. Set to zero to end charging. Charging is logged and limited alongside track charging and regenerative braking.
+
+add_diesel(NumberType) NumberType
+
+Argument 1: Amount of fuel to add in L.
+
+Adds the specified amount of fuel split across the components. Returns the unused volume in L.
+
+set_battery_capacity(NumberType)
+
+Argument 1: The maximum battery capacity in kWh.
+
+Actual battery capacity will be equal to maximum capacity multiplied by maximum state of charge.
+
+set_diesel_capacity(NumberType)
+
+Argument 1: The maximum diesel capacity in L.
+
+set_track_component_data(BoolType)
+
+Argument 1: Set or unset the tracking of vehicle component data.
+
+Tracked component data is available for use in graphs.
+
+set_sectional_runtime(MapType | ListType)
+
+Argument 1: MapType mapping section names (StringType) to section runtime seconds (NumberType), or a list of MapTypes containing "Section" and "Time" keys
+
+Setting sectional runtimes will change the Rail Vehicle into a Sectional Runtime Vehicle. See the Vehicle(Sectional Runtime) documentation for more information.
+
+Typically runtimes will be set using an UploadSet data with 2 columns:
+
+Section: A track section's name (non-compliant form, must be a string type)
+Time: A number representing the time it takes for the vehicle to pass through the section in seconds
+get_general_aux_load() NumberType
+
+Get the sum of all vehicle component valid battery storage system general auxiliary loads in kW.
+
+set_general_aux_load(NumberType)
+
+Set the general auxiliary load (kW) for each vehicle component that contains a valid battery storage system.
+
+get_thermal_aux_load() NumberType
+
+Get the sum of all vehicle component valid battery storage system thermal auxiliary loads in kW.

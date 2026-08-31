@@ -1,0 +1,39 @@
+Diesel Storage
+The Diesel Storage bound object represents a diesel fuel storage system. Diesel Storages are created when Motor Vehicles have a "Internal Combustion" Drive Type and when rail Vehicle Types have a "Diesel-Electric" Locomotive Type.
+
+Bound Values
+The Diesel Storage bound object exposes the following bound properties and methods.
+
+Properties
+empty BoolType - [get]
+
+Returns false when the diesel level is greater than 0 litres.
+
+fuel_usage_levels ListType - [get]
+
+An ordered list of objects containing 'notch' and 'liters_per_hour' describing the fuel usage at different notch levels.
+
+diesel_level NumberType - [get]
+
+The current fuel of the system in L.
+
+diesel_capacity NumberType - [get]
+
+The maximum fuel of the system in L.
+
+Methods
+add_diesel(NumberType) NumberType
+
+Argument 1: Amount of fuel to add in L
+
+Adds the specified amount of fuel to the system. Returns the unused volume in L.
+
+set_diesel(NumberType)
+
+Argument 1: Amount of fuel to set in L.
+
+Sets the specified amount of fuel in the system.
+
+set_diesel_capacity(NumberType)
+
+Argument 1: The maximum diesel capacity in L.

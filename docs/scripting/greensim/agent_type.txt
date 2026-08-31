@@ -1,0 +1,14 @@
+AgentType
+The Agent Type bound object defines the properties required for creating an agent. Agent Type bound objects are created using the Agent Type simulation setup node.
+
+The Spawn Agents event node uses the Agent Type bound object to create new agents.
+
+See the Agent Type simulation setup node documentation for configuration information.
+
+Bound Values
+The following properties are accessible on the Agent Type bound object within InnScript.
+
+Properties
+name StringType - (get)
+
+The name of the agent type.

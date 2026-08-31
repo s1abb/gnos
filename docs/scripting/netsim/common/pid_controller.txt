@@ -1,0 +1,24 @@
+PID Controller
+The PID Controller bound object represents a proportional–integral–derivative controller. PID Controllers are created alongside the creation of rail and road engines. The engine's PID Controller is responsible for adjusting engine output to maintain a desired vehicle speed.
+
+Bound Values
+The PID Controller bound object exposes the following bound properties.
+
+Properties
+kp NumberType - [get, set]
+
+Get or set the proportional gain of the PID Controller.
+
+The proportional gain dictates the response of the controller to the difference between the desired and current speed. Increasing the proportional gain will lead to a faster response, but can cause overshoot and oscillation around the desired speed. Default: 1 for road, 0.1 for rail.
+
+ki NumberType - [get, set]
+
+Get or set the integral gain of the PID Controller.
+
+The integral gain dictates the response of the controller to the difference between the desired and current speed summed over time. This eliminates the steady state tracking error, causing the current speed to converge with the desired speed with increasing gain the longer the duration of the error. Increasing integral gain will lead eliminating offset of the desired vs actual speed profile but can cause more oscillation around the desired speed and increase the overshoot of the response. Default: 0.001 for road, 0.0001 for rail.
+
+kd NumberType - [get, set]
+
+Get or set the derivative gain of the PID Controller.
+
+This component of the controller responds to the gradient of the speed profile, it can improve the stability and reduce overshoot of the profile. Increases the derivative gain can cause a slower but more stable response. A too high gain can begin to decrease the stability of the system. Default: 0.05 for road and rail.

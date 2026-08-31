@@ -1,0 +1,36 @@
+Event Node Exit
+The Event Node Exit bound object represents an exit on an event node. Event Node Exits are created for every exit on an event node given that it's dependencies are met.
+
+An Event Node's exits are bound to the execution scope of the Event Node's code block. They are also bound to the Event Node bound object.
+
+During the execution of a regular (non-running node) event node returning an exit will send the current agent to that exit.
+
+Below is an example event node that looks at an agent's custom age property and denies entry to a restricted area if they are not old enough. There are two exits on the event node, Granted and Denied.
+
+// Check custom agent age property
+if (agent.properties.age >= 18)
+{
+    // Send agent to the Granted event node exit
+    return Granted;
+}
+else
+{
+    // Send agent to the Denied event node exit
+    return Denied;
+}
+Exits are also used in the agent jump() method to manually send an agent to an exit. The jump() method is useful when agents need to re-enter the simulation execution.
+
+An example use case for this may be a school bus dropping off students at a school.
+
+// Drop the students off at school
+for student in agent.agents
+{
+    // Send students to the School exit
+    student.jump(School);
+}
+agent.agents = [];
+
+// Send the bus agent to the next bus stop exit
+return NextBusStop;
+Bound Values
+The Event Node Exit bound object does not expose any bound values.

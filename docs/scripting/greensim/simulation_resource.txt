@@ -1,0 +1,59 @@
+Simulation Resource
+The Simulation Resource bound object represents a finite resource. Agents can request, hold, and release a resource.
+
+Simulation Resources are created using the Resource simulation setup node and the simulation.create_resource() method.
+
+See the Resource simulation setup node documentation for more information.
+
+Bound Values
+The following properties and methods are bound to the Simulation Resource bound object.
+
+Properties
+name StringType - (get)
+
+Get the resource name.
+
+sanitized_name StringType - (get)
+
+Get the sanitized resource name.
+
+active BoolType - (get, set)
+
+Set the resource active or inactive.
+
+capacity NumberType - (get, set)
+
+Get or set the capacity of the resource.
+
+current NumberType - (get)
+
+Get the current number of used items for the resource.
+
+remaining NumberType - (get)
+
+Get the current number of un-used items for the resource.
+
+in_queue NumberType - (get)
+
+Get the current number of pending requests for the resource.
+
+utilization NumberType - (get)
+
+Get the utilization of the resource (0 - 1). This equates to (total usage time) / (total elapsed time since the last utilization reset * resource capacity).
+
+Methods
+request() SimulationRequest
+
+Create a request for the current resource. The request is a Delayable object which can be used to delay execution until the request has been granted (when the resource becomes available). This is called internally by agent.seize_resource(Resource) method.
+
+Returns: A SimulationRequest bound object.
+
+release(SimulationRequest)
+
+Release control over a simulation resource and free it up for use by other agents. This is called internally by agent.release_resource(Resource).
+
+Argument 1: A SimulationRequest bound object obtained by calling request() on a Resource.
+
+reset_utilization()
+
+Reset the resource utilization. Sets total usage to zero and sets the reset time to the current simulation time.

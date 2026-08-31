@@ -1,0 +1,38 @@
+Event Node
+The event node bound object represents an event node in the simulation. They are created from the Event Nodes placed onto the Logic Canvas and are bound to the global simulation scope at the start of the simulation.
+
+Bound Values
+The Event Node bound object is bound to the node identifier inside the Event Node's code block.
+
+The follow values are exposed on the Event Node bound object.
+
+Properties
+name StringType - [get]
+
+The name of the node.
+
+sanitized_name StringType - [get]
+
+The sanitised/compliant name of the node.
+
+exited NumberType - [get, set]
+
+The number of agents that have exited the node.
+
+current NumberType - [get, set]
+
+The current number of agents in the node.
+
+entered NumberType - [get, set]
+
+The number of agents that have entered the node.
+
+agent_time NumberType - [get]
+
+Gets the average agent dwell time in seconds.
+
+Static Variables
+All static variables defined on the Event Node's Event Node Type are also bound to the Event Node object.
+
+Event Node Exits
+All event node exits that have their dependencies met are also bound to the Event Node object.

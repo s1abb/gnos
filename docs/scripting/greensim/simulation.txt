@@ -1,0 +1,134 @@
+Simulation
+The Simulation bound object represents the current running simulation. It provides access to many helpful properties and methods.
+
+Contexts
+The Simulation bound object is accessed via the simulation identifier in all code blocks.
+
+Bound Values
+The Simulation bound object has the following properties and methods.
+
+Properties
+now NumberType - [get]
+
+The current simulation time in seconds.
+
+duration NumberType - [get]
+
+The simulation run duration in seconds.
+
+current_time DateTimeType - [get]
+
+The current simulation time returned as a DateTimeType.
+
+current_time_string StringType - [get]
+
+The current simulation time returned as a datetime string e.g. 2006-01-02 15:04:05.
+
+current_time_only TimeType - [get]
+
+The current simulation time returned as a TimeType.
+
+start_time DateTimeType - [get]
+
+The simulation start time returned as a DateTimeType.
+
+start_time_string StringType - [get]
+
+The simulation start time returned as a datetime string e.g. 2006-01-02 15:04:05.
+
+start_time_only TimeType - [get]
+
+The simulation start time returned as a TimeType.
+
+Methods
+spawn(AgentType) Agent
+
+Argument 1: Type of agent to spawn.
+
+Returns: The agent that was spawned.
+
+Spawns an idle agent of a specific type. To run the agent use agent.set_next(EventNodeExit) or agent.set_next(EventNode).
+
+spawn(AgentType, EventNodeExit) Agent
+
+Argument 1: Type of agent to spawn.
+
+Argument 2: Exit node to spawn agent at.
+
+Returns: The agent that was spawned.
+
+Spawns a running agent of a specific type at the specified event node exit.
+
+spawn(AgentType, EventNodeExit, BoolType) Agent
+
+Argument 1: Type of agent to spawn.
+
+Argument 2: Exit node to spawn agent at.
+
+Argument 3: Run agent after spawn.
+
+Returns: The agent that was spawned.
+
+run(Agent) Agent
+
+Argument 1: Agent to run.
+
+Returns: The agent.
+
+stop()
+
+Finishes the simulation early when executed.
+
+create_resource(NumberType) SimulationResource
+
+Argument 1: The capacity of the resource.
+
+Returns: The resource that was created.
+
+create_event() Event
+
+Returns: A new Event Delayable.
+
+create_queue_event() Event
+
+Returns: A new QueueEvent Delayable.
+
+create_container(NumberType, NumberType) SimulationContainer
+
+Argument 1: Capacity of container.
+
+Argument 2: Starting amount of container.
+
+Returns: The container that was created.
+
+log(...TypeValue)
+
+Arguments: Any number of InnScript types.
+
+Adds a DEBUG log entry for the current simulation run.
+
+log_info(...TypeValue)
+
+Arguments: Any number of InnScript types.
+
+Adds an INFO log entry for the current simulation run.
+
+log_warn(...TypeValue)
+
+Arguments: Any number of InnScript types.
+
+Adds a WARNING log entry for the current simulation run.
+
+log_error(...TypeValue)
+
+Arguments: Any number of InnScript types.
+
+Adds an ERROR log entry for the current simulation run.
+
+get_agents(AgentType?) ListType
+
+Argument 1: (Optional) Reference to an AgentType used to filter active agents by.
+
+Returns: A list of active agents.
+
+Gets a list of active agents. An optional agent type can be used to fetch active agents of a particular type.

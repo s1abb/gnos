@@ -1,0 +1,37 @@
+SimulationContainer
+The Simulation Container bound object represents a container within the simulation. Containers are used for material storage and transfer tasks. It is recommended to use the FlowSim tool instead of containers for increased flexibility and performance within your simulations.
+
+Simulation Container bound objects are created when using the Container simulation setup node, or by calling the simulation.create_container() method.
+
+Bound Values
+The following properties and methods are bound to the Simulation Container bound object.
+
+Properties
+active BoolType - [get, set]
+
+The current active state of the simulation container. When the container is inactive, any put or take requests will cause the executor to wait until the container becomes active again.
+
+amount NumberType - [get]
+
+Current amount stored in the container.
+
+capacity NumberType - [get]
+
+Maximum capacity of the container.
+
+Methods
+put(Executor, NumberType)
+
+Argument 1: Object that implements Executor interface (e.g. Agent)
+
+Argument 2: Amount to add
+
+Join queue to add amount to container. Delay until request is completed.
+
+take(Executor, NumberType)
+
+Argument 1: Object that implements Executor interface (e.g. Agent)
+
+Argument 2: Amount to remove
+
+Join queue to take amount out of container. Delay until request is completed.

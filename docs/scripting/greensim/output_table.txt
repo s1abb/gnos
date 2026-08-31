@@ -1,0 +1,32 @@
+Output Table
+The Output Table bound object is responsible for recording tabular data. Output Table bound objects are created using the Output Table simulation setup node.
+
+See the Output Table simulation setup node documentation for configuration information.
+
+Bound Values
+The Output Table bound object has the following bound methods.
+
+Methods
+add_row(MapType)
+
+Argument 1: A map of column names and values.
+
+get_rows() ListType[MapType]
+
+Returns: A list of rows added to this output table.
+
+remove_by_key_value(StringType, AnyType)
+
+Argument 1: The name of the column to check the value of.
+
+Argument 2: Column value to check for.
+
+Remove all rows where the specified column contains the provided value.
+
+remove_by_key_values(StringType, ListType)
+
+Argument 1: The name of the column to check the value of.
+
+Argument 2: A list of columns values to check for.
+
+Remove all rows where the specified column contains one of the provided values.

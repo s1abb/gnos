@@ -1,0 +1,7 @@
+Generic Component
+The Generic Component bound object implements Component (Base) and represents a generic vehicle component. Generic Components are created when adding a generic vehicle to an agent without specifying any components to add.
+
+The Add Vehicle event node using the "Generic" or "Generic Interpolation" vehicle type setting can add Generic Component bound objects to an agent's vehicle.
+
+Bound Values
+The Generic Component does not have any extra bound values other than the ones inherited by the Component (base) interface.

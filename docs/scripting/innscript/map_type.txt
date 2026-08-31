@@ -1,0 +1,107 @@
+Maps
+Syntax
+{}
+
+{key0: value0, key1: value1}
+
+{
+    key0: value0,
+    key1: value1,
+    /* ..., */
+    keyN: valueN
+}
+Parameters
+key: value (Optional)
+
+Any number of key value pairs, where the key and the value can be any kind of expression.
+
+Get Values
+Elements in a map can be accessed using their key as an index. When using an identifier as a key, the value it evaluates to will be set as the key.
+
+afraid_of_7 = 6;
+
+weaknesses = {
+    "doctor": "Apple",
+    "Super Man": "Kryptonite",
+    afraid_of_7: 7
+};
+
+weaknesses.doctor; // "Apple"
+weaknesses["Super Man"]; // "Kryptonite"
+weaknesses[6]; // 7
+Map values can also be extracted using destructuring. (See destructuring guide for more information)
+
+weaknesses = {
+    "doctor": "Apple",
+    "Super_Man": "Kryptonite"
+};
+
+{ doctor, Super_Man as super_man } = weaknesses;
+Set Values
+You can set the values of an existing key in a map, or assign a value to a new key.
+
+my_map = {
+    "key1": "val1",
+    5: "val2"
+};
+
+simulation.log(my_map);
+// {
+//   "key1": "val1",
+//   5.000000: "val2",
+// }
+
+my_map.key1 = "new val";
+my_map[5] = "five";
+my_map.new_key = "test";
+
+
+simulation.log(my_map);
+// {
+//   "key1": "new val",
+//   5.000000: "five",
+//   "new_key": "test",
+// }
+Combine Maps
+Maps can be shallow merged using the + operator. If both maps contain the same key, the value in the right operand will be used in the resulting Map type.
+
+map1 = {
+    "sameKey": "replaced",
+    "other": "test"
+};
+map2 = {
+    "sameKey": "priority",
+    "another": "test2"
+};
+
+simulation.log(map1 + map2);
+// {
+//   "sameKey": "priority",
+//   "other": "test",
+//   "another": "test2",
+// }
+Iterate
+You can iterate over the keys in a map using a for loop.
+
+my_map = {
+    1: "one",
+    2: "two",
+    3: "three"
+};
+
+// Iterate over the map keys (1, 2, 3) and print the corresponding value ("one", "two", "three").
+for key in my_map {
+    simulation.log(my_map[key]);
+}
+Contains
+When checking if a type is present in a Map type using the in keyword, the check will be performed on the Map type's keys.
+
+map = {
+    "hello": "world",
+    5: "five"
+};
+
+simulation.log(5 in map); // true
+simulation.log("world" in map); // false
+Truthiness
+All Map types are truthy.

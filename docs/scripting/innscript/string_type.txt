@@ -1,0 +1,108 @@
+Strings
+Strings are a literal type in InnScript. They contain zero or more UTF-8 characters.
+
+Syntax
+Strings must:
+
+start and end with single or double quotes
+escape special characters with a backslash
+escape the same kind of quote that begins the string with a backslash
+They can contain any number valid UTF-8 characters.
+
+// Compliant
+"Hello World"
+'HelloWorld'
+"Hello\"World"
+
+// Non-compliant
+"Hello World
+'HelloWorld"
+"Hello"World"
+Index
+You can retrieve a character in a string using it's index. You cannot set a value in a string using an index.
+
+my_variable = "Test"
+
+my_variable[1] // "e"
+Iterator
+Strings can be iterated. Each step in the iteration will return the next character.
+
+The code below will add 4 log entries (T, e, s, t).
+
+// Iterate over the characters in the string
+for character in "Test"
+{
+    simulation.log(character);
+}
+Concatenation
+Strings can be combined using addition.
+
+my_variable = "Hello"
+
+my_variable + " World"; // "Hello World"
+Only strings can be added to strings. The standard library contains a stringify() function to convert other types into a string type.
+
+"Test score: " + 1; // Throws an error
+"Test score: " + stringify(1); // "Test score: 1"
+Contains
+You can test for the existence of a string within another using the in keyword.
+
+my_variable = "Hello I am a string!";
+
+"am" in my_variable; // true
+
+"world" in my_variable; // false
+You can also use the string method contains()
+
+my_variable = "Hello I am a string!";
+
+my_variable.contains("am"); // true
+
+my_variable.contains("world"); // false
+Truthiness
+An empty string "" has a falsy value. A non-empty string has a truthy value.
+
+Equality
+Strings can be compared to one another with equality operators.
+
+var1 = "Test";
+var2 = "Test";
+var3 = "Test2";
+
+var1 == var2; // true
+var1 == var3; // false
+var1 != var3; //true
+String Methods
+len() NumberType
+
+Returns: the number of characters in the string.
+
+contains(StringType) BoolType
+
+Argument 1: The string to search for.
+
+Returns: true if the the search string exists otherwise false.
+
+replace(StringType, StringType, NumberType?) StringType
+
+Argument 1: The string to search for.
+
+Argument 2: The string to replace the old value with.
+
+Argument 3: Optional. A number specifying how many occurrences of the old value you want to replace. Default and negative values replace all occurrences.
+
+Returns: A new string with old occurrences replaced with the new value.
+
+trim() StringType
+
+Returns: A new string with leading and trailing whitespace removed.
+
+sanitised() StringType
+
+Returns: The sanitised/compliant version of the string (See Innscript -> Tokenization -> Compliant Names)
+
+split(StringType) ListType
+
+Argument 1: The separator string used to divide the source string.
+
+Returns: A list containing the substrings found between each occurrence of the separator in the source string.

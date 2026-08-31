@@ -1,0 +1,34 @@
+Units
+FlowSim supports a variety of units for defining node capacities, flow limits, and current states. To ensure accurate calculations across the network, the system normalizes all inputs into specific Base Units depending on the physical type of the material being simulated.
+
+Note: When no unit is specified (e.g. when using InnScript to create junctions and connections) the default unit is QTY.
+
+Physical Types and Base Units
+FlowSim will resolve all input values to the following base units before executing the optimization solver:
+
+Physical Type	Base Unit
+Mass	Kilogram (kg)
+Volume	Litre (L)
+Energy	Watt-hour (Wh)
+Dimensionless	QTY
+When using rates, the Energy physical type also exposes options for Power units: Kilowatt (kW) and Watt (W).
+
+Supported Unit Conversions
+FlowSim automatically handles conversions for units belonging to the same physical type. Users may input values in any of the formats below; they will be converted to the corresponding Base Unit at runtime.
+
+Mass: Tonne (t), Kilogram (kg), Gram (g)
+Volume: Cubic Meter (m³), Liter (L)
+Energy: Kilowatt-hour (kWh), Watt-hour (Wh), Kilojoule (kJ), Joule (J), Kilowatt (kW), Watt (W)
+Dimensionless: QTY
+Converting Between Physical Types (Reactor Junctions)
+Standard junctions conserve the physical type of the material (e.g., Mass in, Mass out). To convert between physical types (e.g., burning Mass to generate Energy), a Reactor Junction is required.
+
+The Reactor Junction logic follows these strict rules:
+
+Input Compatibility: All connections entering the reactor must match the physical type configured for the reactor itself (e.g., if the Reactor is set to "Mass", all inputs must be Mass units).
+
+Scaling Factor: A scaling factor is applied to convert the input's base unit into the output's base unit.
+
+Formula: Output (base unit) = Input (base unit) x Reactor Scaling Factor
+Example: To convert Diesel (Mass) to Energy, the scaling factor would represent the specific energy density (J/kg).
+Output Consistency: All connections leaving the reactor must have compatible unit types with each other. They do not need to match the reactor's unit type or the input type.

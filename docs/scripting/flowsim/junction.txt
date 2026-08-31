@@ -1,0 +1,182 @@
+Junction
+Junctions are the base building blocks of the GNOS material flow system. Each junction is a node in the network that can be connected to other junctions. Each junction has a set of properties that define its behavior and characteristics.
+
+Junction Types
+Junctions can be classified as several different primitive types. Each type has its own set of properties and behaviors. The following types are available:
+
+Base Junction
+A base junction is a generic junction that can be used to split or merge material flows. It can be configured to have a specific number of input and output connections. The base junction can be used to create complex junctions by combining multiple base junctions together.
+
+Properties:
+
+Name: The name of the junction. This is used to identify the junction in the network both visually and in the code.
+
+Junction Type: The type of junction. This is used to determine the behavior of the junction. The following types are available:
+
+Base
+Source
+Sink
+Container
+Conveyor
+Reactor
+Input Proportion Type: The type of proportion that should be used for the input connections. This can be set to fixed or free. If it is set to fixed, the proportion will be fixed regardless of the maximum flow rates. If it is set to free, the proportion will be split according to the proportion until one of the inputs reaches its maximum flow rate.
+
+Output Proportion Type: The type of proportion that should be used for the output connections. This can be set to fixed or free. If it is set to fixed, the proportion will be fixed regardless of the maximum flow rates. If it is set to free, the proportion will be split according to the proportion until one of the outputs reaches its maximum flow rate.
+
+Default Max Input Flow Rate: The default maximum flow rate that can be sent through the input connections. This value can be configured to limit the amount of material that can be sent through the connection.
+
+Default Max Output Flow Rate: The default maximum flow rate that can be sent through the output connections. This value can be configured to limit the amount of material that can be sent through the connection.
+
+Input Optimisation Weight: The weight that should be used to determine the goal of the network. This value is used by the solver to determine what the goal of the network is. The solver will try to maximize the flow through the connection with the highest priority. The priority can be configured to create different behaviors in the network.
+
+Output Optimisation Weight: The weight that should be used to determine the goal of the network. This value is used by the solver to determine what the goal of the network is. The solver will try to maximize the flow through the connection with the highest priority. The priority can be configured to create different behaviors in the network.
+
+Source
+A source junction is the starting point of a material flow. It generates material and sends it to connected junctions. Sources can be configured to generate a specific amount of material at a given rate. And have an initial amount of material available.
+
+Properties:
+
+Source does not container any additional properties.
+
+Sink
+A sink junction is the endpoint of a material flow. It receives material from connected junctions and can be configured to consume material. Sinks have an infinite capacity and can be configured to consume material at a specific rate.
+
+Properties:
+
+Sink does not container any additional properties.
+
+Container
+A container junction is a storage unit that can hold material. It has a finite capacity that can be configured.
+
+Properties:
+
+Default Capacity: The default capacity of the container. This value can be configured to limit the amount of material that can be stored in the container.
+
+Default Amount: The default amount of material that is stored in the container. This value can be configured to set the initial amount of material in the container.
+
+Conveyor
+A conveyor junction can store a series of rates, representing the flow of material over time. It is configured to have a length and travel speed. When the rate going into the conveyor changes, the rate will take time to propagate through the conveyor based on the travel speed and length. In this way the conveyor can also store material in the rate propagation.
+
+Properties:
+
+Length: The length of the conveyor. This value is used to determine the time it takes for material to travel through the conveyor.
+
+Travel Speed: The speed at which material travels through the conveyor. This value is used to determine the time it takes for material to travel through the conveyor.
+
+Reactor
+A reactor junction can change the properties of the material that passes through it. The reactor can change the proportions of material properties or change them to new properties entirely.
+
+Properties:
+
+Reactor Transformer: Transformer function for reactor. This can be a function with the signature of func (material, rate) => material, a material group object, or a list of material groups.
+Scripting Properties
+name
+
+Readonly property that returns the name of the junction.
+
+input_rate_objective_weighting
+
+Read and write property that returns the input rate objective weighting of the junction. If set this will trigger a recalculation of the junction with the new value.
+
+output_rate_objective_weighting
+
+Read and write property that returns the output rate objective weighting of the junction. If set this will trigger a recalculation of the junction with the new value.
+
+max_input_rate
+
+Read and write property that returns the maximum input rate of the junction. If set this will trigger a recalculation of the junction with the new value.
+
+max_output_rate
+
+Read and write property that returns the maximum output rate of the junction. If set this will trigger a recalculation of the junction with the new value.
+
+input_rate
+
+Read only property that returns the calculated input rate of the junction. This is the rate at which material is being sent to the junction. This value is calculated by the solver.
+
+output_rate
+
+Read only property that returns the calculated output rate of the junction. This is the rate at which material is being sent from the junction. This value is calculated by the solver.
+
+capacity
+
+Read only property that returns the capacity of the junction. If the junction is a container also exposes a setter. This is the maximum amount of material that can be stored in the junction.
+
+amount
+
+Read only property that returns the amount of material in the junction. If the junction is a container also exposes a setter. This is the current amount of material in the junction.
+
+total_input_amount
+
+Read only property that returns the total amount of material transferred into the junction.
+
+total_output_amount
+
+Read only property that returns the total amount of material transferred out of the junction.
+
+Reactors only
+output_scale
+
+Property that only exists on reactors. Returns and sets the output scale of the reactor.
+
+Functions
+get_output_connection_to(junction)
+
+Get the output connection to the given junction. This will return the first connection to the given junction. If no connection is found, None is returned.
+
+get_input_connection_from(junction)
+
+Get the input connection from the given junction. This will return the first connection from the given junction. If no connection is found, None is returned.
+
+create_output_container(amount, capacity, max_flow_rate, material?)
+
+Create an output container with the given amount, capacity, and flow rate. This will create a new container junction and connect it to the output of the junction. The amount and capacity can be set to 0 to create an empty container. The flow rate can be set to 0 to create a container with no flow. Material of the container will default to blank, with an optional parameter to provide a material group properties map.
+
+create_input_container(amount, capacity, max_flow_rate, material?)
+
+Create an input container with the given amount, capacity, and flow rate. This will create a new container junction and connect it to the input of the junction. The amount and capacity can be set to 0 to create an empty container. The flow rate can be set to 0 to create a container with no flow. Material of the container will default to blank, with an optional parameter to provide a material group properties map.
+
+connect_junction_to_output(junction, max_flow_rate, proportion, weighting)
+
+Connect the given junction to the output of the junction. This will create a new connection and set the maximum flow rate, proportion, and weighting.
+
+connect_junction_to_input(junction, max_flow_rate, proportion, weighting)
+
+Connect the given junction to the input of the junction. This will create a new connection and set the maximum flow rate, proportion, and weighting.
+
+disconnect_junction(junction)
+
+Disconnect the given junction from the junction. This will remove the connection to the junction and delete the connection.
+
+remove
+
+Remove the junction from the network. This will delete the junction and all connections to it. This will also remove any containers that are connected to the junction.
+
+delay_until_material_transferred(junction, amount)
+
+Creates a delay event (can be used by agents and running nodes to delay) that will be resolved when a quantity of material is transferred from this junction to the other in either direction.
+
+Containers Only
+get_material_layers()
+
+Get an object describing the material layers currently stored inside the container.
+
+get_blended_material()
+
+Get an object describing the weighted average material in the container.
+
+delay_until_full()
+
+Creates a delay event (can be used by agents and running nodes to delay) that will be resolved when the container is full.
+
+delay_until_empty()
+
+Creates a delay event (can be used by agents and running nodes to delay) that will be resolved when the container is empty.
+
+delay_until_below(amount)
+
+Creates a delay event (can be used by agents and running nodes to delay) that will be resolved when the container is at or below the given amount.
+
+delay_until_above(amount)
+
+Creates a delay event (can be used by agents and running nodes to delay) that will be resolved when the container is at or above the given amount.

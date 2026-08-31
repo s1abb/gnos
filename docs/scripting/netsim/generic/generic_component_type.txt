@@ -1,0 +1,11 @@
+Generic Component Type
+The Generic Component Type bound object implements Component Type (Base) and represents a generic vehicle component type. Generic Component types are created when adding a generic or generic-interpolation vehicle to an agent without specifying any components to add. It has the default values of:
+
+name: Generic Component
+length: 10m
+mass: 10t
+capacity: 0kg
+The Add Vehicle event node using the "Generic" or "Generic Interpolation" vehicle type setting can create a default Generic Component Type bound object when no other component types are specified.
+
+Bound Values
+The Generic Component Type does not have any extra bound values other than the ones inherited by the Component Type (base) interface.

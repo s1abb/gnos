@@ -1,0 +1,12 @@
+FlowSim
+FlowSim is GNOS's simulation tool for simulating the flow of materials in a network. It is primarily node driven using junctions and connections as the base building blocks of the system. A junction can have multiple connections as inputs or outputs to or from other junctions.
+
+FlowSim uses a optimiser to determine what the flow rates between different junctions should be. This is driven by 3 main factors:
+
+Maximum Flow Rate: The maximum flow rate that can be achieved between two junctions. This is used to limit the flow rate between junctions to a specific value. This does not guarantee that the flow rate will be achieved, but it is a hard limit on the flow rate. Junctions can have a maximum flow rate for all connections and connections can have a maximum flow rate for themselves. Both will be used to constrain the system
+
+Optimisation Weighting: The priority of a connection or junction output/input is used to determine is used by the solver to determine what the optimal solution looks like. Usually a priority at a few key locations in the network will achieve the desired flow rates. Placing higher weightings further down the network will cause the solver to try pull material through the system from downstream sources, placing higher weightings upstream will cause the solver to try and push material through the system from upstream sources. This can be used to achieve specific results in the system.
+
+Input / Output Proportion: Input and output proportions allow the system to decide the split between products that should be achieved between multiple connections into and out of a junction. These proportions are set on the connections. The junction decides if the proportion is fixed or free. In a fixed proportion system the junction will always achieve the proportions set on the connections. This means that if material is being pulled by a priority in one connection then it must also go through anther connection at the specified proportion regardless of the priority in that area of the network. In a free proportion system the junction will try to achieve the proportions set on the connections, but if the flow rate of the connections is less than the available flow of the junction, the system will increase flow to other junctions once the initial connections have been saturated at the correct proportions.
+
+FlowSim makes use of event nodes to connect flow to agents and events in the system with events that agents can wait on, like a container reaching a specific level.

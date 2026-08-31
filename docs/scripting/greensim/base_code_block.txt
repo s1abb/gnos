@@ -1,0 +1,9 @@
+BaseCodeBlock
+The Base Code Block bound object represents an executable snippet of InnScript code. It is created by using the Code Block simulation setup node.
+
+The Base Code Block bound object is used by the Set Force Distributor and Set Fuel Consumer default event nodes.
+
+See the Code Block simulation setup node documentation for configuration information.
+
+Bound Values
+The Base Code Block bound object does not have any bound properties or methods.
