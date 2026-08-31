@@ -1,0 +1,34 @@
+Output Table
+(Simulation Setup Node)
+
+The Output Table simulation setup node is responsible for recording tabular data during the simulation. The recorded rows can be viewed as a table in the Graphs tab or be accessed within the simulation using the get_rows method on the bound object.
+
+Configuration
+Name
+The Name field defines the identifier for the output table. The compliant form of this name is used to bind the Output Table node to the simulation scope.
+
+Output Table Columns
+The Output Table Columns section lists the column definitions that determine the structure of the output table.
+
+Each column definition includes the following fields:
+
+Name
+The Name field specifies the unique identifier for the column. This name is used as the key when adding new rows and accessing existing data.
+
+Description
+The Description field provides a human-readable explanation of the column's purpose. It clarifies what type of data the column holds and offers context for users working with the output table.
+
+Column Type
+The Column Type field defines the data type for the column via a dropdown menu. This will be used to enforce validation of the output table data while adding a new row. The available options include:
+
+Text: StringType - Textual data.
+Number: NumberType - Numeric data.
+Boolean: BoolType - Boolean true/false values.
+Date: DateType - Date values (e.g., YYYY-MM-DD).
+Time: TimeType - Time values (e.g., HH:MM:SS).
+DateTime: DateTimeType - Date and time values (e.g., YYYY-MM-DD HH:MM:SS).
+Decimal Places (Number only)
+The Decimal Places field specifies the number of decimal places to display for numeric values.
+
+Bound Object
+For each Output Table simulation setup node, an Output Table bound object is bound to the global simulation scope using the compliant form of the Output Table simulation setup node's name. See the Output Table bound object documentation for more information.

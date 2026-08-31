@@ -1,0 +1,16 @@
+Rail Vehicle
+(Simulation Setup Node)
+
+The Rail Vehicle simulation setup node defines a specific rail vehicle type for use within the simulation. Rail vehicle types are configured in the rail vehicles page.
+
+Use the Rail Vehicle and Rail Carriage simulation setup nodes in conjunction with the Add Vehicle event node to add train locomotives and carriages to an agent.
+
+Configuration
+Name
+The Name field defines the identifier for the vehicle type. The compliant form of this name will be used to bind the vehicle type object to the simulation scope.
+
+Vehicle Type
+The Vehicle Type field is a dropdown menu that allows users to select a pre-defined vehicle type.
+
+Bound Object
+For each Rail Vehicle simulation setup node, a Vehicle Type bound object will be bound to the simulation scope using the compliant form of the Rail Vehicle simulation node's name. See the Vehicle Type bound object documentation for more information.

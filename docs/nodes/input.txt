@@ -1,0 +1,19 @@
+Input
+(Calculation Node)
+
+Holds a value and can be used as a source of data for a calculation chain
+
+Details
+Input
+Name
+The name field defines the identifier for the calculation node. The compliant form of this name is used to bind the calculation node object to the simulation scope.
+
+Node names can only contain letters, numbers and spaces. Additionly if a node name starts with a number it must have an underscore prepended, this is the only valid use of an underscore in a node name.
+
+Inputs
+Main
+The value that is used to initialise the variable
+
+Bound name: Main
+Input type: Any
+Connections: Single

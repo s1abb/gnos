@@ -1,0 +1,21 @@
+Asset
+(Simulation Setup Node)
+
+The Asset simulation setup node defines a simulation asset used to assign assets during simulation playback. Every Asset node will create a SimulationAsset bound object during simulation initialisation. An example use for the Asset node is to assign the 3D model on a vehicle component or component type using innscript: component.set_model(Asset); or component_type.set_model(Asset);. Refer to the SimulationAsset bound object documentation for more information.
+
+Configuration
+The following properties are used to configure the simulation asset.
+
+Name
+The Name field defines the identifier for the simulation asset. The compliant form of this name is used to bind the SimulationAsset bound object to the simulation scope.
+
+Asset Type
+The Asset Type field determines what kind of asset will be referenced. options are:
+
+3D Model
+Image
+3D Model
+The 3D Model field is used to assign the 3D model that the simulation asset will reference. This field is only displayed when the asset type is set to 3D Model.
+
+Image
+The Image field is used to assign the image that the simulation asset will reference. This field is only displayed when the asset type is set to Image.

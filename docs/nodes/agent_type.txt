@@ -1,0 +1,44 @@
+AgentType
+(Simulation Setup Node)
+
+The AgentType simulation setup node serves as a template for defining and creating agents within the simulation environment. It provides a structure for setting parameters, and functions that will be bound to agents when they are spawned.
+
+Use the Agent Type simulation setup node in conjunction with the Spawn Agents event node to add agents to a simulation.
+
+Configuration
+Name
+The Name field defines the identifier of the agent type. The compliant form of this name is bound to the simulation scope to allow referencing the agent type within InnScript.
+
+Agent Type Parameters
+The Agent Type Parameters section outlines the various configurable properties that define the characteristics of the agent type. Each parameter has specific fields:
+
+Name
+The Name of the parameter represents the identifier for the configuration setting. This name will be bound to the corresponding agent upon its creation.
+
+Description
+The Description provides a human-readable explanation of what the parameter represents and how it impacts the agent's behavior. This field offers context to users, helping them understand the purpose of each parameter in defining agent attributes.
+
+Default Value
+The Default Value specifies the initial value assigned to the parameter when a new agent is created. This value acts as a fallback if the parameter is not explicitly set during agent instantiation. The default can be defined using InnScript, allowing for dynamic or calculated values to be applied when an agent is created.
+
+Agent Type Functions
+Agent Type Functions allow the creation of named functions which are bound to the agent upon creation. They are useful for creating
+
+Name
+The Name of the function bound to the spawned agent. This can be any name you like. You access the function on the agent object using an index. e.g. With an agent type function named "My Function" you would access it with a string literal agent["My Function"]().
+
+Function
+This is a code block that returns a function definition. The returned function definition is what is bound to the agent at the function's "Name" index. This code block is executed at the time of agent creation, so any decorators will use the state at the time of agent creation. An example definition is below:
+
+// Get the time at which the agent was spawned
+spawn_time = simulation.current_time_string;
+
+// Return a function definition
+return func() {
+    // Print the time the agent was spawned
+    simulation.log(spawn_time);
+    // Print the time this function was invoked
+    simulation.log(simulation.current_time_string);
+};
+Bound Object
+For each Agent Type simulation setup node, an Agent Type bound object will be bound to the global simulation scope at the start of the simulation using the compliant form of the Agent Type simulation setup node's name. Refer to the Agent Type bound object documentation for more information.

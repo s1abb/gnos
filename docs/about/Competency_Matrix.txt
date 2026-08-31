@@ -1,0 +1,376 @@
+1 GNOS Fundamentals & Navigation
+
+LEVEL 1 - BEGINNER
+[ ] Navigate simulations, network models, vehicles and node 
+configuration areas.
+[ ] Open, duplicate, save and run an existing simulation.
+[ ] Understand the difference between model setup, execution and 
+outputs.
+[ ] Inspect basic simulation results without assistance.
+
+LEVEL 2 - COMPETENT
+[ ] Create a simulation from scratch and configure run settings.
+[ ] Organise assets, parameters and supporting objects logically.
+[ ] Diagnose common configuration and run errors.
+[ ] Use consistent naming and structure so another user can follow the 
+model.
+
+LEVEL 3 - ADVANCED
+[ ] Establish architecture and conventions for large GNOS projects.
+[ ] Design reusable model structures and templates.
+[ ] Review another user's model and identify structural weaknesses.
+[ ] Mentor users in efficient GNOS navigation and model setup.
+
+
+2 Logic Canvas / Model Structure
+
+LEVEL 1 - BEGINNER
+[ ] Identify simulation setup, calculation and event nodes.
+[ ] Connect event and calculation logic correctly.
+[ ] Follow an agent through a simple process flow.
+[ ] Understand node inputs, outputs and bound references at a basic 
+level.
+
+LEVEL 2 - COMPETENT
+[ ] Build multi-stage logic with branching, delays and resource 
+interactions.
+[ ] Structure canvases so model logic is clear and maintainable.
+[ ] Debug agent flow and calculation dependencies.
+[ ] Select appropriate default nodes rather than over-scripting simple 
+logic.
+
+LEVEL 3 - ADVANCED
+[ ] Architect complex models using modular and reusable logic patterns.
+[ ] Determine whether logic belongs in nodes, InnScript, physics or 
+FlowSim.
+[ ] Create custom event/calculation logic when defaults are insufficient.
+[ ] Optimise canvas structure to improve maintainability and runtime.
+
+
+3 DES / Agent-Based Modelling
+
+LEVEL 1 - BEGINNER
+[ ] Explain agents, events, resources, queues and delays.
+[ ] Spawn agents and move them through a simple event flow.
+[ ] Apply basic resource constraints and process times.
+[ ] Report simple throughput and utilisation outputs.
+
+LEVEL 2 - COMPETENT
+[ ] Model queues, constrained resources, downtime and operational 
+variability.
+[ ] Create agent types, parameters and custom properties.
+[ ] Use conditional routing and dynamic resource allocation.
+[ ] Combine mobile assets with fixed processes and operational rules.
+
+LEVEL 3 - ADVANCED
+[ ] Design whole-of-system DES models with interacting subsystems.
+[ ] Choose appropriate abstraction and stochastic detail for the decision 
+being tested.
+[ ] Model complex dependencies, control rules and emergent behaviour.
+[ ] Identify systemic bottlenecks rather than isolated asset constraints.
+
+
+4 Calculation Nodes
+
+LEVEL 1 - BEGINNER
+[ ] Use input, output and parameter calculation nodes.
+[ ] Connect calculations and understand how values propagate.
+[ ] Use common arithmetic and simple value transformations.
+[ ] Track a calculation value as a model output or metric.
+
+LEVEL 2 - COMPETENT
+[ ] Build calculation networks using time, ranges and prior values.
+[ ] Expose parameters for structured scenario testing.
+[ ] Combine calculation logic with DES behaviour.
+[ ] Use running calculations where values must update through time.
+
+LEVEL 3 - ADVANCED
+[ ] Develop reusable calculation systems for engineering or operational 
+logic.
+[ ] Use custom calculation nodes appropriately.
+[ ] Choose Calculation Nodes versus InnScript based on transparency 
+and complexity.
+[ ] Build auditable calculations that can be peer reviewed and validated.
+
+
+5 InnScript
+
+LEVEL 1 - BEGINNER
+[ ] Read simple InnScript and identify variables, values and assignments.
+[ ] Use basic conditions and simple expressions.
+[ ] Make safe modifications to existing code blocks.
+[ ] Understand where agent and node bound objects are available.
+
+LEVEL 2 - COMPETENT
+[ ] Write functions, loops and conditional logic.
+[ ] Work with lists, maps, DateTime and DeltaTime values.
+[ ] Access GNOS bound objects and modify model behaviour.
+[ ] Debug common scripting and scope errors.
+
+LEVEL 3 - ADVANCED
+[ ] Write reusable custom functions and control algorithms.
+[ ] Manipulate simulation objects dynamically and safely.
+[ ] Develop complex routing, scheduling or control logic.
+[ ] Produce maintainable, documented InnScript suitable for production 
+models.
+
+
+6 FlowSim / Material & Process Flow
+
+LEVEL 1 - BEGINNER
+[ ] Explain sources, sinks, containers, connections and junctions.
+[ ] Build a simple material flow network.
+[ ] Configure capacity, maximum flow rates and basic equipment.
+[ ] Interpret material amount and flow-rate outputs.
+
+LEVEL 2 - COMPETENT
+[ ] Model storage, conveyors, reactors and constrained process flows.
+[ ] Use priorities / optimisation weightings and fixed/free proportions 
+correctly.
+[ ] Connect FlowSim behaviour to DES agents and events.
+[ ] Create or reuse FlowSim equipment with exposed parameters.
+LEVEL 3 - ADVANCED
+[ ] Build complex mine, plant, stockyard or port material systems.
+[ ] Develop dynamic routing, blending and inventory control logic.
+[ ] Use FlowSim events and scripting to integrate material state with 
+operations.
+[ ] Diagnose solver behaviour, unintended constraints and flow instability.
+
+
+7 Rail Modelling
+
+LEVEL 1 - BEGINNER
+[ ] Create or load a rail network and identify route elements.
+[ ] Configure basic locomotive, carriage and train-type data.
+[ ] Create a train and run it over a route.
+[ ] Interpret runtime, speed and basic rail physics outputs.
+
+LEVEL 2 - COMPETENT
+[ ] Build multi-train operational models with crossing and meet/pass 
+interactions.
+[ ] Configure train cycles, loading/unloading, turnarounds and track 
+restrictions.
+[ ] Use route geometry, tractive effort, braking and energy data 
+appropriately.
+[ ] Model outages, operating rules and timetable / fleet scenarios.
+
+LEVEL 3 - ADVANCED
+[ ] Develop full-fleet rail capacity and digital-twin models.
+[ ] Perform capacity, headway, fleeting and schedule studies.
+[ ] Configure and interpret longitudinal dynamics, braking and couplerforce behaviour.
+[ ] Integrate rail physics with mine, port, maintenance or other DES 
+subsystems.
+
+
+8 Road / Mobile Equipment Modelling
+
+LEVEL 1 - BEGINNER
+[ ] Create a motor vehicle and configure a road network / route.
+[ ] Enter basic vehicle performance and payload parameters.
+[ ] Run a road physics simulation and inspect cycle outputs.
+[ ] Understand how grade and route geometry affect vehicle 
+performance.
+
+LEVEL 2 - COMPETENT
+[ ] Build fleet cycles such as load-haul-dump-return.
+[ ] Combine mobile equipment with loaders, resources, queues and 
+process constraints.
+[ ] Configure vehicle performance and route assumptions from 
+operational data.
+[ ] Analyse cycle time, utilisation, fleet requirement and bottlenecks.
+
+LEVEL 3 - ADVANCED
+[ ] Build detailed fleet simulations combining road physics and dispatch 
+logic.
+[ ] Calibrate performance against measured travel, fuel or cycle data.
+[ ] Evaluate fleet size, congestion, route changes and operating 
+strategies.
+[ ] Integrate road fleets with rail, FlowSim and fixed processing systems.
+
+
+9 Energy, Fuel & Electrification
+
+LEVEL 1 - BEGINNER
+[ ] Understand diesel, battery and hybrid energy-storage concepts in 
+GNOS.
+[ ] View fuel, energy and battery state outputs.
+[ ] Configure basic battery capacity and charging assumptions.
+[ ] Compare baseline fuel / energy results between scenarios.
+
+LEVEL 2 - COMPETENT
+[ ] Configure battery-electric and hybrid vehicles or trains.
+[ ] Model charging / refuelling events and infrastructure assumptions.
+[ ] Analyse state of charge, energy use, fuel use, emissions and 
+regeneration.
+[ ] Test charger locations, power levels, dwell and operational impacts.
+
+LEVEL 3 - ADVANCED
+[ ] Design detailed decarbonisation and electrification studies.
+[ ] Develop and test hybrid control strategies and power-supply 
+constraints.
+[ ] Evaluate battery sizing, duty cycle and infrastructure together with 
+network capacity.
+[ ] Calibrate baseline fuel / energy physics before comparing future 
+technologies.
+
+
+10 GIS / Network & Route Configuration
+
+LEVEL 1 - BEGINNER
+[ ] Open and inspect an existing network model.
+[ ] Understand track / road sections and basic connectivity.
+[ ] Make simple route, speed or geometry changes.
+[ ] Identify obvious disconnected or invalid route elements.
+
+LEVEL 2 - COMPETENT
+[ ] Build or import practical networks from reference data.
+[ ] Configure grades, curves, speeds and operational track features.
+[ ] Validate routing and network connectivity.
+[ ] Document network assumptions and simplifications.
+
+LEVEL 3 - ADVANCED
+[ ] Build production-quality networks from client, GIS or engineering data.
+[ ] Simplify geometry without materially changing model outcomes.
+[ ] Diagnose complex topology and routing issues.
+[ ] Create reusable network datasets and model standards.
+
+
+11 Results, Metrics & Analysis
+
+LEVEL 1 - BEGINNER
+[ ] Run scenarios and locate standard outputs.
+[ ] Report basic throughput, utilisation, runtime, fuel or energy results.
+[ ] Compare two simulation runs.
+[ ] Explain what a selected metric represents.
+
+LEVEL 2 - COMPETENT
+[ ] Define useful KPIs and model metrics.
+[ ] Analyse queues, utilisation, capacity, bottlenecks and asset 
+performance.
+[ ] Build structured scenario comparisons.
+[ ] Explain model findings and limitations to another person.
+
+LEVEL 3 - ADVANCED
+[ ] Design the analysis plan before model construction.
+[ ] Differentiate symptoms from genuine system constraints.
+[ ] Perform sensitivity and uncertainty analysis where appropriate.
+[ ] Translate model outputs into operational or investment 
+recommendations.
+
+
+12 Model Calibration & Validation
+
+LEVEL 1 - BEGINNER
+[ ] Identify key model assumptions and sources of input data.
+[ ] Perform basic sanity checks on outputs.
+[ ] Understand why a baseline should be validated before future 
+scenarios.
+[ ] Record major assumptions and known data gaps.
+
+LEVEL 2 - COMPETENT
+[ ] Compare simulated outputs with observed operations.
+[ ] Calibrate cycle time, throughput, dwell, energy or asset performance 
+where relevant.
+[ ] Maintain an assumptions / calibration register.
+[ ] Explain material deviations between the model and reference data.
+
+LEVEL 3 - ADVANCED
+[ ] Define a formal validation and calibration approach for the study.
+[ ] Determine which parameters should and should not be tuned.
+[ ] Use sensitivity testing to judge robustness of conclusions.
+[ ] Assess fitness-for-purpose and challenge unreliable client data or 
+assumptions.
+
+
+13 Hybrid / Whole-of-System Modelling
+
+LEVEL 1 - BEGINNER
+[ ] Explain the purpose of combining physics with DES / agent modelling.
+[ ] Identify which parts of a simple system are physics-based versus 
+event-based.
+[ ] Understand basic interactions between mobile assets and processes.
+
+LEVEL 2 - COMPETENT
+[ ] Connect rail or road physics to DES, resources and FlowSim 
+processes.
+[ ] Choose an appropriate modelling fidelity for each subsystem.
+[ ] Model dependencies between transport, processing, storage and 
+operating rules.
+[ ] Test cross-system consequences of a proposed change.
+
+LEVEL 3 - ADVANCED
+[ ] Architect complex digital twins combining physics, DES, FlowSim, 
+energy and custom logic.
+[ ] Balance model fidelity, transparency and runtime.
+[ ] Manage interacting constraints without unnecessary duplication of 
+logic.
+[ ] Use whole-system results to identify cascading impacts and trade-offs.
+
+
+14 Scenario Design & Optimisation
+
+LEVEL 1 - BEGINNER
+[ ] Change model parameters and compare baseline versus alternative 
+scenarios.
+[ ] Describe the decision variable and outcome being tested.
+[ ] Keep simple scenario runs organised and traceable.
+
+LEVEL 2 - COMPETENT
+[ ] Build structured scenario sets with clear constraints and KPIs.
+[ ] Identify controllable decision variables and practical bounds.
+[ ] Compare operational alternatives systematically.
+[ ] Recognise interactions and trade-offs rather than selecting on one 
+metric only.
+
+LEVEL 3 - ADVANCED
+[ ] Formulate advanced optimisation, scheduling or routing problems.
+[ ] Develop custom optimisation / control logic where required.
+[ ] Design experiments that explore large solution spaces efficiently.
+[ ] Interpret robust decision regions rather than relying on a single best 
+run.
+
+
+15 Model QA, Performance & Professional Practice
+
+LEVEL 1 - BEGINNER
+[ ] Use sensible naming and document key assumptions.
+[ ] Work from controlled copies / versions of production models.
+[ ] Check outputs for obvious errors before sharing results.
+[ ] Know when to seek peer review or technical support.
+
+LEVEL 2 - COMPETENT
+[ ] Build models another GNOS user can understand.
+[ ] Test components before integrating the full model.
+[ ] Use repeatable test cases and scenario naming.
+[ ] Maintain sufficient documentation for handover or client review.
+
+LEVEL 3 - ADVANCED
+[ ] Conduct model peer reviews and technical assurance.
+[ ] Diagnose runtime / performance problems and unnecessary 
+complexity.
+[ ] Establish QA, regression and validation test cases.
+[ ] Develop reusable internal standards, templates and components.
+
+
+16 Recommended practical assessment for overall proficiency
+
+LEVEL 1 - BEGINNER
+[ ] Build a simple simulation from scratch using agents, delays and a resource.
+[ ] Use parameters / calculation nodes and run at least two scenarios.
+[ ] Inspect metrics and explain the main result.
+[ ] Modify a basic rail or road example and explain the change.
+
+LEVEL 2 - COMPETENT
+[ ] Independently build a client-style problem using DES plus one specialist 
+domain.
+[ ] Use custom parameters and some InnScript / control logic.
+[ ] Validate a baseline against supplied reference data.
+[ ] Run scenarios, identify the constraint and present findings / assumptions.
+
+LEVEL 3 - ADVANCED
+[ ] Architect a realistic multi-domain model combining physics with DES / 
+FlowSim where relevant.
+[ ] Develop custom logic and complete calibration / sensitivity analysis.
+[ ] Demonstrate model performance and QA discipline.
+[ ] Peer review another model and produce defensible recommendations from 
+simulation results.

@@ -1,0 +1,18 @@
+Resource
+(Simulation Setup Node)
+
+The Resource simulation setup node defines a resource within the simulation. Resources are used to simulate a finite resource which can be used by agents, e.g. The number of available saws in a lumber mill.
+
+Use the Resource Request event node to request the use of a resource by an agent and the Resource Release event node to release the resource for other agents to use. When requesting resources agents will wait until the resource is available for use.
+
+Resource utilization can be used in metric graphs by setting the Metric node's value to return Resource.utilization;.
+
+Configuration
+Name
+The Name field defines the identifier for the simulation resource. The compliant form of this name is used to bind the resource object to the simulation scope.
+
+Quantity
+The Quantity field specifies the maximum number of resources that can be in use at any given time. This value sets an upper limit on the resource’s availability during the simulation. InnScript can be used to dynamically evaluate the initial value, allowing for flexible configuration of resource quantities at the start of the simulation.
+
+Bound Object
+For each Resource simulation setup node, a Simulation Resource bound object is bound to the global simulation scope using the compliant form of the Resource simulation setup node's name. See the Simulation Resource bound object documentation for more information.

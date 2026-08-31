@@ -1,0 +1,16 @@
+Rail Carriage
+(Simulation Setup Node)
+
+The Rail Carriage simulation setup node specifies the carriage type configuration used for creating new rail vehicle carriages within the simulation. Carriage types are configured in the carriage types page.
+
+Use the Rail Carriage and Rail Vehicle simulation setup nodes in conjunction with the Add Vehicle event node to add train locomotives and carriages to an agent's vehicle.
+
+Configuration
+Name
+The Name field specifies the identifier for the carriage type. The compliant form of this name will be used to bind the carriage type object to the simulation scope.
+
+Carriage Type
+The Carriage Type field is a dropdown menu that allows users to select a pre-defined carriage type.
+
+Bound Object
+For each Rail Carriage simulation setup node, a Carriage Type bound object is bound to the global simulation scope using the compliant form of the Rail Carriage simulation setup node's name. See the Rail Carriage bound object documentation for more information.

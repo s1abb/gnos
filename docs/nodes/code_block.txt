@@ -1,0 +1,51 @@
+CodeBlock
+(Simulation Setup Node)
+
+The CodeBlock simulation setup node defines a custom block of InnScript code used to override the behaviour of simulation objects. By default, all code blocks can access the scope of the simulation as well as bound values relevant to the simulation object.
+
+Code blocks are used for overriding behaviour of vehicles during a simulation. They can be used to create custom logic for:
+
+Vehicle force distribution
+Vehicle fuel consumption
+The the Code Block's bound object is used by the Set Force Distributor and Set Fuel Consumer default event nodes.
+
+Vehicle Force Distribution (Rail)
+Overriding the vehicle force distribution is currently only supported on rail vehicles.
+
+When overriding vehicle force distribution logic, the code block will also include the following bound values:
+
+vehicle
+delta_time
+desired_force
+resistance
+current_pneumatic_braking
+ecp
+min_pneumatic_percentage
+Fuel Consumption (Rail, Road)
+Overriding the vehicle fuel consumption is supported on both rail and road vehicles.
+
+When overriding vehicle fuel consumption logic, the code block will also have access to the following bound values in its execution scope:
+
+Rail:
+vehicle
+component
+fuel_system
+delta_time
+charge_rate
+effort
+notch
+speed
+temperature
+auxiliary_power
+Road:
+vehicle
+fuel_system
+delta_time
+charge_rate
+effort
+gear
+speed
+temperature
+auxiliary_power
+Bound Object
+For each Code Block simulation setup node, a Base Code Block bound object will be bound to the global simulation scope at the start of the simulation using the compliant form of the Code Block simulation setup node's name. See the Base Code Block bound object documentation for more information.

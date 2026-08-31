@@ -1,0 +1,32 @@
+Metrics
+(Simulation Setup Node)
+
+The Metrics simulation setup node is responsible for recording values intermittently throughout the simulation, which can later be used to generate a graph or an output.
+
+For a timeseries metric, typically the value recorded by a metrics node will be a numeric output from a chain of calculation nodes. But any numeric value can be evaluated in the node's Value configuration including bound values within the simulation scope.
+
+For a discrete metric, the value must be manually set through InnScript in the simulation. This is done by calling the set_entry method on the metric bound object. A label for the x-axis and a numeric value must be passed to the method. Any subsequent calls using an existing x-axis label will overwrite the value.
+
+For a text metric, the value can be set either through InnScript or based on an automatic interval.
+
+Configuration
+Name
+The Name field defines the identifier for the metrics. The compliant form of this name is used to bind the metrics object to the simulation scope.
+
+Metric Type
+The Metric Type field defines what kind of data the metric will record. There are currently two types: Timeseries or Discrete for recording entries in a bar graph.
+
+Chart Label
+An optional chart label that is displayed in the metric chart dropdown and also on the y-axis of graphs. If chart label is not set, Name wil be used instead.
+
+Chart Suffix
+Optional suffix applied to chart label. Helps identify the units the chart value represents. e.g. a chart suffix kg for a label of Ore Delivered would render as Ore Delivered (kg) in the dropdown and on the chart axis.
+
+Value
+The Value field contains the InnScript code that is evaluated each time the metrics node records a new value. This script determines what value is saved into the metrics at each interval, providing flexibility for dynamic data collection based on simulation conditions.
+
+Save Interval
+The Save Interval field specifies how often the metrics evaluates and saves a value. This interval determines the frequency with which data is captured.
+
+Bound Object
+For each Metrics simulation setup node, a Metrics (Dataset) bound object will be bound to the global simulation scope using the compliant form of the Metric simulation setup node's name. See the Metric (Dataset) bound object documentation for more information.

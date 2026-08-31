@@ -1,0 +1,49 @@
+Canvas
+(Simulation Setup Node)
+
+The Canvas simulation setup node adds a visual-only element to the Logic Canvas, allowing users to enhance the graphical representation with different types of canvas elements. There are four distinct canvas types to choose from:
+
+Label
+The Label canvas type is a standalone text element that can be displayed within the Logic Canvas.
+
+Alignment
+The Alignment buttons allows you to control the horizontal alignment of the label text.
+
+Text
+The Text field allows you to specify the content to be displayed as the label that appears in the Logic Canvas.
+
+Text Size
+The Text Size field allows you to specify the font size of the label.
+
+Note
+The Note canvas type is similar to a label but with a colored background, helping to differentiate the text from other elements in the Logic Canvas. It displays the text within a resizable container.
+
+Alignment
+The Alignment buttons allows you to control the horizontal alignment of the text within the note.
+
+Text
+The Text field allows you to define the content of the note.
+
+Text Size
+The Text Size field allows you to specify the font size of the note text.
+
+Note Background
+The Note Background field allows you to specify the background color of the note container.
+
+Background
+The Background canvas type is a resizable, colored panel that can be used to visually organize or group elements within the Logic Canvas.
+
+Colour
+The Colour field specifies the colour of the background panel. This allows users to customize the appearance of the panel to suit their visual preferences or to highlight specific areas within the graph.
+
+Locked
+The Locked toggle prevents the panel from being moved when it is enabled. This ensures that the background panel remains fixed in place.
+
+Image
+The Image canvas type displays an image within the Logic Canvas.
+
+Image
+The Image field specifies the image to be shown from the 2D Library. Supported formats include raster images, SVG icons, and animated GIFs.
+
+Locked
+The Locked toggle prevents the image from being moved when it is enabled. This ensures that the image remains fixed in place.

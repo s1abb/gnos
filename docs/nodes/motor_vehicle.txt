@@ -1,0 +1,16 @@
+Motor Vehicle
+(Simulation Setup Node)
+
+The Motor Vehicle simulation setup node defines a specific motor vehicle type for use within the simulation. Motor vehicle types are configured in the motor vehicles page.
+
+Use the Motor Vehicle simulation setup node in conjunction with the Add Vehicle event node to add motor vehicles to an agent.
+
+Configuration
+Name
+The Name field defines the identifier for the motor vehicle type. The compliant form of this name will be used to bind the motor vehicle type object to the simulation scope.
+
+Motor Vehicle
+The Motor Vehicle field is a dropdown menu that allows users to select a pre-defined motor vehicle type.
+
+Bound Object
+For each Motor Vehicle simulation setup node, a MotorVehicle bound object will be bound to the global simulation scope using the compliant form of the Motor Vehicle simulation setup node's name. See the MotorVehicle bound object documentation for more information.

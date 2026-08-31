@@ -1,0 +1,21 @@
+Train Type
+(Simulation Setup Node)
+
+The Train Type simulation setup node defines a template for creating new trains within the simulation. It provides a structure for specifying the various characteristics and components that will be used to configure the train.
+
+Configuration
+Train Type
+The Train Type field is a dropdown menu that allows the user to select a pre-existing train type template. When an existing template is imported, its values are copied, and any additional required Rail Vehicle and Rail Carriage simulation setup nodes are automatically created to match the selected template.
+
+Train Parameters
+ECP
+The ECP toggle enables or disables electronically controlled pneumatic brakes for the train.
+
+Max Accel
+The Max Accel field defines the maximum acceleration value for the train.
+
+Components
+The Components section contains a list of train components, where each component type is specified along with the quantity of each component needed for the train.
+
+Bound Object
+For every Train Type simulation setup node, a Train Component bound object is bound to the global simulation scope using the compliant form of the Train Type simulations setup node's name. See the Train Component bound object documentation for more information.

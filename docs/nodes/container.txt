@@ -1,0 +1,21 @@
+Container
+(Simulation Setup Node)
+
+The Container simulation setup node defines a container used for storage tasks within the simulation. There are various event nodes which allow agents to add/remove material from a containers or to transfer from one container to another. Containers are an older concept in GNOS and it is recommended to use the new Flowsim equipment nodes for storage tasks and their associated event nodes for interfacing with agents.
+
+Container amount can be used as the source for recording metrics by setting the metric node's Value to return Container.amount;.
+
+Configuration
+The following properties are used to configure the starting state of the container.
+
+Name
+The Name field defines the identifier for the container. The compliant form of this name is used to bind the container object to the simulation scope.
+
+Capacity
+The Capacity field defines the maximum storage capacity of the container. This value determines the upper limit of items that the container can hold. InnScript can be used to dynamically define this value, and it will be evaluated when the simulation starts, allowing for flexible configurations.
+
+Starting Balance
+The Starting Balance field specifies the initial quantity of stored items within the container. This value represents the amount of items present in the container at the beginning of the simulation. Similar to the Capacity field, InnScript can be used here to calculate the starting balance dynamically at the start of the simulation.
+
+Bound Object
+For each Container simulation setup node, a Simulation Container bound object is added to the global simulation scope at the start of the simulation using the compliant form of the Container simulation setup node's name. See the Simulation Container bound object documentation for more details about it's properties and methods.

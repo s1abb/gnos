@@ -1,0 +1,64 @@
+UploadSet
+(Simulation Setup Node)
+
+The UploadSet simulation setup node defines a collection of table columns, which are utilized for managing dataset data within the simulation. The dataset data is integrated via simulation run parameters and made accessible within the simulation's scope. Upload set data can be unique for every simulation run which allows testing of different configurations easily.
+
+Users have the option to upload a CSV file to pre-fill the dataset data in the simulation run parameters, or alternatively, they can manually enter the data via the user interface.
+
+Upload sets are often used to define a schedule such as in the Spawn Agents and Track Outage (Schedule) event nodes. But they can be used for any number of tasks where large sources structured data are required.
+
+Configuration
+Name
+The Name field specifies the identifier for the dataset. The compliant form of this name is used as an identifier to bind the dataset data to the simulation scope.
+
+Upload Set Columns
+The Upload Set Columns section contains a list of column definitions for the dataset. A template CSV file can be exported for easier column setup.
+
+Each column definition includes the following fields:
+
+Name
+The Name represents the field name for the column. The column name must be unique within an individual upload set. The compliant form of this column name is used as a "key" on the row object to access the saved value. e.g. to access the "Date Time" column value in the 4th row of "My Upload Set" data in InnScript would be My_Upload_Set[3].Date_Time;
+
+Description
+The Description provides a human-readable explanation of the column's purpose. It clarifies what type of data the column holds and offers context for users working with the dataset.
+
+Column Type
+The Column Type is a dropdown menu that allows users to specify the type of data stored in the column. This will also determine the input method when manually entering data and will enforce validation of the upload set data when starting the simulation or uploading from csv. The available options include:
+
+Text: StringType - Textual data.
+Number: NumberType - Numeric data.
+Boolean: BoolType - Boolean true/false values.
+Date: DateType - Date values (e.g., YYYY-MM-DD).
+Time: TimeType - Time values (e.g., HH:MM:SS).
+DateTime: DateTimeType - Date and time values (e.g., YYYY-MM-DD HH:MM:SS).
+TrackSection: MapType - Simulation network model and track section as an object (e.g. { "network_model": "My Model", "track_section": "Section 1" }).
+Variable: StringType - an identifier of a variable existing in the simulation scope, evaluated at the begining of the simulation.
+Bound Object
+The upload set data is bound to the simulation scope as a list of map objects. Each row in the upload set data is an entry in the bound list. Each entry is a map of column name to column value.
+
+Using an example of an upload set named "Section Limits" which has the following columns:
+
+My Number Column (Number)
+Track Section Column (TrackSection)
+With the following upload set data:
+
+Row 1: 5, (Rail Network, Main Line)
+Row 2: 10, (Road Network, Bus Station)
+Would have the following list bound to the identifier Section_Limits in InnScript:
+
+[
+    {
+        "My_Number_Column": 5,
+        "Track_Section_Column": {
+            "network_model": "Rail Network",
+            "track_section": "Main Line"
+        }
+    },
+    {
+        "My_Number_Column": 10,
+        "Track_Section_Column": {
+            "network_model": "Road Network",
+            "track_section": "Bus Station"
+        }
+    },
+]
